@@ -5,7 +5,6 @@
 }
 
 body {
-  height: 3000px;
   font-family: 'Roboto Flex', 'Noticia Text', sans-serif;
 }
 
@@ -16,6 +15,29 @@ body {
 .black-color {
   color: black;
 }
+
+.dark-red-color {
+  color: #b83730;
+}
+
+.dark-red-backgroundcolor {
+  background-color: #b83730;
+}
+
+.mb30 {
+  margin-bottom: 30px;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* *** HEADER SECTION *** */
 
 .header {
   display: flex;
@@ -53,7 +75,6 @@ body {
 }
 
 .logo {
-  background-color: #b83730;
   font-size: 36px;
   font-weight: 700;
   line-height: 36px;
@@ -81,6 +102,7 @@ body {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.15s;
+  z-index: 1;
 }
 
 .logo-tooltip {
@@ -173,6 +195,8 @@ body {
 .header__category-container {
   flex: 1;
   height: 100%;
+  text-decoration: none;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -208,4 +232,47 @@ sudden quick movement (as the header gets a new position
 at the top of the page (position:fixed and top:0) */
 .sticky-header + .main {
   padding-top: 110px;
+}
+
+/* *** FOOTER SECTION *** */
+
+.footer {
+  position: absolute;
+  bottom: 40px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #d9d9d9;
+  pointer-events: none;
+  padding: 17px 0 27px 0;
+}
+
+.footer__bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 46px;
+}
+
+.footer__subhead {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 120%;
+  text-align: center;
+  margin-top: 6px;
+}
+
+.footer__contacts-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 120%;
+  margin-bottom: 9px;
+}
+
+.footer__contact {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 120%;
 }
