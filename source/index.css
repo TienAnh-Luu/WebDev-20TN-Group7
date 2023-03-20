@@ -18,13 +18,13 @@ body {
 
 .header {
   display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
 .header__top {
   background-color: #e36060;
   display: flex;
-  flex: 1;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -63,7 +63,8 @@ body {
 }
 
 .header__top-left:hover .logo-tooltip,
-.header__top-userIconContainer:hover .userIcon-tooltip {
+.header__top-userIconContainer:hover .userIcon-tooltip,
+.header__category-container:hover .header__category-tooltip {
   opacity: 1;
 }
 
@@ -112,7 +113,7 @@ body {
 }
 
 .header__top-navItem:hover {
-  background-color: #b83730;
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .header__top-right {
@@ -156,4 +157,41 @@ body {
 .header__top-searchIcon {
   position: absolute;
   right: 4%;
+}
+
+.header__middle {
+  display: flex;
+  height: 50px;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  background-color: #444444;
+  color: white;
+}
+
+.header__category-container {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.header__category-container:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.header__category {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.header__category-tooltip {
+  top: 100%;
+  left: 50%;
+  transition: opacity 0.15s;
 }
