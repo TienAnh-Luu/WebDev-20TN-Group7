@@ -5,6 +5,7 @@
 }
 
 body {
+  height: 3000px;
   font-family: 'Roboto Flex', 'Noticia Text', sans-serif;
 }
 
@@ -30,6 +31,7 @@ body {
 
 #root {
   width: 100%;
+  height: 100%;
   min-height: 100vh;
   position: relative;
   display: flex;
@@ -43,6 +45,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
+  z-index: 10;
 }
 
 .header__top {
@@ -102,7 +105,7 @@ body {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.15s;
-  z-index: 1;
+  z-index: 20;
 }
 
 .logo-tooltip {
@@ -136,6 +139,7 @@ body {
 }
 
 .header__top-navItem:hover {
+  color: white;
   background-color: rgba(255, 255, 255, 0.25);
 }
 
@@ -206,6 +210,7 @@ body {
 }
 
 .header__category-container:hover {
+  color: white;
   background-color: rgba(255, 255, 255, 0.25);
 }
 
@@ -232,6 +237,122 @@ sudden quick movement (as the header gets a new position
 at the top of the page (position:fixed and top:0) */
 .sticky-header + .main {
   padding-top: 110px;
+}
+
+/* *** CONTENT SECTION *** */
+
+.main {
+  margin-top: 60px;
+  width: 100%;
+}
+
+.main__features {
+  display: grid !important;
+  justify-content: center;
+  width: 100%;
+  grid-template-columns: 40% 40%;
+  gap: 15px;
+}
+
+.main__features-carousel {
+  grid-row: 1 / span 3;
+}
+
+.custom-carousel-item {
+  position: relative;
+  cursor: pointer;
+}
+
+.carousel-thumbnail-container {
+  height: 80%;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 7px;
+}
+
+.carousel-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.zoom-hover img {
+  transition: transform 0.2s ease-in-out;
+}
+
+.zoom-hover:hover img {
+  transform: scale(1.5);
+}
+
+.carousel-info {
+  width: 100%;
+  padding: 5px;
+}
+
+.news-item-container {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  height: 172px;
+  position: relative;
+}
+
+.news-thumbnail-container {
+  min-width: 172px;
+  width: 172px;
+  height: 100%;
+  margin-right: 11px;
+  overflow: hidden;
+}
+
+.carousel-thumbnail-container:hover ~ .carousel-info > .carousel-title,
+.carousel-info:hover .carousel-title,
+.news-thumbnail-container:hover ~ .news-info > .news-title,
+.news-info:hover .news-title {
+  color: #ed1c24;
+}
+
+.news-thumbnail {
+  height: 100%;
+  object-fit: cover;
+}
+
+.news-info {
+  color: black;
+}
+
+.carousel-title,
+.news-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28.8px;
+  margin-bottom: 5px;
+  transition: color 0.2s;
+}
+
+.carousel-summary,
+.news-summary {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.6px;
+}
+
+.news-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 120%;
+  padding: 4px 7px;
+  background-color: #e36060;
+  color: white;
+  z-index: 1;
+}
+
+.carousel-control-next:hover,
+.carousel-control-prev:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* *** FOOTER SECTION *** */
@@ -275,4 +396,22 @@ at the top of the page (position:fixed and top:0) */
   font-weight: 500;
   font-size: 18px;
   line-height: 120%;
+}
+
+/* *** GO TOP BUTTON *** */
+
+.go-top-btn {
+  color: white;
+  background-color: #ababab;
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  padding: 10px 15px;
+  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.15s;
+}
+
+.go-top-btn:hover {
+  color: white;
+  background-color: #858585;
 }

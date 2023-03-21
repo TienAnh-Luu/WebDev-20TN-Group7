@@ -11,6 +11,13 @@
       href="https://fonts.googleapis.com/css2?family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Flex:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="index.css" />
     <script src="https://kit.fontawesome.com/372c90f6b7.js" crossorigin="anonymous"></script>
   </head>
@@ -90,7 +97,142 @@
           </a>
         </div>
       </header>
-      <main class="main" id="content"></main>
+
+      <main class="main" id="content">
+        <div class="main__features grid-container">
+          <div class="main__features-carousel">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide-to="0"
+                  class="active"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide-to="1"
+                  aria-label="Slide 2"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide-to="2"
+                  aria-label="Slide 3"
+                ></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="custom-carousel-item">
+                    <div class="carousel-thumbnail-container zoom-hover">
+                      <img class="carousel-thumbnail" src="public/images/messi.png" alt="Messi" />
+                    </div>
+                    <div class="carousel-info">
+                      <h5 class="carousel-title">World Cup 2026 sẽ đá 104 trận</h5>
+                      <p class="carousel-summary">
+                        FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như
+                        kế hoạch ban đầu, và thi đấu trong 39 ngày.
+                      </p>
+                    </div>
+                    <div class="news-tag">Thể thao</div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="custom-carousel-item">
+                    <div class="carousel-thumbnail-container zoom-hover">
+                      <img class="carousel-thumbnail" src="public/images/messi.png" alt="Messi" />
+                    </div>
+                    <div class="carousel-info">
+                      <h5 class="carousel-title">World Cup 2026 sẽ đá 104 trận</h5>
+                      <p class="carousel-summary">
+                        FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như
+                        kế hoạch ban đầu, và thi đấu trong 39 ngày.
+                      </p>
+                    </div>
+                    <div class="news-tag">Thể thao</div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="custom-carousel-item">
+                    <div class="carousel-thumbnail-container zoom-hover">
+                      <img class="carousel-thumbnail" src="public/images/messi.png" alt="Messi" />
+                    </div>
+                    <div class="carousel-info">
+                      <h5 class="carousel-title">World Cup 2026 sẽ đá 104 trận</h5>
+                      <p class="carousel-summary">
+                        FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như
+                        kế hoạch ban đầu, và thi đấu trong 39 ngày.
+                      </p>
+                    </div>
+                    <div class="news-tag">Thể thao</div>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <a href="#" class="news-item-container">
+            <div class="news-thumbnail-container zoom-hover">
+              <img class="news-thumbnail" src="public/images/news-oil.png" alt="people at gas station" />
+            </div>
+            <div class="news-info">
+              <h3 class="news-title">Giá xăng dầu tăng, RON95 lên 23.810 đồng/lít</h3>
+              <p class="news-summary">
+                Cụ thể, giá xăng RON 95-III tăng 490 đồng/lít, lên mức 23.810 đồng/lít; xăng E5 RON92 tăng thêm 380
+                đồng/lít, lên mức 22.800 đồng/lít.
+              </p>
+            </div>
+            <div class="news-tag">Kinh doanh</div>
+          </a>
+          <a href="#" class="news-item-container">
+            <div class="news-thumbnail-container zoom-hover">
+              <img class="news-thumbnail" src="public/images/news-oil.png" alt="people at gas station" />
+            </div>
+            <div class="news-info">
+              <h3 class="news-title">Giá xăng dầu tăng, RON95 lên 23.810 đồng/lít</h3>
+              <p class="news-summary">
+                Cụ thể, giá xăng RON 95-III tăng 490 đồng/lít, lên mức 23.810 đồng/lít; xăng E5 RON92 tăng thêm 380
+                đồng/lít, lên mức 22.800 đồng/lít.
+              </p>
+            </div>
+            <div class="news-tag">Kinh doanh</div>
+          </a>
+          <a href="#" class="news-item-container">
+            <div class="news-thumbnail-container zoom-hover">
+              <img class="news-thumbnail" src="public/images/news-oil.png" alt="people at gas station" />
+            </div>
+            <div class="news-info">
+              <h3 class="news-title">Giá xăng dầu tăng, RON95 lên 23.810 đồng/lít</h3>
+              <p class="news-summary">
+                Cụ thể, giá xăng RON 95-III tăng 490 đồng/lít, lên mức 23.810 đồng/lít; xăng E5 RON92 tăng thêm 380
+                đồng/lít, lên mức 22.800 đồng/lít.
+              </p>
+            </div>
+            <div class="news-tag">Kinh doanh</div>
+          </a>
+        </div>
+      </main>
+
       <footer class="footer">
         <div class="footer__top">
           <div class="logo">
@@ -124,7 +266,16 @@
           </div>
         </div>
       </footer>
+
+      <a href="#" class="go-top-btn"><i class="fa-solid fa-up-long"></i></a>
     </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
     <script src="index.js"></script>
   </body>
 </html>
