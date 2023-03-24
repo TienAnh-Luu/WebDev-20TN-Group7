@@ -1,7 +1,7 @@
-const Logo = `
-    <div class="logo dark-red-backgroundcolor">
-        <span class="white-color">News</span>
-        <span class="black-color">Room</span>
+const Logo = (bgc, firstLetterColor, secondLetterColor) => `
+    <div class="logo ${bgc}">
+        <span class=${firstLetterColor}>News</span>
+        <span class=${secondLetterColor}>Room</span>
     </div>
 `;
 

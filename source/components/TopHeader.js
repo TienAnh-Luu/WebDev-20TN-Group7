@@ -18,7 +18,7 @@ const headerTopItems = [
 const TopHeader = `
     <div class="header__top">
         <div class="header__top-left">
-        ${Logo}
+        ${Logo('dark-red-backgroundcolor', 'white-color', 'black-color')}
         <div class="tooltip logo-tooltip">Home Page</div>
         </div>
         <div class="header__top-middle">
