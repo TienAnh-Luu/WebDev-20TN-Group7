@@ -1,0 +1,51 @@
+.carousel-item,
+.carousel-item:hover .carousel-summary {
+  color: black;
+}
+
+.custom-carousel-item {
+  position: relative;
+  cursor: pointer;
+}
+
+.carousel-thumbnail-container {
+  height: 80%;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 7px;
+}
+
+.carousel-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-info {
+  width: 100%;
+  padding: 5px;
+}
+
+.carousel-thumbnail-container:hover ~ .carousel-info > .carousel-title,
+.carousel-info:hover .carousel-title {
+  color: #ed1c24 !important;
+}
+
+.carousel-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28.8px;
+  margin-bottom: 5px;
+  transition: color 0.2s;
+}
+
+.carousel-summary {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.6px;
+}
+
+.carousel-control-next:hover,
+.carousel-control-prev:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

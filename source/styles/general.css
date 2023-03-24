@@ -37,13 +37,16 @@ a:hover {
   margin-bottom: 30px;
 }
 
-#root {
+.zoom-hover img {
+  transition: transform 0.2s ease-in-out;
+}
+
+.zoom-hover:hover img {
+  transform: scale(1.5);
+}
+
+.grid-container {
+  display: grid !important;
+  justify-content: center;
   width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 340px;
 }

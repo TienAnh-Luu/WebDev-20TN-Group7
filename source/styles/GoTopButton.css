@@ -1,0 +1,15 @@
+.go-top-btn {
+  color: white;
+  background-color: #ababab;
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  padding: 10px 15px;
+  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.15s;
+}
+
+.go-top-btn:hover {
+  color: white;
+  background-color: #858585;
+}
