@@ -1,0 +1,196 @@
+/* *** HEADER SECTION *** */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  z-index: 10;
+}
+
+.header__top {
+  background-color: #e36060;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+.header__top-left,
+.header__top-middle,
+.header__top-right {
+  height: 100%;
+}
+
+.header__top-left {
+  position: relative;
+}
+
+.logo,
+.header__top-navbar,
+.header__top-navItem,
+.header__top-right {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.header__top-left:hover .logo-tooltip,
+.header__top-userIconContainer:hover .userIcon-tooltip,
+.header__category-container:hover .header__category-tooltip {
+  opacity: 1;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: black;
+  padding: 8px 10px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.25);
+  font-size: 16px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 20;
+}
+
+.logo-tooltip {
+  bottom: -60%;
+  right: -20%;
+}
+
+.userIcon-tooltip {
+  bottom: -120%;
+  left: -100%;
+}
+
+.header__top-middle {
+  flex: 1;
+}
+
+.header__top-navbar {
+  flex-direction: row;
+}
+
+.header__top-navItem {
+  width: 200px;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 0 20px;
+  margin: 0 3.5%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.header__top-navItem:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.header__top-right {
+  display: flex;
+  width: 20%;
+}
+
+.header__top-searchContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.header__top-userIconContainer {
+  margin: 0 9px;
+  position: relative;
+}
+
+.header__top-userIcon {
+  color: white;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 15px;
+  border: none;
+}
+
+.search-input::placeholder {
+  font-family: 'Roboto Flex';
+  font-size: 18px;
+}
+
+.header__top-searchIcon {
+  position: absolute;
+  right: 4%;
+}
+
+.header__middle {
+  display: flex;
+  height: 50px;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  background-color: #444444;
+  color: white;
+}
+
+.header__category-container {
+  flex: 1;
+  height: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.header__category-container:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.header__category {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.header__category-tooltip {
+  top: 100%;
+  left: 50%;
+  transition: opacity 0.15s;
+}
+
+.sticky-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Add some top padding to the page content to prevent 
+  sudden quick movement (as the header gets a new position 
+  at the top of the page (position:fixed and top:0) */
+.sticky-header + .main {
+  padding-top: 110px;
+}

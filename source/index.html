@@ -18,199 +18,18 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="styles/general.css" />
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/Footer.css" />
     <script src="https://kit.fontawesome.com/372c90f6b7.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <div id="root">
-      <header id="header" class="header">
-        <div class="header__top">
-          <div class="header__top-left">
-            <div class="logo dark-red-backgroundcolor">
-              <span class="white-color">News</span>
-              <span class="black-color">Room</span>
-            </div>
-            <div class="tooltip logo-tooltip">Home Page</div>
-          </div>
-          <div class="header__top-middle">
-            <nav class="header__top-navbar">
-              <a href="#" class="header__top-navItem">MỚI NHẤT</a>
-              <a href="#" class="header__top-navItem">XEM NHIỀU</a>
-              <a href="#" class="header__top-navItem">PREMIUM</a>
-            </nav>
-          </div>
-          <div class="header__top-right">
-            <div class="header__top-searchContainer">
-              <input type="text" name="search" class="search-input" id="search-input" placeholder="Tìm kiếm..." />
-              <i class="fa-solid fa-magnifying-glass header__top-searchIcon"></i>
-            </div>
-            <div class="header__top-userIconContainer">
-              <i class="fa-solid fa-user header__top-userIcon"></i>
-              <div class="tooltip userIcon-tooltip">User</div>
-            </div>
-          </div>
-        </div>
-        <div class="header__middle" id="sticky-header">
-          <a href="#" class="header__category-container">
-            <i class="fa-solid fa-house header__category"></i>
-            <div class="header__category-tooltip tooltip">Home Page</div>
-          </a>
-          <a href="#" class="header__category-container">
-            <div class="header__category">Thời sự</div>
-            <div class="header__category-tooltip tooltip">Thời sự</div>
-          </a>
-          <a href="#" class="header__category-container">
-            <div class="header__category">Xã hội</div>
-            <div class="header__category-tooltip tooltip">Xã hội</div>
-          </a>
-          <a href="#" class="header__category-container">
-            <div class="header__category">Quốc tế</div>
-            <div class="header__category-tooltip tooltip">Quốc tế</div>
-          </a>
-          <a href="#" class="header__category-container">
-            <div class="header__category">Giáo dục</div>
-            <div class="header__category-tooltip tooltip">Giáo dục</div>
-          </a>
-          <a href="#" class="header__category-container">
-            <div class="header__category">Kinh doanh</div>
-            <div class="header__category-tooltip tooltip">Kinh doanh</div>
-          </a>
-          <a href="#" class="header__category-container">
-            <div class="header__category">Sức khỏe</div>
-            <div class="header__category-tooltip tooltip">Sức khỏe</div>
-          </a>
-          <a href="#" class="header__category-container">
-            <div class="header__category">Văn hóa</div>
-            <div class="header__category-tooltip tooltip">Văn hóa</div>
-          </a>
-          <a href="#" class="header__category-container">
-            <div class="header__category">Thể thao</div>
-            <div class="header__category-tooltip tooltip">Thể thao</div>
-          </a>
-          <a href="#" class="header__category-container">
-            <div class="header__category">Công nghệ</div>
-            <div class="header__category-tooltip tooltip">Công nghệ</div>
-          </a>
-          <a href="#" class="header__category-container">
-            <div class="header__category">Du lịch</div>
-            <div class="header__category-tooltip tooltip">Du lịch</div>
-          </a>
-        </div>
-      </header>
+      <header id="header" class="header"></header>
 
       <main class="main" id="content">
-        <div class="main__features grid-container">
-          <div class="main__features-carousel">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="custom-carousel-item">
-                    <div class="carousel-thumbnail-container zoom-hover">
-                      <img class="carousel-thumbnail" src="public/images/messi.png" alt="Messi" />
-                    </div>
-                    <div class="carousel-info">
-                      <h5 class="carousel-title">World Cup 2026 sẽ đá 104 trận</h5>
-                      <p class="carousel-summary">
-                        FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như
-                        kế hoạch ban đầu, và thi đấu trong 39 ngày.
-                      </p>
-                    </div>
-                    <div class="news-tag">Thể thao</div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="custom-carousel-item">
-                    <div class="carousel-thumbnail-container zoom-hover">
-                      <img class="carousel-thumbnail" src="public/images/messi.png" alt="Messi" />
-                    </div>
-                    <div class="carousel-info">
-                      <h5 class="carousel-title">World Cup 2026 sẽ đá 104 trận</h5>
-                      <p class="carousel-summary">
-                        FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như
-                        kế hoạch ban đầu, và thi đấu trong 39 ngày.
-                      </p>
-                    </div>
-                    <div class="news-tag">Thể thao</div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="custom-carousel-item">
-                    <div class="carousel-thumbnail-container zoom-hover">
-                      <img class="carousel-thumbnail" src="public/images/messi.png" alt="Messi" />
-                    </div>
-                    <div class="carousel-info">
-                      <h5 class="carousel-title">World Cup 2026 sẽ đá 104 trận</h5>
-                      <p class="carousel-summary">
-                        FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như
-                        kế hoạch ban đầu, và thi đấu trong 39 ngày.
-                      </p>
-                    </div>
-                    <div class="news-tag">Thể thao</div>
-                  </div>
-                </div>
-              </div>
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="prev"
-              >
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next"
-              >
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div>
-          <a href="#" class="news-item-container">
-            <div class="news-thumbnail-container zoom-hover">
-              <img class="news-thumbnail" src="public/images/news-oil.png" alt="people at gas station" />
-            </div>
-            <div class="news-info">
-              <h3 class="news-title">Giá xăng dầu tăng, RON95 lên 23.810 đồng/lít</h3>
-              <p class="news-summary">
-                Cụ thể, giá xăng RON 95-III tăng 490 đồng/lít, lên mức 23.810 đồng/lít; xăng E5 RON92 tăng thêm 380
-                đồng/lít, lên mức 22.800 đồng/lít.
-              </p>
-            </div>
-            <div class="news-tag">Kinh doanh</div>
-          </a>
-          <a href="#" class="news-item-container">
-            <div class="news-thumbnail-container zoom-hover">
-              <img class="news-thumbnail" src="public/images/news-oil.png" alt="people at gas station" />
-            </div>
-            <div class="news-info">
-              <h3 class="news-title">Giá xăng dầu tăng, RON95 lên 23.810 đồng/lít</h3>
-              <p class="news-summary">
-                Cụ thể, giá xăng RON 95-III tăng 490 đồng/lít, lên mức 23.810 đồng/lít; xăng E5 RON92 tăng thêm 380
-                đồng/lít, lên mức 22.800 đồng/lít.
-              </p>
-            </div>
-            <div class="news-tag">Kinh doanh</div>
-          </a>
-          <a href="#" class="news-item-container">
-            <div class="news-thumbnail-container zoom-hover">
-              <img class="news-thumbnail" src="public/images/news-oil.png" alt="people at gas station" />
-            </div>
-            <div class="news-info">
-              <h3 class="news-title">Giá xăng dầu tăng, RON95 lên 23.810 đồng/lít</h3>
-              <p class="news-summary">
-                Cụ thể, giá xăng RON 95-III tăng 490 đồng/lít, lên mức 23.810 đồng/lít; xăng E5 RON92 tăng thêm 380
-                đồng/lít, lên mức 22.800 đồng/lít.
-              </p>
-            </div>
-            <div class="news-tag">Kinh doanh</div>
-          </a>
-        </div>
-
-        <div class="main__highlight grid-container">
+        <!-- <div class="main__highlight grid-container">
           <div class="main__highlight-headline"><a href="#" class="headline-text">XEM NHIỀU</a></div>
           <a href="#" class="news-item-container">
             <div class="news-thumbnail-container zoom-hover">
@@ -614,44 +433,10 @@
             <div class="news-tag">Giáo dục</div>
           </a>
           <a href="#" class="see-more-btn">Xem thêm</a>
-        </div>
+        </div> -->
       </main>
 
-      <footer class="footer">
-        <div class="footer__top">
-          <div class="logo">
-            <span class="dark-red-color">News</span>
-            <span class="black-color">Room</span>
-          </div>
-          <p class="footer__subhead">Thuộc PTUDW - 20TN</p>
-        </div>
-        <div class="footer__bottom">
-          <div class="footer__contacts-container">
-            <p class="footer__contacts-title">Chủ quản</p>
-            <div class="footer__contact mb30">
-              <div class="footer__contact-info">18120130 - Võ Anh Khoa</div>
-              <div class="footer__contact-email">Email: 18120130@student.hcmus.edu.vn</div>
-            </div>
-            <div class="footer__contact">
-              <div class="footer__contact-info">20120245 - Lưu Nguyễn Tiến Anh</div>
-              <div class="footer__contact-email">Email: 20120245@student.hcmus.edu.vn</div>
-            </div>
-          </div>
-          <div class="footer__contacts-container">
-            <p class="footer__contacts-title">Liên hệ</p>
-            <div class="footer__contact mb30">
-              <div class="footer__contact-info">18120130 - Võ Anh Khoa</div>
-              <div class="footer__contact-email">Email: 18120130@student.hcmus.edu.vn</div>
-            </div>
-            <div class="footer__contact">
-              <div class="footer__contact-info">20120245 - Lưu Nguyễn Tiến Anh</div>
-              <div class="footer__contact-email">Email: 20120245@student.hcmus.edu.vn</div>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      <a href="#" class="go-top-btn"><i class="fa-solid fa-up-long"></i></a>
+      <footer class="footer" id="footer"></footer>
     </div>
 
     <!-- Bootstrap Bundle with Popper -->
@@ -660,6 +445,6 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-    <script src="index.js"></script>
+    <script type="module" src="index.js"></script>
   </body>
 </html>

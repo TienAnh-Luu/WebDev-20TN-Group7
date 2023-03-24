@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* height: 3000px; */
+  font-family: 'Roboto Flex', 'Noticia Text', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+.white-color {
+  color: white;
+}
+
+.black-color {
+  color: black;
+}
+
+.dark-red-color {
+  color: #b83730;
+}
+
+.dark-red-backgroundcolor {
+  background-color: #b83730;
+}
+
+.mb30 {
+  margin-bottom: 30px;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 340px;
+}

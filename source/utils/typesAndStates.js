@@ -1,0 +1,5 @@
+export const HIGHLIGHT_TYPE = {
+  LATEST: 'MỚI NHẤT',
+  MOST_VIEWED: 'XEM NHIỀU',
+  TOP10: 'TOP 10 CHUYÊN MỤC',
+};

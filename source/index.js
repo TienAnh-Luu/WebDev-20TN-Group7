@@ -1,19 +1,50 @@
+import TopHeader from './components/TopHeader.js';
+import MiddleHeader from './components/MiddleHeader.js';
+import Footer from './components/Footer.js';
+import GoTopBtn from './components/GoTopButton.js';
+import Features from './components/Features.js';
+import * as utilsHTML from './utils/htmlElements.js';
+import Highlight from './components/Highlight.js';
+
 // When the user scrolls the page, execute myFunction
 window.onscroll = function () {
-  handleSticky();
+  utilsHTML.handleSticky();
 };
 
-const handleSticky = () => {
-  // Get the header
-  const header = document.getElementById('sticky-header');
-
-  // Get the offset position of the navbar
-  const sticky = header.offsetTop;
-
-  // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-  if (window.pageYOffset > sticky) {
-    header.classList.add('sticky-header');
-  } else {
-    header.classList.remove('sticky-header');
-  }
+// Function to load details inside header
+const loadHeader = () => {
+  const header = document.getElementById('header');
+  header.innerHTML = `
+    ${TopHeader}
+    ${MiddleHeader}
+  `;
 };
+
+const loadFeatures = () => {
+  const content = document.getElementById('content');
+  content.insertBefore(utilsHTML.createElementFromHTML(Features), content.firstChild);
+};
+
+const loadMainContent = () => {
+  const content = document.getElementById('content');
+  content.insertBefore(utilsHTML.createElementFromHTML(Features), content.firstChild);
+  content.appendChild(utilsHTML.createElementFromHTML(Highlight('XEM NHIỀU')));
+  content.appendChild(utilsHTML.createElementFromHTML(Highlight('MỚI NHẤT')));
+  content.appendChild(utilsHTML.createElementFromHTML(Highlight('TOP 10 CHUYÊN MỤC')));
+};
+
+// function to load details inside footer and go-top button
+const loadFooter = () => {
+  const footerSection = document.getElementById('footer');
+  footerSection.innerHTML = `
+    ${Footer}
+  `;
+
+  const root = document.getElementById('root');
+  root.appendChild(utilsHTML.createElementFromHTML(GoTopBtn));
+};
+
+loadHeader();
+// loadFeatures();
+loadMainContent();
+loadFooter();

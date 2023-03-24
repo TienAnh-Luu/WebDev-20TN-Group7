@@ -1,0 +1,42 @@
+/* *** FOOTER SECTION *** */
+
+.footer {
+  position: absolute;
+  bottom: 40px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #d9d9d9;
+  pointer-events: none;
+  padding: 17px 0 27px 0;
+}
+
+.footer__bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 46px;
+}
+
+.footer__subhead {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 120%;
+  text-align: center;
+  margin-top: 6px;
+}
+
+.footer__contacts-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 120%;
+  margin-bottom: 9px;
+}
+
+.footer__contact {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 120%;
+}
