@@ -1,0 +1,16 @@
+.round-btn {
+  width: 500px;
+  height: 50px;
+  color: white;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 100%;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.round-btn:hover {
+  background-color: #a81a12;
+}

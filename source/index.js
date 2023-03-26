@@ -20,11 +20,6 @@ const loadHeader = () => {
   `;
 };
 
-const loadFeatures = () => {
-  const content = document.getElementById('content');
-  content.insertBefore(utilsHTML.createElementFromHTML(Features), content.firstChild);
-};
-
 const loadMainContent = () => {
   const content = document.getElementById('content');
   content.insertBefore(utilsHTML.createElementFromHTML(Features), content.firstChild);
@@ -45,6 +40,5 @@ const loadFooter = () => {
 };
 
 loadHeader();
-// loadFeatures();
 loadMainContent();
 loadFooter();
