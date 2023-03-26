@@ -1,5 +1,3 @@
-/* *** HEADER SECTION *** */
-
 .header {
   display: flex;
   flex-direction: column;
@@ -26,7 +24,6 @@
   position: relative;
 }
 
-.logo,
 .header__top-navbar,
 .header__top-navItem,
 .header__top-right {
@@ -34,16 +31,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.logo {
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 36px;
-  letter-spacing: 2px;
-  text-align: center;
-  padding: 0 20px;
-  cursor: pointer;
 }
 
 .header__top-left:hover .logo-tooltip,
@@ -136,6 +123,10 @@
 .search-input::placeholder {
   font-family: 'Roboto Flex';
   font-size: 18px;
+}
+
+.search-input:focus {
+  outline: none;
 }
 
 .header__top-searchIcon {

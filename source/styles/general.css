@@ -37,6 +37,10 @@ a:hover {
   margin-bottom: 30px;
 }
 
+.pb340 {
+  padding-bottom: 340px;
+}
+
 .zoom-hover img {
   transition: transform 0.2s ease-in-out;
 }
