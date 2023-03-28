@@ -34,7 +34,7 @@ const TopHeader = `
             <i class="fa-solid fa-magnifying-glass header__top-searchIcon"></i>
         </div>
         <div class="header__top-userIconContainer">
-            <i class="fa-solid fa-user header__top-userIcon"></i>
+            <a class="header__top-userIcon" href="../../source/pages/DashboardPage.html"><i class="fa-solid fa-user"></i></a>
             <div class="tooltip userIcon-tooltip">User</div>
         </div>
         </div>

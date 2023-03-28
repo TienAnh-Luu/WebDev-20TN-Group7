@@ -113,6 +113,10 @@
   cursor: pointer;
 }
 
+.header__top-userIcon i {
+  margin: 0 auto;
+}
+
 .search-input {
   width: 100%;
   padding: 8px 10px;
