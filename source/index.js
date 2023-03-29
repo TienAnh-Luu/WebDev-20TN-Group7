@@ -3,21 +3,12 @@ import Footer from './components/Footer/Footer.js';
 import GoTopBtn from './components/GoTopButton/GoTopButton.js';
 import Features from './components/Features/Features.js';
 import * as utilsHTML from './utils/htmlElements.js';
-import Highlight from './components/Highlight.js';
+import Highlight from './components/Highlight/Highlight.js';
 
 // When the user scrolls the page, execute myFunction
 window.onscroll = function () {
   utilsHTML.handleSticky();
 };
-
-// Function to load details inside header
-// const loadHeader = () => {
-//   const header = document.getElementById('header');
-//   header.innerHTML = `
-//     ${TopHeader}
-//     ${MiddleHeader}
-//   `;
-// };
 
 const loadMainContent = () => {
   const content = document.getElementById('content');
@@ -38,9 +29,9 @@ const loadFooter = () => {
   root.appendChild(utilsHTML.createElementFromHTML(GoTopBtn));
 };
 
-loadHeader();
-loadMainContent();
-loadFooter();
+// loadHeader();
+// loadMainContent();
+// loadFooter();
 
 const root = document.getElementById('root');
 root.innerHTML = `
