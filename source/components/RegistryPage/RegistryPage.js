@@ -1,7 +1,7 @@
 import RoundButton from '../../../source/components/RoundButton/RoundButton.js';
 import FormInput from '../../../source/components/FormInput/FormInput.js';
 import Logo from '../../../source/components/Logo/Logo.js';
-import handleShowPassword from '../../utils/handleShowPassword.js';
+import handleShowPassword from '../../../source/utils/handleShowPassword.js';
 
 // TODO: Add onclick to the second 'show-password' button
 
@@ -22,8 +22,13 @@ root.innerHTML = `
 </div>
 `;
 
-const showPassBtns = document.getElementsByClassName('show-password-btn');
-showPassBtns[0].onclick = (e) => handleShowPassword(e.target.id);
+// const showPassBtns = document.getElementsByClassName('show-password-btn');
+// showPassBtns[0].onclick = (e) => handleShowPassword(e.target.id);
 // showPassBtns[1].onclick = (e) => handleShowPassword(e.target.id);
 
-console.log(showPassBtns);
+const showPassword = document.getElementById('user-password').nextElementSibling;
+showPassword.onclick = () => handleShowPassword('user-password');
+// showPassword.onclick = () => console.dir(showPassword);
+
+const showRetypePassword = document.getElementById('user-retype-password').nextElementSibling;
+showRetypePassword.onclick = () => handleShowPassword('user-retype-password');

@@ -8,8 +8,8 @@ const FormInput = (label, placeholder, id, warningMessage, type) => `
               </div>
             </label>
             <div class="form-input-container">
-              ${type === 'password' ? `<i class="fa-solid fa-eye show-password-btn" id="show-password"></i>` : ''}
               <input type=${type} name=${id} id=${id} class="form-input" placeholder=${placeholder} />
+              ${type === 'password' ? `<i class="fa-solid fa-eye show-password-btn" id="show-password"></i>` : ''}
             </div>
         </div>
 `;

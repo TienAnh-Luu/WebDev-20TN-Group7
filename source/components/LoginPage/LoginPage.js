@@ -26,5 +26,5 @@ root.innerHTML = `
 </div>
 `;
 
-const showPassBtn = document.getElementById('show-password');
-showPassBtn.onclick = (e) => handleShowPassword(e.target.id);
+const showPassBtn = document.getElementById('user-password').nextElementSibling;
+showPassBtn.onclick = () => handleShowPassword('user-password');

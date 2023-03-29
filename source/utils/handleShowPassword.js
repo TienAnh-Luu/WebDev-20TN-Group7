@@ -1,11 +1,12 @@
 const handleShowPassword = (id) => {
-  const showPassBtn = document.getElementById(id);
+  const inputField = document.getElementById(id);
+  const showPassBtn = inputField.nextElementSibling;
   if (showPassBtn.classList.contains('fa-eye')) {
-    showPassBtn.nextElementSibling.setAttribute('type', 'text');
+    inputField.setAttribute('type', 'text');
     showPassBtn.classList.remove('fa-eye');
     showPassBtn.classList.add('fa-eye-slash');
   } else {
-    showPassBtn.nextElementSibling.setAttribute('type', 'password');
+    inputField.setAttribute('type', 'password');
     showPassBtn.classList.add('fa-eye');
     showPassBtn.classList.remove('fa-eye-slash');
   }
