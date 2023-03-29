@@ -3,7 +3,6 @@ import Footer from './components/Footer/Footer.js';
 import GoTopBtn from './components/GoTopButton/GoTopButton.js';
 import Features from './components/Features/Features.js';
 import Highlight from './components/Highlight/Highlight.js';
-import { createElementFromHTML } from './utils/createHtmlElements.js';
 import { handleSticky } from './utils/handleSticky.js';
 
 // When the user scrolls the page, execute myFunction
