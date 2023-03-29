@@ -1,7 +1,7 @@
-import RoundButton from './RoundButton.js';
-import FormInput from './FormInput.js';
-import Logo from './Logo.js';
-import handleShowPassword from '../utils/handleShowPassword.js';
+import RoundButton from '../../../source/components/RoundButton/RoundButton.js';
+import FormInput from '../../../source/components/FormInput/FormInput.js';
+import Logo from '../../../source/components/Logo/Logo.js';
+import handleShowPassword from '../../utils/handleShowPassword.js';
 
 // TODO: Add onclick to the second 'show-password' button
 

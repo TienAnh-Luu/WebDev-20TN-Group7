@@ -1,5 +1,5 @@
-import { loadHighlightDataOfType } from '../utils/loadData.js';
-import { dataToNewsItemList } from '../utils/dataToElementList.js';
+import { loadHighlightDataOfType } from '../../utils/loadData.js';
+import { dataToNewsItemList } from '../../utils/dataToElementList.js';
 
 const Highlight = (type) => {
   const { data, highlightURL } = loadHighlightDataOfType(type);

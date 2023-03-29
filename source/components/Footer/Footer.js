@@ -1,6 +1,7 @@
-import Logo from './Logo.js';
+import Logo from '../Logo/Logo.js';
 
 const Footer = `
+      <footer class="footer" id="footer">
         <div class="footer__top">
           ${Logo('', 'dark-red-color', 'black-color')}
           <p class="footer__subhead">Thuộc PTUDW - 20TN</p>
@@ -29,6 +30,7 @@ const Footer = `
             </div>
           </div>
         </div>
+      </footer>
 `;
 
 export default Footer;

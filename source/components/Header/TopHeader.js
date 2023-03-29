@@ -1,4 +1,4 @@
-import Logo from './Logo.js';
+import Logo from '../Logo/Logo.js';
 
 const headerTopItems = [
   {
