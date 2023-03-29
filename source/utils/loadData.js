@@ -1,4 +1,4 @@
-import { HIGHLIGHT_TYPE } from './typesAndStates.js';
+import { HIGHLIGHT_TYPE } from './constants.js';
 
 // This is just a fixed data sample to show how to load data
 // for the Highlight component. In fact, data should be loaded

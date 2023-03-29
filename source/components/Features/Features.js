@@ -1,5 +1,5 @@
 import Carousel from './Carousel/Carousel.js';
-import { dataToNewsItemList } from '../../utils/dataToElementList.js';
+import { dataToNewsItemList } from '../../utils/createHtmlElements.js';
 
 const news_data = [
   {
