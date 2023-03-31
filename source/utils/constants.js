@@ -9,7 +9,7 @@ export const NAV_ITEM = {
     {
       icon: 'fa-solid fa-user',
       text: 'Thông tin tài khoản',
-      value: 'user-info',
+      value: 'account-info',
     },
     {
       icon: 'fa-solid fa-gem',
@@ -26,6 +26,11 @@ export const NAV_ITEM = {
     {
       icon: 'fa-solid fa-user',
       text: 'Thông tin tài khoản',
+      value: 'account-info',
+    },
+    {
+      icon: 'fa-solid fa-newspaper',
+      text: 'Thông tin phóng viên',
       value: 'writer-info',
     },
     {
