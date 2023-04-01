@@ -2,13 +2,10 @@ import Header from '../../../source/components/Header/Header.js';
 import Navbar from '../../../source/components/DashboardPage/Navbar/Navbar.js';
 import RoundButton from '../../../source/components/RoundButton/RoundButton.js';
 import AccountInfo from '../../../source/components/DashboardPage/Info/AccountInfo.js';
+import WriterInfo from '../../../source/components/DashboardPage/Info/WriterInfo.js';
 import { NAV_ITEM } from '../../../source/utils/constants.js';
 import { handleSticky } from '../../../source/utils/handleSticky.js';
-
-// When the user scrolls the page, execute handleSticky
-window.onscroll = function () {
-  handleSticky();
-};
+import { addOnclickToClassname } from '../../../source/utils/addOnclick.js';
 
 const account_info_data = {
   user_name: 'Trương Anh Ngọc',
@@ -18,6 +15,83 @@ const account_info_data = {
   DOB: '19/01/1976',
 };
 
+const writer_info_data = {
+  writer_pseudonym: 'Ký giả họ Trương',
+  email: 'tan1976@gmail.com',
+  phone_number: '0123456789',
+  work_place: 'Milan, Lombardia, Italy',
+  department: 'Thể thao',
+  manager: 'Đinh Tiến Dũng',
+};
+
+// When the user scrolls the page, execute handleSticky
+window.onscroll = function () {
+  handleSticky();
+};
+
+// Function to show the init render
+const initRender = () => {
+  const navbar = document.getElementById('navbar');
+  navbar.firstElementChild.style.backgroundColor = 'rgba(255,255,255,0.2)';
+
+  const content = document.getElementById('main-content');
+  content.innerHTML = `${AccountInfo(account_info_data)}`;
+};
+
+// Function handle onclick event of NavItem
+const handleOnClick = (e) => {
+  const target = e.target;
+
+  // reset all background color
+  const items = document.getElementsByClassName('nav-item-container');
+  for (let i = 0; i < items.length; i++) {
+    items[i].style.backgroundColor = '';
+  }
+
+  switch (target.getAttribute('value')) {
+    case 'account-info': {
+      target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      const main = document.getElementById('main-content');
+      main.innerHTML = AccountInfo(account_info_data);
+      break;
+    }
+    case 'writer-info': {
+      target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      const main = document.getElementById('main-content');
+      main.innerHTML = WriterInfo(writer_info_data);
+      break;
+    }
+    case 'writing': {
+      target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      break;
+    }
+    case 'published': {
+      target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      break;
+    }
+    case 'approved': {
+      target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      break;
+    }
+    case 'waiting': {
+      target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      break;
+    }
+    case 'rejected': {
+      target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      break;
+    }
+    case 'log-out': {
+      target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      break;
+    }
+    case 'premium': {
+      target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      break;
+    }
+  }
+};
+
 const root = document.getElementById('root');
 root.innerHTML = `
     <div class="dashboard-page">
@@ -25,12 +99,11 @@ root.innerHTML = `
         <main class="main">
             ${Navbar(NAV_ITEM.writer)}
 
-            <div class="main-content">
-                ${AccountInfo(account_info_data)}
-            </div>
+            <div class="main-content" id="main-content"></div>
         </main>
     </div>
 `;
 
-const navbar = document.getElementById('navbar');
-navbar.firstElementChild.style.backgroundColor = 'rgba(255,255,255,0.2)';
+initRender();
+
+addOnclickToClassname('nav-item-container', handleOnClick);
