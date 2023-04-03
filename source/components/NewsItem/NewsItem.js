@@ -1,4 +1,6 @@
-const NewsItem = (data) => `
+import NewsItemFooter from '../../../source/components/NewsItem/NewsItemFooter/NewsItemFooter.js';
+
+const NewsItem = (data, context) => `
 <a href=${data.url} class="news-item-container">
     <div class="news-thumbnail-container zoom-hover">
         <img class="news-thumbnail" src=${data.imgPath} alt="Thumbnail" />
@@ -10,6 +12,7 @@ const NewsItem = (data) => `
         </p>
     </div>
     <div class="news-tag">${data.tag}</div>
+    ${NewsItemFooter(context, data.date)}
 </a>
 `;
 

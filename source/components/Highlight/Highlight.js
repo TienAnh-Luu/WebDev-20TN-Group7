@@ -3,7 +3,7 @@ import { dataToNewsItemList } from '../../../source/utils/createHtmlElements.js'
 
 const Highlight = (type) => {
   const { data, highlightURL } = loadHighlightDataOfType(type);
-  const newsItemList = dataToNewsItemList(data);
+  const newsItemList = dataToNewsItemList(data, 0);
 
   return `
    <div class="main__highlight grid-container">

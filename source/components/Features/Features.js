@@ -10,6 +10,7 @@ const news_data = [
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
     tag: 'Thể thao',
+    date: '13/04/2023',
   },
   {
     id: '1',
@@ -19,6 +20,7 @@ const news_data = [
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
     tag: 'Thể thao',
+    date: '13/04/2023',
   },
   {
     id: '2',
@@ -28,6 +30,7 @@ const news_data = [
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
     tag: 'Thể thao',
+    date: '13/04/2023',
   },
   {
     id: '3',
@@ -37,6 +40,7 @@ const news_data = [
     summary:
       'Cụ thể, giá xăng RON 95-III tăng 490 đồng/lít, lên mức 23.810 đồng/lít; xăng E5 RON92 tăng thêm 380 đồng/lít, lên mức 22.800 đồng/lít.',
     tag: 'Kinh doanh',
+    date: '13/04/2023',
   },
   {
     id: '4',
@@ -46,6 +50,7 @@ const news_data = [
     summary:
       'Cụ thể, giá xăng RON 95-III tăng 490 đồng/lít, lên mức 23.810 đồng/lít; xăng E5 RON92 tăng thêm 380 đồng/lít, lên mức 22.800 đồng/lít.',
     tag: 'Kinh doanh',
+    date: '13/04/2023',
   },
   {
     id: '5',
@@ -55,13 +60,14 @@ const news_data = [
     summary:
       'Cụ thể, giá xăng RON 95-III tăng 490 đồng/lít, lên mức 23.810 đồng/lít; xăng E5 RON92 tăng thêm 380 đồng/lít, lên mức 22.800 đồng/lít.',
     tag: 'Kinh doanh',
+    date: '13/04/2023',
   },
 ];
 
 const Features = `
 <div class="main__features grid-container" id="features">
     ${Carousel(news_data.slice(0, 3))}
-    ${dataToNewsItemList(news_data.slice(3)).join('\n')}
+    ${dataToNewsItemList(news_data.slice(3), 0).join('\n')}
 </div>
 `;
 

@@ -12,6 +12,7 @@ const type_mostViewed_data = [
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
     tag: 'Công nghệ',
+    date: '13/04/2023',
   },
   {
     id: '1',
@@ -21,6 +22,7 @@ const type_mostViewed_data = [
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
     tag: 'Công nghệ',
+    date: '13/04/2023',
   },
   {
     id: '2',
@@ -30,6 +32,7 @@ const type_mostViewed_data = [
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
     tag: 'Công nghệ',
+    date: '13/04/2023',
   },
   {
     id: '3',
@@ -39,6 +42,7 @@ const type_mostViewed_data = [
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
     tag: 'Công nghệ',
+    date: '13/04/2023',
   },
   {
     id: '4',
@@ -48,6 +52,7 @@ const type_mostViewed_data = [
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
     tag: 'Công nghệ',
+    date: '13/04/2023',
   },
   {
     id: '5',
@@ -57,6 +62,7 @@ const type_mostViewed_data = [
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
     tag: 'Công nghệ',
+    date: '13/04/2023',
   },
   {
     id: '6',
@@ -66,6 +72,7 @@ const type_mostViewed_data = [
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
     tag: 'Công nghệ',
+    date: '13/04/2023',
   },
   {
     id: '7',
@@ -75,6 +82,7 @@ const type_mostViewed_data = [
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
     tag: 'Công nghệ',
+    date: '13/04/2023',
   },
   {
     id: '8',
@@ -84,6 +92,7 @@ const type_mostViewed_data = [
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
     tag: 'Công nghệ',
+    date: '13/04/2023',
   },
   {
     id: '9',
@@ -93,6 +102,7 @@ const type_mostViewed_data = [
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
     tag: 'Công nghệ',
+    date: '13/04/2023',
   },
 ];
 
@@ -105,6 +115,7 @@ const type_latest_data = [
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
     tag: 'Giáo dục',
+    date: '13/04/2023',
   },
   {
     id: '1',
@@ -114,6 +125,7 @@ const type_latest_data = [
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
     tag: 'Giáo dục',
+    date: '13/04/2023',
   },
   {
     id: '2',
@@ -123,6 +135,7 @@ const type_latest_data = [
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
     tag: 'Giáo dục',
+    date: '13/04/2023',
   },
   {
     id: '3',
@@ -132,6 +145,7 @@ const type_latest_data = [
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
     tag: 'Giáo dục',
+    date: '13/04/2023',
   },
   {
     id: '4',
@@ -141,6 +155,7 @@ const type_latest_data = [
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
     tag: 'Giáo dục',
+    date: '13/04/2023',
   },
   {
     id: '5',
@@ -150,6 +165,7 @@ const type_latest_data = [
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
     tag: 'Giáo dục',
+    date: '13/04/2023',
   },
   {
     id: '6',
@@ -159,6 +175,7 @@ const type_latest_data = [
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
     tag: 'Giáo dục',
+    date: '13/04/2023',
   },
   {
     id: '7',
@@ -168,6 +185,7 @@ const type_latest_data = [
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
     tag: 'Giáo dục',
+    date: '13/04/2023',
   },
   {
     id: '8',
@@ -177,6 +195,7 @@ const type_latest_data = [
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
     tag: 'Giáo dục',
+    date: '13/04/2023',
   },
   {
     id: '9',
@@ -186,6 +205,7 @@ const type_latest_data = [
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
     tag: 'Giáo dục',
+    date: '13/04/2023',
   },
 ];
 
@@ -198,6 +218,7 @@ const type_top10_data = [
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
     tag: 'Thể thao',
+    date: '13/04/2023',
   },
   {
     id: '1',
@@ -207,6 +228,7 @@ const type_top10_data = [
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
     tag: 'Thể thao',
+    date: '13/04/2023',
   },
   {
     id: '2',
@@ -216,6 +238,7 @@ const type_top10_data = [
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
     tag: 'Thể thao',
+    date: '13/04/2023',
   },
   {
     id: '3',
@@ -225,6 +248,7 @@ const type_top10_data = [
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
     tag: 'Thể thao',
+    date: '13/04/2023',
   },
   {
     id: '4',
@@ -234,6 +258,7 @@ const type_top10_data = [
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
     tag: 'Thể thao',
+    date: '13/04/2023',
   },
   {
     id: '5',
@@ -243,6 +268,7 @@ const type_top10_data = [
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
     tag: 'Thể thao',
+    date: '13/04/2023',
   },
   {
     id: '6',
@@ -252,6 +278,7 @@ const type_top10_data = [
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
     tag: 'Thể thao',
+    date: '13/04/2023',
   },
   {
     id: '7',
@@ -261,6 +288,7 @@ const type_top10_data = [
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
     tag: 'Thể thao',
+    date: '13/04/2023',
   },
   {
     id: '8',
@@ -270,6 +298,7 @@ const type_top10_data = [
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
     tag: 'Thể thao',
+    date: '13/04/2023',
   },
   {
     id: '9',
@@ -279,6 +308,7 @@ const type_top10_data = [
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
     tag: 'Thể thao',
+    date: '13/04/2023',
   },
 ];
 

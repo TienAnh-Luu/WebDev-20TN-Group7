@@ -1,6 +1,5 @@
 import Header from '../../../source/components/Header/Header.js';
 import Navbar from '../../../source/components/DashboardPage/Navbar/Navbar.js';
-import RoundButton from '../../../source/components/RoundButton/RoundButton.js';
 import AccountInfo from '../../../source/components/DashboardPage/Info/AccountInfo.js';
 import WriterInfo from '../../../source/components/DashboardPage/Info/WriterInfo.js';
 import { NAV_ITEM } from '../../../source/utils/constants.js';
@@ -99,11 +98,18 @@ root.innerHTML = `
         <main class="main">
             ${Navbar(NAV_ITEM.writer)}
 
-            <div class="main-content" id="main-content"></div>
+            <div class="main-content" id="main-content">
+              <div class="dashboard-news-state">
+                <h3 class="state-header">BÀI VIẾT ĐÃ XUẤT BẢN</h3>
+                <div class="state-wrapper">
+                  
+                </div>
+              </div>
+            </div>
         </main>
     </div>
 `;
 
-initRender();
+// initRender();
 
 addOnclickToClassname('nav-item-container', handleOnClick);
