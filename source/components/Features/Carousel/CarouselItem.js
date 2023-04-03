@@ -22,7 +22,7 @@ const CarouselItem = (data, isActive) => `
             ${data.summary}
             </p>
         </div>
-        <div class="news-tag">${data.tag}</div>
+        <div class="news-tag">${data.category}</div>
     </div>
 </a>
 `;

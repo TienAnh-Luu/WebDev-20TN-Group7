@@ -11,7 +11,7 @@ const NewsItem = (data, context) => `
             ${data.summary}
         </p>
     </div>
-    <div class="news-tag">${data.tag}</div>
+    <div class="news-tag">${data.category}</div>
     ${NewsItemFooter(context, data.date)}
 </a>
 `;

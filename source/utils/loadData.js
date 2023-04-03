@@ -1,4 +1,4 @@
-import { HIGHLIGHT_TYPE } from './constants.js';
+import { HIGHLIGHT_TYPE, CONTEXT } from './constants.js';
 
 // This is just a fixed data sample to show how to load data
 // for the Highlight component. In fact, data should be loaded
@@ -11,8 +11,9 @@ const type_mostViewed_data = [
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
-    tag: 'Công nghệ',
+    category: 'Công nghệ',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '1',
@@ -21,8 +22,9 @@ const type_mostViewed_data = [
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
-    tag: 'Công nghệ',
+    category: 'Công nghệ',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '2',
@@ -31,8 +33,9 @@ const type_mostViewed_data = [
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
-    tag: 'Công nghệ',
+    category: 'Công nghệ',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '3',
@@ -41,8 +44,9 @@ const type_mostViewed_data = [
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
-    tag: 'Công nghệ',
+    category: 'Công nghệ',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '4',
@@ -51,8 +55,9 @@ const type_mostViewed_data = [
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
-    tag: 'Công nghệ',
+    category: 'Công nghệ',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '5',
@@ -61,8 +66,9 @@ const type_mostViewed_data = [
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
-    tag: 'Công nghệ',
+    category: 'Công nghệ',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '6',
@@ -71,8 +77,9 @@ const type_mostViewed_data = [
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
-    tag: 'Công nghệ',
+    category: 'Công nghệ',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '7',
@@ -81,8 +88,9 @@ const type_mostViewed_data = [
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
-    tag: 'Công nghệ',
+    category: 'Công nghệ',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '8',
@@ -91,8 +99,9 @@ const type_mostViewed_data = [
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
-    tag: 'Công nghệ',
+    category: 'Công nghệ',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '9',
@@ -101,8 +110,9 @@ const type_mostViewed_data = [
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
       'Bộ trưởng An ninh Anh Tom Tugendhat ngày 14-3 cho biết đã giao Trung tâm an ninh mạng quốc gia nước này xem xét việc có nên cấm TikTok trên các thiết bị thuộc sở hữu cơ quan nhà nước và Chính phủ Anh hay không.',
-    tag: 'Công nghệ',
+    category: 'Công nghệ',
     date: '13/04/2023',
+    tags: [],
   },
 ];
 
@@ -114,8 +124,9 @@ const type_latest_data = [
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
-    tag: 'Giáo dục',
+    category: 'Giáo dục',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '1',
@@ -124,8 +135,9 @@ const type_latest_data = [
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
-    tag: 'Giáo dục',
+    category: 'Giáo dục',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '2',
@@ -134,8 +146,9 @@ const type_latest_data = [
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
-    tag: 'Giáo dục',
+    category: 'Giáo dục',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '3',
@@ -144,8 +157,9 @@ const type_latest_data = [
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
-    tag: 'Giáo dục',
+    category: 'Giáo dục',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '4',
@@ -154,8 +168,9 @@ const type_latest_data = [
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
-    tag: 'Giáo dục',
+    category: 'Giáo dục',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '5',
@@ -164,8 +179,9 @@ const type_latest_data = [
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
-    tag: 'Giáo dục',
+    category: 'Giáo dục',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '6',
@@ -174,8 +190,9 @@ const type_latest_data = [
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
-    tag: 'Giáo dục',
+    category: 'Giáo dục',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '7',
@@ -184,8 +201,9 @@ const type_latest_data = [
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
-    tag: 'Giáo dục',
+    category: 'Giáo dục',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '8',
@@ -194,8 +212,9 @@ const type_latest_data = [
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
-    tag: 'Giáo dục',
+    category: 'Giáo dục',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '9',
@@ -204,8 +223,9 @@ const type_latest_data = [
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
       'Đắn đo chọn trường vì học phí cũng là mối quan tâm của nhiều thí sinh, phụ huynh trong mùa tuyển sinh đại học bên cạnh lựa chọn ngành học theo sở thích nghề nghiệp.',
-    tag: 'Giáo dục',
+    category: 'Giáo dục',
     date: '13/04/2023',
+    tags: [],
   },
 ];
 
@@ -217,8 +237,9 @@ const type_top10_data = [
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
-    tag: 'Thể thao',
+    category: 'Thể thao',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '1',
@@ -227,8 +248,9 @@ const type_top10_data = [
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
-    tag: 'Thể thao',
+    category: 'Thể thao',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '2',
@@ -237,8 +259,9 @@ const type_top10_data = [
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
-    tag: 'Thể thao',
+    category: 'Thể thao',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '3',
@@ -247,8 +270,9 @@ const type_top10_data = [
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
-    tag: 'Thể thao',
+    category: 'Thể thao',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '4',
@@ -257,8 +281,9 @@ const type_top10_data = [
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
-    tag: 'Thể thao',
+    category: 'Thể thao',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '5',
@@ -267,8 +292,9 @@ const type_top10_data = [
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
-    tag: 'Thể thao',
+    category: 'Thể thao',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '6',
@@ -277,8 +303,9 @@ const type_top10_data = [
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
-    tag: 'Thể thao',
+    category: 'Thể thao',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '7',
@@ -287,8 +314,9 @@ const type_top10_data = [
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
-    tag: 'Thể thao',
+    category: 'Thể thao',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '8',
@@ -297,8 +325,9 @@ const type_top10_data = [
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
-    tag: 'Thể thao',
+    category: 'Thể thao',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '9',
@@ -307,8 +336,9 @@ const type_top10_data = [
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
-    tag: 'Thể thao',
+    category: 'Thể thao',
     date: '13/04/2023',
+    tags: [],
   },
 ];
 
@@ -322,4 +352,10 @@ export const loadHighlightDataOfType = (type) => {
   }
 
   return { data: [], highlightURL: '' };
+};
+
+export const loadWriterPaperDataOfType = (type) => {
+  if (type === CONTEXT.PUBLISHED) {
+    return;
+  }
 };

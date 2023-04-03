@@ -1,5 +1,6 @@
 import Carousel from './Carousel/Carousel.js';
 import { dataToNewsItemList } from '../../utils/createHtmlElements.js';
+import { CONTEXT } from '../../utils/constants.js';
 
 const news_data = [
   {
@@ -9,8 +10,9 @@ const news_data = [
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
-    tag: 'Thể thao',
+    category: 'Thể thao',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '1',
@@ -19,8 +21,9 @@ const news_data = [
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
-    tag: 'Thể thao',
+    category: 'Thể thao',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '2',
@@ -29,8 +32,9 @@ const news_data = [
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
       'FIFA sắp phê duyệt thể thức mới cho World Cup 2026, tăng số trận từ 64 lên 104, thay vì 80 như kế hoạch ban đầu, và thi đấu trong 39 ngày.',
-    tag: 'Thể thao',
+    category: 'Thể thao',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '3',
@@ -39,8 +43,9 @@ const news_data = [
     title: 'Giá xăng dầu tăng, RON95 lên 23.810 đồng/lít',
     summary:
       'Cụ thể, giá xăng RON 95-III tăng 490 đồng/lít, lên mức 23.810 đồng/lít; xăng E5 RON92 tăng thêm 380 đồng/lít, lên mức 22.800 đồng/lít.',
-    tag: 'Kinh doanh',
+    category: 'Kinh doanh',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '4',
@@ -49,8 +54,9 @@ const news_data = [
     title: 'Giá xăng dầu tăng, RON95 lên 23.810 đồng/lít',
     summary:
       'Cụ thể, giá xăng RON 95-III tăng 490 đồng/lít, lên mức 23.810 đồng/lít; xăng E5 RON92 tăng thêm 380 đồng/lít, lên mức 22.800 đồng/lít.',
-    tag: 'Kinh doanh',
+    category: 'Kinh doanh',
     date: '13/04/2023',
+    tags: [],
   },
   {
     id: '5',
@@ -59,15 +65,16 @@ const news_data = [
     title: 'Giá xăng dầu tăng, RON95 lên 23.810 đồng/lít',
     summary:
       'Cụ thể, giá xăng RON 95-III tăng 490 đồng/lít, lên mức 23.810 đồng/lít; xăng E5 RON92 tăng thêm 380 đồng/lít, lên mức 22.800 đồng/lít.',
-    tag: 'Kinh doanh',
+    category: 'Kinh doanh',
     date: '13/04/2023',
+    tags: [],
   },
 ];
 
 const Features = `
 <div class="main__features grid-container" id="features">
     ${Carousel(news_data.slice(0, 3))}
-    ${dataToNewsItemList(news_data.slice(3), 0).join('\n')}
+    ${dataToNewsItemList(news_data.slice(3), CONTEXT.HOMEPAGE).join('\n')}
 </div>
 `;
 

@@ -1,7 +1,15 @@
 export const HIGHLIGHT_TYPE = {
-  LATEST: 'MỚI NHẤT',
-  MOST_VIEWED: 'XEM NHIỀU',
-  TOP10: 'TOP 10 CHUYÊN MỤC',
+  LATEST: 0,
+  MOST_VIEWED: 1,
+  TOP10: 2,
+};
+
+export const CONTEXT = {
+  PUBLISHED: 3,
+  APPROVED: 4,
+  WAITING: 5,
+  REJECTED: 6,
+  HOMEPAGE: 7,
 };
 
 export const NAV_ITEM = {
