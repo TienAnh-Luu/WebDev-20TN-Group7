@@ -69,6 +69,12 @@
 }
 
 .news-footer-icon {
-  color: #65676b;
-  font-size: 18px;
+  color: #a6a8ac;
+  font-size: 20px;
+  margin-right: 7px;
+  transition: color 0.2s;
+}
+
+.news-footer-icon:hover {
+  color: #5b7bd5;
 }

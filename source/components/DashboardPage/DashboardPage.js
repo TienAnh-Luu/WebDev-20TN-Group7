@@ -2,9 +2,11 @@ import Header from '../../../source/components/Header/Header.js';
 import Navbar from '../../../source/components/DashboardPage/Navbar/Navbar.js';
 import AccountInfo from '../../../source/components/DashboardPage/Info/AccountInfo.js';
 import WriterInfo from '../../../source/components/DashboardPage/Info/WriterInfo.js';
-import { NAV_ITEM } from '../../../source/utils/constants.js';
+import PaperDashboard from '../../../source/components/DashboardPage/PaperDashboard/PaperDashboard.js';
+import { CONTEXT, NAV_ITEM } from '../../../source/utils/constants.js';
 import { handleSticky } from '../../../source/utils/handleSticky.js';
 import { addOnclickToClassname } from '../../../source/utils/addOnclick.js';
+import { loadWriterPaperDataOfType } from '../../../source/utils/loadData.js';
 
 const account_info_data = {
   user_name: 'Trương Anh Ngọc',
@@ -66,18 +68,26 @@ const handleOnClick = (e) => {
     }
     case 'published': {
       target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      const main = document.getElementById('main-content');
+      main.innerHTML = PaperDashboard(CONTEXT.PUBLISHED);
       break;
     }
     case 'approved': {
       target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      const main = document.getElementById('main-content');
+      main.innerHTML = PaperDashboard(CONTEXT.APPROVED);
       break;
     }
     case 'waiting': {
       target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      const main = document.getElementById('main-content');
+      main.innerHTML = PaperDashboard(CONTEXT.WAITING);
       break;
     }
     case 'rejected': {
       target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      const main = document.getElementById('main-content');
+      main.innerHTML = PaperDashboard(CONTEXT.REJECTED);
       break;
     }
     case 'log-out': {
@@ -91,25 +101,19 @@ const handleOnClick = (e) => {
   }
 };
 
+const data = loadWriterPaperDataOfType(CONTEXT.PUBLISHED);
+
 const root = document.getElementById('root');
 root.innerHTML = `
     <div class="dashboard-page">
         ${Header}
         <main class="main">
-            ${Navbar(NAV_ITEM.writer)}
-
-            <div class="main-content" id="main-content">
-              <div class="dashboard-news-state">
-                <h3 class="state-header">BÀI VIẾT ĐÃ XUẤT BẢN</h3>
-                <div class="state-wrapper">
-                  
-                </div>
-              </div>
-            </div>
+          ${Navbar(NAV_ITEM.writer)}
+          <div class="main-content" id="main-content"></div>
         </main>
     </div>
 `;
 
-// initRender();
+initRender();
 
 addOnclickToClassname('nav-item-container', handleOnClick);

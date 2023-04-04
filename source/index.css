@@ -46,6 +46,18 @@ a:hover {
   padding-bottom: 340px;
 }
 
+.f1 {
+  flex: 1;
+}
+
+.f2 {
+  flex: 2;
+}
+
+.f3 {
+  flex: 3;
+}
+
 .zoom-hover img {
   transition: transform 0.2s ease-in-out;
 }

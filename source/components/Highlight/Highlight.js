@@ -1,17 +1,7 @@
 import { loadHighlightDataOfType } from '../../../source/utils/loadData.js';
 import { dataToNewsItemList } from '../../../source/utils/createHtmlElements.js';
-import { CONTEXT, HIGHLIGHT_TYPE } from '../../../source/utils/constants.js';
-
-const headlineOfType = (type) => {
-  if (type === HIGHLIGHT_TYPE.MOST_VIEWED) {
-    return 'XEM NHIỀU';
-  } else if (type === HIGHLIGHT_TYPE.LATEST) {
-    return 'MỚI NHẤT';
-  } else if (type === HIGHLIGHT_TYPE.TOP10) {
-    return 'TOP 10 CHUYÊN MỤC';
-  }
-  return '';
-};
+import { CONTEXT } from '../../../source/utils/constants.js';
+import { headlineOfType } from '../../../source/utils/createHeadline.js';
 
 const Highlight = (type) => {
   const { data, highlightURL } = loadHighlightDataOfType(type);
