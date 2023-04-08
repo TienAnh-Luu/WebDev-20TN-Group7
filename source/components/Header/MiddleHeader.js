@@ -1,3 +1,4 @@
+import { CATEGORY } from '../../../source/utils/constants.js';
 const category_data = [
   {
     title: 'Thời sự',
@@ -41,15 +42,18 @@ const category_data = [
   },
 ];
 
-const categoryElements = (data) =>
-  data.map(
-    (c) => `
-    <a href=${c.url} class="header__category-container">
-      <div class="header__category">${c.title}</div>
-      <div class="header__category-tooltip tooltip">${c.title}</div>
+const categoryElements = (data) => {
+  let res = [];
+  for (let key in data) {
+    res.push(`
+    <a href="#" class="header__category-container">
+      <div class="header__category">${data[key].label}</div>
+      <div class="header__category-tooltip tooltip">${data[key].label}</div>
     </a>
-`,
-  );
+`);
+  }
+  return res;
+};
 
 const MiddleHeader = `
     <div class="header__middle" id="sticky-header">
@@ -57,7 +61,7 @@ const MiddleHeader = `
           <i class="fa-solid fa-house header__category"></i>
           <div class="header__category-tooltip tooltip">Home Page</div>
         </a>
-        ${categoryElements(category_data).join('\n')}
+        ${categoryElements(CATEGORY).join('\n')}
     </div>
 `;
 
