@@ -1,10 +1,8 @@
-export const HIGHLIGHT_TYPE = {
+export const CONTEXT = {
+  PREMIUM: -1,
   LATEST: 0,
   MOST_VIEWED: 1,
   TOP10: 2,
-};
-
-export const CONTEXT = {
   PUBLISHED: 3,
   APPROVED: 4,
   WAITING: 5,

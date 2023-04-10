@@ -6,30 +6,6 @@
   margin-bottom: 40px;
 }
 
-.main__highlight-headline {
-  grid-column: 1 / span 2;
-  background-color: #ababab;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.headline-text {
-  max-height: 40px;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 22px;
-  padding: 9px 17px;
-  background-color: #b83730;
-  color: white;
-  cursor: pointer;
-}
-
-.headline-text:hover {
-  color: white;
-}
-
 .see-more-btn {
   position: absolute;
   right: 10%;

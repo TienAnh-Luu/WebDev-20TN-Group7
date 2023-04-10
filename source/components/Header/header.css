@@ -150,6 +150,7 @@
   color: white;
 }
 
+.header__home-container,
 .header__category-container {
   flex: 1;
   height: 100%;
@@ -162,6 +163,7 @@
   transition: background-color 0.15s;
 }
 
+.header__home-container:hover,
 .header__category-container:hover {
   color: white;
   background-color: rgba(255, 255, 255, 0.25);

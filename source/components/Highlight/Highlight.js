@@ -1,19 +1,40 @@
 import { loadHighlightDataOfType } from '../../../source/utils/loadData.js';
 import { dataToNewsItemList } from '../../../source/utils/createHtmlElements.js';
-import { CONTEXT } from '../../../source/utils/constants.js';
+import { CATEGORY, CONTEXT } from '../../../source/utils/constants.js';
 import { headlineOfType } from '../../../source/utils/createHeadline.js';
+import { HomepageHeadline, NewsListHeadline } from '../../../source/components/Highlight/Headline/Headline.js';
 
-const Highlight = (type) => {
-  const { data, highlightURL } = loadHighlightDataOfType(type);
-  const newsItemList = dataToNewsItemList(data, CONTEXT.HOMEPAGE);
+const cateOfId = (id) => {
+  let cateId = Number(id);
+  while (cateId % 3 !== 2) {
+    cateId--;
+  }
+
+  let cates = Object.keys(CATEGORY);
+  for (let i = 0; i < cates.length; i++) {
+    if (CATEGORY[cates[i]].id == cateId) {
+      return CATEGORY[cates[i]];
+    }
+  }
+  return '';
+};
+
+// In case Homepage, type != navigator
+// else, type == navigator
+const Highlight = (type, tag = '') => {
+  const data = loadHighlightDataOfType(type);
+  const navigator = Number(sessionStorage.getItem('navigator'));
+  const newsItemList = dataToNewsItemList(data, navigator);
 
   return `
    <div class="main__highlight grid-container">
-     <div class="main__highlight-headline"><a href=${highlightURL} class="headline-text">${headlineOfType(
-    type,
-  )}</a></div>
+     ${navigator > CONTEXT.HOMEPAGE ? NewsListHeadline(cateOfId(type), tag) : HomepageHeadline(headlineOfType(type))}
      ${newsItemList.join('\n')}
-     <a href=${highlightURL} class="see-more-btn">Xem thêm</a>
+     ${
+       Number(sessionStorage.getItem('navigator')) === CONTEXT.HOMEPAGE
+         ? `<a href='../../../source/pages/NewslistPage.html' class="see-more-btn" id="see-more-${type}">Xem thêm</a>`
+         : ''
+     }
    </div>
     `;
 };

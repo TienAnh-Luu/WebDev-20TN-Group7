@@ -1,0 +1,57 @@
+.main__highlight-headline,
+.newslist-headline {
+  grid-column: 1 / span 2;
+  background-color: #ababab;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.headline-text {
+  max-height: 40px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  padding: 9px 17px;
+  background-color: #b83730;
+  color: white;
+  cursor: pointer;
+}
+
+.headline-text:hover {
+  color: white;
+}
+
+/* ================================= */
+
+.newslist-headline {
+  background-color: #fff;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  height: auto;
+  padding: 6px 0;
+  margin-bottom: 20px;
+}
+
+.cate-headline-text {
+  font-size: 26px;
+  font-weight: 700;
+  border-left: 4px solid rgb(237, 28, 36);
+  padding-left: 10px;
+  margin-right: 40px;
+  color: black;
+  cursor: pointer;
+}
+
+.subcate-headline-text {
+  font-size: 22px;
+  font-weight: 500;
+  color: black;
+  margin-right: 24px;
+  cursor: pointer;
+}
+
+.cate-headline-text:hover,
+.subcate-headline-text:hover {
+  color: black;
+}

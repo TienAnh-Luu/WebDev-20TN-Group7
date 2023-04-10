@@ -6,7 +6,8 @@ import PaperDashboard from '../../../source/components/DashboardPage/PaperDashbo
 import { CONTEXT, NAV_ITEM } from '../../../source/utils/constants.js';
 import { handleSticky } from '../../../source/utils/handleSticky.js';
 import { addOnclickToClassname } from '../../../source/utils/addOnclick.js';
-import { loadWriterPaperDataOfType } from '../../../source/utils/loadData.js';
+
+// TODO: Create Premium section
 
 const account_info_data = {
   user_name: 'Trương Anh Ngọc',
@@ -64,6 +65,7 @@ const handleOnClick = (e) => {
     }
     case 'writing': {
       target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      // Navigate to writing page
       break;
     }
     case 'published': {
@@ -92,16 +94,16 @@ const handleOnClick = (e) => {
     }
     case 'log-out': {
       target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      // navigate to home page as guest
       break;
     }
     case 'premium': {
       target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      // change main content to premium content
       break;
     }
   }
 };
-
-const data = loadWriterPaperDataOfType(CONTEXT.PUBLISHED);
 
 const root = document.getElementById('root');
 root.innerHTML = `

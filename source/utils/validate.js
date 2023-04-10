@@ -84,3 +84,8 @@
 //     }
 //   });
 // })(jQuery);
+
+export const validateOTP = () => {
+  console.log('OTP');
+  return true;
+};

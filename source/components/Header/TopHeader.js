@@ -23,9 +23,15 @@ const TopHeader = `
         </div>
         <div class="header__top-middle">
         <nav class="header__top-navbar">
-            <a href=${headerTopItems[0].url} class="header__top-navItem">${headerTopItems[0].title}</a>
-            <a href=${headerTopItems[1].url} class="header__top-navItem">${headerTopItems[1].title}</a>
-            <a href==${headerTopItems[2].url} class="header__top-navItem">${headerTopItems[2].title}</a>
+            <a href="../../../source/pages/NewslistPage.html" class="header__top-navItem header-item" data-value="0">${
+              headerTopItems[0].title
+            }</a>
+            <a href="../../../source/pages/NewslistPage.html" class="header__top-navItem header-item" data-value="1">${
+              headerTopItems[1].title
+            }</a>
+            <a href="../../../source/pages/NewslistPage.html" class="header__top-navItem header-item" data-value="-1">${
+              headerTopItems[2].title
+            }</a>
         </nav>
         </div>
         <div class="header__top-right">

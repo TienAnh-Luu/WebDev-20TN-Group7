@@ -1,4 +1,4 @@
-import { HIGHLIGHT_TYPE, CONTEXT } from './constants.js';
+import { CONTEXT } from './constants.js';
 
 // This is just a fixed data sample to show how to load data
 // for the Highlight component. In fact, data should be loaded
@@ -343,15 +343,17 @@ const type_top10_data = [
 ];
 
 export const loadHighlightDataOfType = (type) => {
-  if (type == HIGHLIGHT_TYPE.LATEST) {
-    return { data: type_latest_data, highlightURL: '#' };
-  } else if (type == HIGHLIGHT_TYPE.MOST_VIEWED) {
-    return { data: type_mostViewed_data, highlightURL: '#' };
-  } else if (type == HIGHLIGHT_TYPE.TOP10) {
-    return { data: type_top10_data, highlightURL: '#' };
+  if (type == CONTEXT.LATEST) {
+    return type_latest_data;
+  } else if (type == CONTEXT.MOST_VIEWED) {
+    return type_mostViewed_data;
+  } else if (type == CONTEXT.TOP10) {
+    return type_top10_data;
+  } else if (type > CONTEXT.HOMEPAGE) {
+    return type_latest_data;
   }
 
-  return { data: [], highlightURL: '' };
+  return [];
 };
 
 export const loadWriterPaperDataOfType = (type) => {

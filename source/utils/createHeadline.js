@@ -1,11 +1,11 @@
-import { HIGHLIGHT_TYPE, CONTEXT } from '../../source/utils/constants.js';
+import { CONTEXT } from '../../source/utils/constants.js';
 
 export const headlineOfType = (type) => {
-  if (type === HIGHLIGHT_TYPE.MOST_VIEWED) {
+  if (type === CONTEXT.MOST_VIEWED) {
     return 'XEM NHIỀU';
-  } else if (type === HIGHLIGHT_TYPE.LATEST) {
+  } else if (type === CONTEXT.LATEST) {
     return 'MỚI NHẤT';
-  } else if (type === HIGHLIGHT_TYPE.TOP10) {
+  } else if (type === CONTEXT.TOP10) {
     return 'TOP 10 CHUYÊN MỤC';
   } else if (type === CONTEXT.PUBLISHED) {
     return 'BÀI VIẾT ĐÃ XUẤT BẢN';

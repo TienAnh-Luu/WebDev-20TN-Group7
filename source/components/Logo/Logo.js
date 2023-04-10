@@ -1,8 +1,8 @@
 const Logo = (subclass, firstLetterColor, secondLetterColor) => `
-    <div class="logo ${subclass}">
+    <a href="../../../source/index.html" class="logo ${subclass}">
         <span class=${firstLetterColor}>News</span>
         <span class=${secondLetterColor}>Room</span>
-    </div>
+    </a>
 `;
 
 export default Logo;
