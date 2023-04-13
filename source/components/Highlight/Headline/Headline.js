@@ -1,6 +1,9 @@
 export const HomepageHeadline = (text) =>
   `<div class="main__highlight-headline"><a href='' class="headline-text">${text}</a></div>`;
 
+export const UnLinkedHeadline = (text) =>
+  `<div class="unlinked-headline"><div class="unlinked-headline-text">${text}</div></div>`;
+
 export const NewsListHeadline = (cate, tag = '') => {
   const subKeys = Object.keys(cate.subs);
 

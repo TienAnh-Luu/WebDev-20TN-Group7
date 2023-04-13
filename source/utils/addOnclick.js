@@ -1,4 +1,4 @@
-import Highlight from '../../source/components/Highlight/Highlight.js';
+// import Highlight from '../../source/components/Highlight/Highlight.js';
 
 export const addOnclickToClassname = (classname, func) => {
   const items = document.getElementsByClassName(classname);
@@ -33,6 +33,16 @@ export const addOnclickToCateHeadline = () => {
   for (let i = 0; i < subCateItems.length; i++) {
     subCateItems[i].addEventListener('click', (e) => {
       sessionStorage.setItem('navigator', e.target.dataset.value);
+    });
+  }
+};
+
+export const handleNavigateToNewslistPage = (classname, navigatorId) => {
+  const items = document.getElementsByClassName(classname);
+  for (let i = 0; i < items.length; i++) {
+    items[i].addEventListener('click', (e) => {
+      sessionStorage.setItem('navigator', navigatorId);
+      window.location = '../../../source/pages/NewslistPage.html';
     });
   }
 };

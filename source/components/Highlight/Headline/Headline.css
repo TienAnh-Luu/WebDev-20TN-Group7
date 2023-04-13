@@ -25,6 +25,28 @@
 
 /* ================================= */
 
+.unlinked-headline {
+  width: 100%;
+  background-color: #ababab;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.unlinked-headline-text {
+  height: 100%;
+  width: fit-content;
+  padding: 0 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b83730;
+  color: white;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+/* ================================= */
+
 .newslist-headline {
   background-color: #fff;
   border-bottom: 1px solid rgb(226, 226, 226);

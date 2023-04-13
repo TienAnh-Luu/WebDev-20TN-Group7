@@ -5,7 +5,7 @@ import Features from './components/Features/Features.js';
 import Highlight from './components/Highlight/Highlight.js';
 import { handleSticky } from './utils/handleSticky.js';
 import { CONTEXT } from './utils/constants.js';
-import { addOnclickToClassname, addOnclickToHeaderItems } from './utils/addOnclick.js';
+import { addOnclickToClassname, addOnclickToHeaderItems, handleNavigateToNewslistPage } from './utils/addOnclick.js';
 
 // When the user scrolls the page, execute myFunction
 window.onscroll = function () {
@@ -38,6 +38,8 @@ const initHomepage = () => {
 
   // Add onclick to see more buttons
   addOnclickToClassname('see-more-btn', handleSeeMoreOnClick);
+
+  handleNavigateToNewslistPage('news-tag', 17);
 };
 
 initHomepage();
