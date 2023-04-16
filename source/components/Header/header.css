@@ -117,18 +117,19 @@
 
 .header__top-userIcon i {
   margin: 0 auto;
+  font-size: 20px;
 }
 
 .search-input {
   width: 100%;
-  padding: 8px 10px;
-  border-radius: 15px;
+  padding: 8px 12px;
+  border-radius: 24px;
   border: none;
+  font-size: 18px;
 }
 
 .search-input::placeholder {
   font-family: 'Roboto Flex';
-  font-size: 18px;
 }
 
 .search-input:focus {

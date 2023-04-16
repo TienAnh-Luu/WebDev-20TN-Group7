@@ -1,3 +1,26 @@
+export const ACCOUNT = {
+  NORMAL: {
+    username: 'user',
+    password: 'userpwd',
+  },
+  SUBSCRIBER: {
+    username: 'subscriber',
+    password: 'subscriberpwd',
+  },
+  WRITER: {
+    username: 'writer',
+    password: 'writerpwd',
+  },
+  EDITOR: {
+    username: 'editor',
+    password: 'editorpwd',
+  },
+  ADMIN: {
+    username: 'admin',
+    password: 'adminpwd',
+  },
+};
+
 export const CONTEXT = {
   PREMIUM: -1,
   LATEST: 0,
@@ -211,6 +234,87 @@ export const NAV_ITEM = {
       icon: 'fa-solid fa-right-from-bracket',
       text: 'Đăng xuất',
       value: 'log-out',
+    },
+  ],
+  editor: [
+    {
+      icon: 'fa-solid fa-user',
+      text: 'Thông tin biên tập viên',
+      value: 'editor-info',
+    },
+    {
+      icon: 'fa-solid fa-newspaper',
+      text: 'Bài viết chờ duyệt',
+      value: 'editor-waiting',
+    },
+    {
+      icon: 'fa-solid fa-right-from-bracket',
+      text: 'Đăng xuất',
+      value: 'log-out',
+    },
+  ],
+  admin: [
+    {
+      icon: 'fa-solid fa-table-cells-large',
+      text: 'Quản lý chuyên mục',
+      value: 'admin-category',
+    },
+    {
+      icon: 'fa-solid fa-tag',
+      text: 'Quản lý nhãn',
+      value: 'admin-tag',
+    },
+    {
+      icon: 'fa-solid fa-clipboard',
+      text: 'Quản lý bài viết',
+      value: 'admin-papers',
+    },
+    {
+      icon: 'fa-solid fa-user',
+      text: 'Quản lý người dùng',
+      value: 'admin-user',
+    },
+    {
+      icon: 'fa-solid fa-right-from-bracket',
+      text: 'Đăng xuất',
+      value: 'log-out',
+    },
+  ],
+};
+
+export const POPUP_INPUT_DETAIL = {
+  ACCOUNT: [
+    {
+      id: 'full-name',
+      label: 'Họ và tên',
+    },
+    {
+      id: 'email',
+      label: 'Email',
+    },
+    {
+      id: 'dob',
+      label: 'Ngày sinh',
+    },
+  ],
+  WRITER: [
+    {
+      id: 'pseudonym',
+      label: 'Bút danh',
+    },
+  ],
+  PASSWORD: [
+    {
+      id: 'pwd',
+      label: 'Mật khẩu',
+    },
+    {
+      id: 'npwd',
+      label: 'Mật khẩu mới',
+    },
+    {
+      id: 'cnpwd',
+      label: 'Xác nhận mật khẩu mới',
     },
   ],
 };

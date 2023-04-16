@@ -1,3 +1,5 @@
+import { ACCOUNT } from '../../source/utils/constants.js';
+
 // (function ($) {
 //   'use strict';
 
@@ -89,3 +91,10 @@ export const validateOTP = () => {
   console.log('OTP');
   return true;
 };
+
+export const isNormalUser = (username, pwd) => username === ACCOUNT.NORMAL.username && pwd === ACCOUNT.NORMAL.password;
+export const isSubscriber = (username, pwd) =>
+  username === ACCOUNT.SUBSCRIBER.username && pwd === ACCOUNT.SUBSCRIBER.password;
+export const isWriter = (username, pwd) => username === ACCOUNT.WRITER.username && pwd === ACCOUNT.WRITER.password;
+export const isEditor = (username, pwd) => username === ACCOUNT.EDITOR.username && pwd === ACCOUNT.EDITOR.password;
+export const isAdmin = (username, pwd) => username === ACCOUNT.ADMIN.username && pwd === ACCOUNT.ADMIN.password;

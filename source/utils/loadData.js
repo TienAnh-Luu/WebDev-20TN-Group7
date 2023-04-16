@@ -369,3 +369,7 @@ export const loadWriterPaperDataOfType = (type) => {
 
   return [];
 };
+
+export const loadEditorPaperData = () => {
+  return type_mostViewed_data;
+};
