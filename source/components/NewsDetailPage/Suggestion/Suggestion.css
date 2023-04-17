@@ -1,0 +1,40 @@
+.suggestions-container {
+  padding: 0 10%;
+  position: relative;
+}
+
+.suggestions-items {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40% 40%;
+  gap: 15px;
+  justify-content: center;
+}
+
+.chevron-icon-container-left,
+.chevron-icon-container-right {
+  position: absolute;
+  top: 40%;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 50%;
+  background-color: #e5e5e5;
+  transition: all 0.2s;
+}
+
+.chevron-icon-container-left:hover,
+.chevron-icon-container-right:hover {
+  background-color: #acacac;
+}
+
+.suggestions-chevron-icon {
+  font-size: 26px;
+}
+
+.chevron-icon-container-left {
+  left: 180px;
+}
+
+.chevron-icon-container-right {
+  right: 180px;
+}
