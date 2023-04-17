@@ -1,0 +1,24 @@
+.comments-container {
+  padding: 0 10%;
+}
+
+.comments-list {
+  border-top: 1px solid #ababab;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  padding: 20px 40px 30px 40px;
+  position: relative;
+}
+
+.comments-see-more-btn {
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.comments-see-more-btn:hover {
+  text-decoration: underline;
+}
