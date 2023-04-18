@@ -1,0 +1,18 @@
+.go-back-btn {
+  position: absolute;
+  top: 50px;
+  left: 30px;
+  color: #e5e5e5;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.go-back-btn:hover {
+  background-color: rgba(43, 32, 32, 0.4);
+}
+
+.go-back-icon {
+  font-size: 20px;
+}
