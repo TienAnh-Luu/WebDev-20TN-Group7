@@ -12,7 +12,7 @@ const sampleData = [
   },
   {
     avtPath: '../../../../source/public/images/salamanca.jpg',
-    name: 'Anh em Đặc Cầu',
+    name: 'Anh em cây khế',
     isSubscriber: false,
     date: '1 ngày trước',
     text: 'Bạn Chỉnh ơi, bạn đang comment một câu mà anh Ngọc không thích một chút nào nhé.',
