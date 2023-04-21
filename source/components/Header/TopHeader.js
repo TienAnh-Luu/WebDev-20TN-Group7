@@ -20,7 +20,7 @@ const isGuest = !user_type || user_type === '';
 
 const TopHeader = `
     <div class="header__top">
-        <div class="header__top-left">
+        <div class="header__top-left header-item">
         ${Logo('dark-red-backgroundcolor', 'white-color', 'black-color')}
         <div class="tooltip logo-tooltip">Home Page</div>
         </div>

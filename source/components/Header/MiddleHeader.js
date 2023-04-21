@@ -48,7 +48,7 @@ const categoryElements = (data) => {
   for (let key in data) {
     res.push(`
     <a href="../../../source/pages/NewslistPage.html" class="header__category-container header-item" data-value=${data[key].id}>
-      <div class="header__category">${data[key].label}</div>
+      ${data[key].label}
       <div class="header__category-tooltip tooltip">${data[key].label}</div>
     </a>
 `);
@@ -58,9 +58,9 @@ const categoryElements = (data) => {
 
 const MiddleHeader = `
     <div class="header__middle" id="sticky-header">
-        <a href="../../../source/index.html" class="header__home-container" data-value="home">
-          <i class="fa-solid fa-house header__category"></i>
-          <div class="header__category-tooltip tooltip">Home Page</div>
+        <a href="../../../source/index.html" class="header__home-container header-item" data-value="home">
+            <i class="fa-solid fa-house header__category"></i>
+            <div class="header__category-tooltip tooltip">Home Page</div>
         </a>
         ${categoryElements(CATEGORY).join('\n')}
     </div>

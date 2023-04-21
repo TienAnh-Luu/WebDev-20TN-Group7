@@ -153,6 +153,9 @@
 
 .header__home-container,
 .header__category-container {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
   flex: 1;
   height: 100%;
   color: white;
@@ -168,12 +171,6 @@
 .header__category-container:hover {
   color: white;
   background-color: rgba(255, 255, 255, 0.25);
-}
-
-.header__category {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 18px;
 }
 
 .header__category-tooltip {
