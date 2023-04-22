@@ -108,15 +108,44 @@ const handleOnClick = (e) => {
       const main = document.getElementById('main-content');
       main.innerHTML = WriterEditor;
 
-      CKEDITOR.replace('editor');
+      CKEDITOR.replace('mainEditor');
 
-      const submitBtn = document.querySelector('#submitNews');
+      const submitBtn = document.querySelector('.submitButton');
       submitBtn.addEventListener('click', () => {
-        let ckeditor = CKEDITOR.instances.editor;
+        let ckeditor = CKEDITOR.instances.mainEditor;
         let content = ckeditor.getData();
         console.log(content);
 
         document.querySelector('#testEditor').innerHTML = content;
+      });
+
+      const avatarBox = document.querySelector('#avatarBox');
+      avatarBox.addEventListener('click', () => {
+        var input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.style.display = 'none';
+        document.body.appendChild(input);
+
+        input.addEventListener('change', function (event) {
+          var file = event.target.files[0];
+
+          var reader = new FileReader();
+          reader.onload = function (event) {
+            var img = document.createElement('img');
+            img.src = event.target.result;
+            img.style.maxWidth = '100%';
+            img.style.maxHeight = '100%';
+
+            avatarBox.innerHTML = '';
+            avatarBox.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+
+          document.body.removeChild(input);
+        });
+
+        input.click();
       });
 
       break;
