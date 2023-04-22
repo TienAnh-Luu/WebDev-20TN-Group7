@@ -2,6 +2,7 @@ import Header from '../../../source/components/Header/Header.js';
 import Navbar from '../../../source/components/DashboardPage/Navbar/Navbar.js';
 import AccountInfo from '../../../source/components/DashboardPage/Info/AccountInfo.js';
 import WriterInfo from '../../../source/components/DashboardPage/Info/WriterInfo.js';
+import WriterEditor from '../../../source/components/WriterEditor/WriterEditor.js';
 import PaperDashboard from '../../../source/components/DashboardPage/PaperDashboard/PaperDashboard.js';
 import { CONTEXT, NAV_ITEM, POPUP_INPUT_DETAIL } from '../../../source/utils/constants.js';
 import { handleSticky } from '../../../source/utils/handleSticky.js';
@@ -104,7 +105,20 @@ const handleOnClick = (e) => {
     }
     case 'writing': {
       target.style.backgroundColor = 'rgba(255,255,255,0.2)';
-      // Navigate to writing page
+      const main = document.getElementById('main-content');
+      main.innerHTML = WriterEditor;
+
+      CKEDITOR.replace('editor');
+
+      const submitBtn = document.querySelector('#submitNews');
+      submitBtn.addEventListener('click', () => {
+        let ckeditor = CKEDITOR.instances.editor;
+        let content = ckeditor.getData();
+        console.log(content);
+
+        document.querySelector('#testEditor').innerHTML = content;
+      });
+
       break;
     }
     case 'published': {
