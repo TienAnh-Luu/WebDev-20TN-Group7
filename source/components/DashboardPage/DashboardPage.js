@@ -62,8 +62,6 @@ const initRender = () => {
     content.innerHTML = AccountInfo(account_info_data);
   } else if (user_type === 'editor') {
     content.innerHTML = EditorInfo(editor_info_data);
-  } else if (user_type === 'admin') {
-    content.innerHTML = CategoryDashboard;
   }
 
   const editBtn = document.getElementById('edit');
@@ -233,6 +231,20 @@ const handleOnClick = (e) => {
       const main = document.getElementById('main-content');
       main.innerHTML = CategoryDashboard;
 
+      const editBtns = document.querySelectorAll('.admin-edit-icon');
+      editBtns.forEach((editBtn) => {
+        editBtn.addEventListener('click', (e) => {
+          openPopup('dashboard-main', 'admin-edit', [{ id: 'Chuyên mục', label: 'Tên mới' }]);
+        });
+      });
+
+      const deleteBtns = document.querySelectorAll('.admin-delete-icon');
+      deleteBtns.forEach((deleteBtn) => {
+        deleteBtn.addEventListener('click', (e) => {
+          openPopup('dashboard-main', 'admin-delete');
+        });
+      });
+
       break;
     }
     case 'admin-tag': {
@@ -240,12 +252,54 @@ const handleOnClick = (e) => {
       const main = document.getElementById('main-content');
       main.innerHTML = TagDashboard;
 
+      const editBtns = document.querySelectorAll('.admin-edit-icon');
+      editBtns.forEach((editBtn) => {
+        editBtn.addEventListener('click', (e) => {
+          openPopup('dashboard-main', 'admin-edit', [{ id: 'Chuyên mục', label: 'Tên mới' }]);
+        });
+      });
+
+      const deleteBtns = document.querySelectorAll('.admin-delete-icon');
+      deleteBtns.forEach((deleteBtn) => {
+        deleteBtn.addEventListener('click', (e) => {
+          openPopup('dashboard-main', 'admin-delete');
+        });
+      });
+
       break;
     }
     case 'admin-post': {
       target.style.backgroundColor = 'rgba(255,255,255,0.2)';
       const main = document.getElementById('main-content');
       main.innerHTML = PostDashboard;
+
+      const feedbackBtns = document.querySelectorAll('.admin-feedback-icon');
+      feedbackBtns.forEach((feedbackBtn) => {
+        feedbackBtn.addEventListener('click', (e) => {
+          openPopup('dashboard-main', 'admin-feedback', [{ id: 'Feedback', label: 'Feedback' }]);
+        });
+      });
+
+      const premiumBtns = document.querySelectorAll('.admin-to-premium-icon');
+      premiumBtns.forEach((premiumBtn) => {
+        premiumBtn.addEventListener('click', (e) => {
+          openPopup('dashboard-main', 'admin-to-premium');
+        });
+      });
+
+      const approveBtns = document.getElementsByClassName('admin-approve-icon');
+      approveBtns.forEach((approveBtn) => {
+        approveBtn.addEventListener('click', (e) => {
+          openPopup('dashboard-main', 'editor-approve');
+        });
+      });
+
+      const rejectBtns = document.getElementsByClassName('admin-reject-icon');
+      rejectBtns.forEach((rejectBtn) => {
+        rejectBtn.addEventListener('click', (e) => {
+          openPopup('dashboard-main', 'editor-reject');
+        });
+      });
 
       break;
     }

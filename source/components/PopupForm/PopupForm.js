@@ -56,6 +56,16 @@ const PopupForm = (modalId, data = []) => `
                     ? 'Hiệu chỉnh bài viết'
                     : modalId === 'editor-reject'
                     ? 'Từ chối bài viết'
+                    : modalId === 'admin-edit'
+                    ? 'Chỉnh sửa thông tin'
+                    : modalId === 'admin-delete'
+                    ? 'Xác nhận xoá ?'
+                    : modalId === 'admin-feedback'
+                    ? 'Nhập lời bình'
+                    : modalId === 'admin-to-premium'
+                    ? 'Đặt bài thành premium'
+                    : modalId === 'admin-extend-premium'
+                    ? 'Gia hạn độc giả'
                     : ''
                 }</h2>
                 ${

@@ -41,12 +41,12 @@ export const categoryToAdminList = (categories) =>
     <div class="admin-dashboard-item-context">${category.label}</div>
     <div class="admin-dashboard-item-context">${category.postCount}</div>
         <div class="admin-dashboard-item-action">
-            <div class="news-footer-icon-container" id="edit">
+            <div class="news-footer-icon-container admin-edit-icon">
                 <i class="fa-solid fa-pen-to-square news-footer-icon"></i>
                 <div class="tooltip news-footer-icon-tooltip">Edit</div>
             </div>
     
-            <div class="news-footer-icon-container news-delete-icon" id="delete">
+            <div class="news-footer-icon-container admin-delete-icon">
                 <i class="fa-solid fa-trash-can news-footer-icon"></i>
                 <div class="tooltip news-footer-icon-tooltip">Delete</div>
             </div>
@@ -62,12 +62,12 @@ export const tagToAdminList = (tags) =>
         <div class="admin-dashboard-item-context">${tag.name}</div>
         <div class="admin-dashboard-item-context">${tag.postCount}</div>
         <div class="admin-dashboard-item-action">
-            <div class="news-footer-icon-container" id="edit">
+            <div class="news-footer-icon-container admin-edit-icon">
                 <i class="fa-solid fa-pen-to-square news-footer-icon"></i>
                 <div class="tooltip news-footer-icon-tooltip">Edit</div>
             </div>
     
-            <div class="news-footer-icon-container news-delete-icon" id="delete">
+            <div class="news-footer-icon-container admin-delete-icon">
                 <i class="fa-solid fa-trash-can news-footer-icon"></i>
                 <div class="tooltip news-footer-icon-tooltip">Delete</div>
             </div>
@@ -97,17 +97,17 @@ export const postToAdminList = (posts) =>
         </div>
 
         <div class="admin-dashboard-item-action">
-            <div class="news-footer-icon-container news-preview-icon" id="preview">
+            <div class="news-footer-icon-container admin-preview-icon">
                 <i class="fa-solid fa-magnifying-glass-arrow-right news-footer-icon"></i>
                 <div class="tooltip news-footer-icon-tooltip">Preview</div>
             </div>
     
-            <div class="news-footer-icon-container news-feedback-icon" id="see-feedback">
+            <div class="news-footer-icon-container admin-feedback-icon">
                 <i class="fa-solid fa-comments news-footer-icon"></i>
                 <div class="tooltip news-footer-icon-tooltip">Feedback</div>
             </div>
 
-            <div class="news-footer-icon-container news-feedback-icon" id="to-premium">
+            <div class="news-footer-icon-container admin-to-premium-icon">
                 <i class="fa-solid fa-gem news-footer-icon"></i>
                 <div class="tooltip news-footer-icon-tooltip">Premium</div>
             </div>
@@ -115,12 +115,12 @@ export const postToAdminList = (posts) =>
             ${
               post.status === 'Bản nháp' || post.status === 'Chờ duyệt'
                 ? `
-            <div class="news-footer-icon-container news-approve-icon" id="approve">
+            <div class="news-footer-icon-container admin-approve-icon">
                 <i class="fa-solid fa-check news-footer-icon"></i>
                 <div class="tooltip news-footer-icon-tooltip">Approve</div>
             </div>
 
-            <div class="news-footer-icon-container news-reject-icon" id="reject">
+            <div class="news-footer-icon-container admin-reject-icon">
                 <i class="fa-solid fa-xmark news-footer-icon"></i>
                 <div class="tooltip news-footer-icon-tooltip">Reject</div>
             </div>`
