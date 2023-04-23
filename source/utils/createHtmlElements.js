@@ -38,7 +38,8 @@ export const categoryToAdminList = (categories) =>
   categories.map((category) => {
     return `
     <div class="admin-dashboard-item">
-        <div class="admin-dashboard-item-context">${category}</div>
+    <div class="admin-dashboard-item-context">${category.label}</div>
+    <div class="admin-dashboard-item-context">${category.postCount}</div>
         <div class="admin-dashboard-item-action">
             <div class="news-footer-icon-container" id="edit">
                 <i class="fa-solid fa-pen-to-square news-footer-icon"></i>
@@ -58,7 +59,8 @@ export const tagToAdminList = (tags) =>
   tags.map((tag) => {
     return `
     <div class="admin-dashboard-item">
-        <div class="admin-dashboard-item-context">${tag}</div>
+        <div class="admin-dashboard-item-context">${tag.name}</div>
+        <div class="admin-dashboard-item-context">${tag.postCount}</div>
         <div class="admin-dashboard-item-action">
             <div class="news-footer-icon-container" id="edit">
                 <i class="fa-solid fa-pen-to-square news-footer-icon"></i>
@@ -69,6 +71,92 @@ export const tagToAdminList = (tags) =>
                 <i class="fa-solid fa-trash-can news-footer-icon"></i>
                 <div class="tooltip news-footer-icon-tooltip">Delete</div>
             </div>
+        </div>
+    </div>
+`;
+  });
+
+export const postToAdminList = (posts) =>
+  posts.map((post) => {
+    return `
+    <div class="admin-dashboard-item">
+        <div class="admin-dashboard-item-context">
+            <div class="news-thumbnail-container zoom-hover">
+                <img class="news-thumbnail" src=${post.imgPath} alt="Thumbnail" />
+            </div>
+            <div class="news-info">
+                <h3 class="news-title">${post.title}</h3>
+                <p class="news-summary">
+                    ${post.summary}
+                </p>
+            </div>
+        </div>
+
+        <div class="admin-dashboard-item-context">
+            ${post.status}
+        </div>
+
+        <div class="admin-dashboard-item-action">
+            <div class="news-footer-icon-container news-preview-icon" id="preview">
+                <i class="fa-solid fa-magnifying-glass-arrow-right news-footer-icon"></i>
+                <div class="tooltip news-footer-icon-tooltip">Preview</div>
+            </div>
+    
+            <div class="news-footer-icon-container news-feedback-icon" id="see-feedback">
+                <i class="fa-solid fa-comments news-footer-icon"></i>
+                <div class="tooltip news-footer-icon-tooltip">Feedback</div>
+            </div>
+
+            <div class="news-footer-icon-container news-feedback-icon" id="to-premium">
+                <i class="fa-solid fa-gem news-footer-icon"></i>
+                <div class="tooltip news-footer-icon-tooltip">Premium</div>
+            </div>
+
+            ${
+              post.status === 'Bản nháp' || post.status === 'Chờ duyệt'
+                ? `
+            <div class="news-footer-icon-container news-approve-icon" id="approve">
+                <i class="fa-solid fa-check news-footer-icon"></i>
+                <div class="tooltip news-footer-icon-tooltip">Approve</div>
+            </div>
+
+            <div class="news-footer-icon-container news-reject-icon" id="reject">
+                <i class="fa-solid fa-xmark news-footer-icon"></i>
+                <div class="tooltip news-footer-icon-tooltip">Reject</div>
+            </div>`
+                : ''
+            }
+        </div>
+    </div>
+`;
+  });
+
+export const userToAdminList = (users) =>
+  users.map((user) => {
+    return `
+    <div class="admin-dashboard-item">
+        <div class="admin-dashboard-item-context">${user.name}</div>
+        <div class="admin-dashboard-item-context">${user.role}</div>
+        <div class="admin-dashboard-item-action">
+            ${
+              user.role === 'Biên tập viên'
+                ? `
+                    <div class="news-footer-icon-container news-feedback-icon" id="change-category">
+                        <i class="fa-solid fa-gear news-footer-icon"></i>
+                        <div class="tooltip news-footer-icon-tooltip">Change Catetory</div>
+                    </div>`
+                : ''
+            }
+
+            ${
+              user.role === 'Người dùng' || user.role === 'Độc giả'
+                ? `
+                    <div class="news-footer-icon-container news-feedback-icon" id="extend-premium">
+                        <i class="fa-solid fa-gem news-footer-icon"></i>
+                        <div class="tooltip news-footer-icon-tooltip">Extend Premium</div>
+                    </div>`
+                : ''
+            }
         </div>
     </div>
 `;

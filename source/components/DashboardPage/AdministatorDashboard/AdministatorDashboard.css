@@ -1,5 +1,5 @@
 .category-dashboard {
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +21,7 @@
 .admin-dashboard-headers,
 .admin-dashboard-item {
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 60% 20% 20%;
 }
 
 .admin-dashboard-headers {
@@ -39,6 +39,8 @@
 
 .admin-dashboard-item-context {
   font-size: 19px;
+  display: flex;
+  justify-content: center;
 }
 
 .admin-dashboard-item-action {

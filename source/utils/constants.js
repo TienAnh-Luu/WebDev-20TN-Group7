@@ -267,7 +267,7 @@ export const NAV_ITEM = {
     {
       icon: 'fa-solid fa-clipboard',
       text: 'Quản lý bài viết',
-      value: 'admin-papers',
+      value: 'admin-post',
     },
     {
       icon: 'fa-solid fa-user',

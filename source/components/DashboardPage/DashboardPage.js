@@ -14,6 +14,8 @@ import EditorApprovalDashboard from './EditorApprovalDashboard/EditorApprovalDas
 import { loadEditorPaperData } from '../../utils/loadData.js';
 import CategoryDashboard from './AdministatorDashboard/CategoryDashboard.js';
 import TagDashboard from './AdministatorDashboard/TagDashboard.js';
+import PostDashboard from './AdministatorDashboard/PostDashboard.js';
+import UserDashboard from './AdministatorDashboard/UserDashboard.js';
 
 const account_info_data = {
   user_name: 'Trương Anh Ngọc',
@@ -60,6 +62,8 @@ const initRender = () => {
     content.innerHTML = AccountInfo(account_info_data);
   } else if (user_type === 'editor') {
     content.innerHTML = EditorInfo(editor_info_data);
+  } else if (user_type === 'admin') {
+    content.innerHTML = CategoryDashboard;
   }
 
   const editBtn = document.getElementById('edit');
@@ -235,6 +239,20 @@ const handleOnClick = (e) => {
       target.style.backgroundColor = 'rgba(255,255,255,0.2)';
       const main = document.getElementById('main-content');
       main.innerHTML = TagDashboard;
+
+      break;
+    }
+    case 'admin-post': {
+      target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      const main = document.getElementById('main-content');
+      main.innerHTML = PostDashboard;
+
+      break;
+    }
+    case 'admin-user': {
+      target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      const main = document.getElementById('main-content');
+      main.innerHTML = UserDashboard;
 
       break;
     }
