@@ -12,6 +12,8 @@ import EditorInfo from '../../../source/components/DashboardPage/Info/EditorInfo
 import Premium from '../../../source/components/DashboardPage/Premium/Premium.js';
 import EditorApprovalDashboard from './EditorApprovalDashboard/EditorApprovalDashboard.js';
 import { loadEditorPaperData } from '../../utils/loadData.js';
+import CategoryDashboard from './AdministatorDashboard/CategoryDashboard.js';
+import TagDashboard from './AdministatorDashboard/TagDashboard.js';
 
 const account_info_data = {
   user_name: 'Trương Anh Ngọc',
@@ -219,6 +221,20 @@ const handleOnClick = (e) => {
           openPopup('dashboard-main', 'editor-reject');
         });
       }
+
+      break;
+    }
+    case 'admin-category': {
+      target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      const main = document.getElementById('main-content');
+      main.innerHTML = CategoryDashboard;
+
+      break;
+    }
+    case 'admin-tag': {
+      target.style.backgroundColor = 'rgba(255,255,255,0.2)';
+      const main = document.getElementById('main-content');
+      main.innerHTML = TagDashboard;
 
       break;
     }

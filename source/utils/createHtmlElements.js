@@ -34,6 +34,46 @@ export const dataToTagList = (tags, cate) =>
     (tag) => `<a href="#" class="detail-tag" data-cate=${cate}>${tag}</a>${tag === tags[tags.length - 1] ? '' : ','}`,
   );
 
+export const categoryToAdminList = (categories) =>
+  categories.map((category) => {
+    return `
+    <div class="admin-dashboard-item">
+        <div class="admin-dashboard-item-context">${category}</div>
+        <div class="admin-dashboard-item-action">
+            <div class="news-footer-icon-container" id="edit">
+                <i class="fa-solid fa-pen-to-square news-footer-icon"></i>
+                <div class="tooltip news-footer-icon-tooltip">Edit</div>
+            </div>
+    
+            <div class="news-footer-icon-container news-delete-icon" id="delete">
+                <i class="fa-solid fa-trash-can news-footer-icon"></i>
+                <div class="tooltip news-footer-icon-tooltip">Delete</div>
+            </div>
+        </div>
+    </div>
+`;
+  });
+
+export const tagToAdminList = (tags) =>
+  tags.map((tag) => {
+    return `
+    <div class="admin-dashboard-item">
+        <div class="admin-dashboard-item-context">${tag}</div>
+        <div class="admin-dashboard-item-action">
+            <div class="news-footer-icon-container" id="edit">
+                <i class="fa-solid fa-pen-to-square news-footer-icon"></i>
+                <div class="tooltip news-footer-icon-tooltip">Edit</div>
+            </div>
+    
+            <div class="news-footer-icon-container news-delete-icon" id="delete">
+                <i class="fa-solid fa-trash-can news-footer-icon"></i>
+                <div class="tooltip news-footer-icon-tooltip">Delete</div>
+            </div>
+        </div>
+    </div>
+`;
+  });
+
 export function createElementFromHTML(htmlString) {
   var div = document.createElement('div');
   div.innerHTML = htmlString.trim();
