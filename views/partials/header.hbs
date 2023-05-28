@@ -1,0 +1,71 @@
+<header id="header" class="header">
+    <div class="header__top">
+        <div class="header__top-left header-item">
+            {{>logo subclass='dark-red-backgroundcolor' firstLetterColor='white-color' secondLetterColor='black-color'}}
+            <div class="tooltip logo-tooltip">Home Page</div>
+        </div>
+        <div class="header__top-middle">
+          <nav class="header__top-navbar">
+              <a href="../../../source/pages/NewslistPage.html" class="header__top-navItem header-item" data-value="0">MỚI NHẤT</a>
+              <a href="../../../source/pages/NewslistPage.html" class="header__top-navItem header-item" data-value="1">XEM NHIỀU</a>
+              <a href="../../../source/pages/NewslistPage.html" class="header__top-navItem header-item" data-value="-1">PREMIUM</a>
+          </nav>
+        </div>
+        <div class="header__top-right">
+          <div class="header__top-searchContainer">
+              <input type="text" name="search" class="search-input" id="search-input" placeholder="Tìm kiếm..." />
+              <i class="fa-solid fa-magnifying-glass header__top-searchIcon"></i>
+          </div>
+          <div class="header__top-userIconContainer">
+              <a class="header__top-userIcon" href=""><i class="fa-solid fa-user"></i></a>
+              <div class="tooltip userIcon-tooltip">User</div>
+          </div>
+        </div>
+    </div>
+    <div class="header__middle" id="sticky-header">
+        <a href="/" class="header__home-container header-item" data-value="home">
+            <i class="fa-solid fa-house header__category"></i>
+            <div class="header__category-tooltip tooltip">Home Page</div>
+        </a>
+        <a href="/posts?category=news" class="header__category-container header-item">
+            Thời sự
+            <div class="header__category-tooltip tooltip">Thời sự</div>
+        </a>
+        <a href="/posts?category=social" class="header__category-container header-item">
+            Xã hội
+            <div class="header__category-tooltip tooltip">Xã hội</div>
+        </a>
+        <a href="/posts?category=law" class="header__category-container header-item">
+            Pháp luật
+            <div class="header__category-tooltip tooltip">Pháp luật</div>
+        </a>
+        <a href="/posts?category=education" class="header__category-container header-item">
+            Giáo dục
+            <div class="header__category-tooltip tooltip">Giáo dục</div>
+        </a>
+        <a href="/posts?category=business" class="header__category-container header-item">
+            Kinh doanh
+            <div class="header__category-tooltip tooltip">Kinh doanh</div>
+        </a>
+        <a href="/posts?category=health" class="header__category-container header-item">
+            Sức khỏe
+            <div class="header__category-tooltip tooltip">Sức khỏe</div>
+        </a>
+        <a href="/posts?category=culture" class="header__category-container header-item">
+            Văn hóa
+            <div class="header__category-tooltip tooltip">Văn hóa</div>
+        </a>
+        <a href="/posts?category=sport" class="header__category-container header-item">
+            Thể thao
+            <div class="header__category-tooltip tooltip">Thể thao</div>
+        </a>
+        <a href="/posts?category=technology" class="header__category-container header-item">
+            Công nghệ
+            <div class="header__category-tooltip tooltip">Công nghệ</div>
+        </a>
+        <a href="/posts?category=travel" class="header__category-container header-item">
+            Du lịch
+            <div class="header__category-tooltip tooltip">Du lịch</div>
+        </a>
+    </div>
+</header>
