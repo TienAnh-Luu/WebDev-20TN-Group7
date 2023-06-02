@@ -2,6 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
+const controller = require("../controllers/indexController");
 
 router.get("/createTables", (req, res) => {
   const models = require("../models");
@@ -9,5 +10,7 @@ router.get("/createTables", (req, res) => {
     res.send("tables created!");
   });
 });
+
+router.get("/", controller.showHomepage);
 
 module.exports = router;

@@ -33,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
       status: DataTypes.STRING,
       feedback: DataTypes.TEXT,
       pdf_link: DataTypes.STRING,
-      stars: DataTypes.FLOAT,
       base_rate: DataTypes.FLOAT,
     },
     {

@@ -47,14 +47,8 @@
         {{> newsItem}}
         {{/each}}
     </div>
-    <div class="main__highlight grid-container">
-     {{!-- ${navigator > CONTEXT.HOMEPAGE ? NewsListHeadline(cateOfId(type), tag) : HomepageHeadline(headlineOfType(type))}
-     ${newsItemList.join('\n')}
-     ${
-       Number(sessionStorage.getItem('navigator')) === CONTEXT.HOMEPAGE
-         ? `<a href='../../../source/pages/NewslistPage.html' class="see-more-btn" id="see-more-${type}">Xem thêm</a>`
-         : ''
-     } --}}
-   </div>
+    {{>highlight headline='MỚI NHẤT' highlightData=latestPosts type='latest'}}
+    {{>highlight headline='NỔI BẬT' highlightData=featurePosts type='feature'}}
+    {{>highlight headline='TOP 10 CHUYÊN MỤC' highlightData=top10Posts type='top10'}}
     {{>footer}}
 </div>
