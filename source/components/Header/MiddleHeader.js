@@ -1,4 +1,4 @@
-import { CATEGORY } from '../../../source/utils/constants.js';
+import { CATEGORY } from '../../utils/constants.js';
 
 const category_data = [
   {
@@ -47,7 +47,7 @@ const categoryElements = (data) => {
   let res = [];
   for (let key in data) {
     res.push(`
-    <a href="../../../source/pages/NewslistPage.html" class="header__category-container header-item" data-value=${data[key].id}>
+    <a href="../../pages/NewslistPage.html" class="header__category-container header-item" data-value=${data[key].id}>
       ${data[key].label}
       <div class="header__category-tooltip tooltip">${data[key].label}</div>
     </a>
@@ -58,7 +58,7 @@ const categoryElements = (data) => {
 
 const MiddleHeader = `
     <div class="header__middle" id="sticky-header">
-        <a href="../../../source/index.html" class="header__home-container header-item" data-value="home">
+        <a href="../../index.html" class="header__home-container header-item" data-value="home">
             <i class="fa-solid fa-house header__category"></i>
             <div class="header__category-tooltip tooltip">Home Page</div>
         </a>

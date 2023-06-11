@@ -1,4 +1,4 @@
-import { dataToNavItemList } from '../../../../source/utils/createHtmlElements.js';
+import { dataToNavItemList } from '../../../utils/createHtmlElements.js';
 
 const Navbar = (data) => `
     <ul class="navbar" id="navbar">

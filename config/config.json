@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "postgres",
-    "password": "titto1304",
+    "password": "postgres",
     "database": "NewsRoomDB",
     "host": "127.0.0.1",
     "dialect": "postgres"

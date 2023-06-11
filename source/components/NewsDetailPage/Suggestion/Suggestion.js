@@ -1,15 +1,15 @@
-import { UnLinkedHeadline } from '../../../../source/components/Highlight/Headline/Headline.js';
-import { dataToSuggestionItemList } from '../../../../source/utils/createHtmlElements.js';
+import { UnLinkedHeadline } from '../../../components/Highlight/Headline/Headline.js';
+import { dataToSuggestionItemList } from '../../../utils/createHtmlElements.js';
 
 const sampleData = [
   {
-    imgPath: '../../../source/public/images/rice.png',
+    imgPath: '../../public/images/rice.png',
     title: 'Giá trị xuất khẩu gạo Việt tăng đột biến dù sản lượng giảm',
     cate: 'Kinh doanh',
     date: '13/04/2023',
   },
   {
-    imgPath: '../../../source/public/images/rice.png',
+    imgPath: '../../public/images/rice.png',
     title: 'Giá trị xuất khẩu gạo Việt tăng đột biến dù sản lượng giảm',
     cate: 'Kinh doanh',
     date: '13/04/2023',

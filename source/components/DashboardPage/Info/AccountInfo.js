@@ -1,5 +1,5 @@
-import RoundButton from '../../../../source/components/RoundButton/RoundButton.js';
-import InfoItem from '../../../../source/components/DashboardPage/Info/InfoItem.js';
+import RoundButton from '../../../components/RoundButton/RoundButton.js';
+import InfoItem from '../../../components/DashboardPage/Info/InfoItem.js';
 
 const AccountInfo = (data) => `
 <div class="dashboard-account-info">

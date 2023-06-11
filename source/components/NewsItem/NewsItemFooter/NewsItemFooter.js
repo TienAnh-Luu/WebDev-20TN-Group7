@@ -1,4 +1,4 @@
-import { CONTEXT } from '../../../../source/utils/constants.js';
+import { CONTEXT } from '../../../utils/constants.js';
 
 const previewIcon = `<div class="news-footer-icon-container news-preview-icon" id="preview">
     <i class="fa-solid fa-magnifying-glass-arrow-right news-footer-icon"></i>

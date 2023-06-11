@@ -1,4 +1,4 @@
-import RoundButton from '../../../../../source/components/RoundButton/RoundButton.js';
+import RoundButton from '../../../../components/RoundButton/RoundButton.js';
 
 const WriterEditor = `
     <div class="writer-editor">

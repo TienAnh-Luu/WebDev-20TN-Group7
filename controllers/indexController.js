@@ -34,8 +34,8 @@ controller.showHomepage = async (req, res) => {
     limit: 16,
   });
   res.locals.featurePosts = featurePosts;
-  res.locals.carouselPosts = featurePosts.slice(10, 13);
-  res.locals.anotherFeaturePosts = featurePosts.slice(13, 16);
+  res.locals.carouselPosts = featurePosts.slice(0, 2);
+  res.locals.anotherFeaturePosts = featurePosts.slice(3, 6);
 
   const categories = await models.Category.findAll();
   res.locals.categoryArray = categories;

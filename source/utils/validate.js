@@ -1,4 +1,4 @@
-import { ACCOUNT } from '../../source/utils/constants.js';
+import { ACCOUNT } from '../utils/constants.js';
 
 // (function ($) {
 //   'use strict';

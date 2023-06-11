@@ -6,7 +6,7 @@ import { CONTEXT } from './constants.js';
 const type_mostViewed_data = [
   {
     id: '0',
-    imgPath: '../../source/public/images/prime-minister.png',
+    imgPath: '../public/images/prime-minister.png',
     url: '#',
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
@@ -17,7 +17,7 @@ const type_mostViewed_data = [
   },
   {
     id: '1',
-    imgPath: '../../source/public/images/prime-minister.png',
+    imgPath: '../public/images/prime-minister.png',
     url: '#',
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
@@ -28,7 +28,7 @@ const type_mostViewed_data = [
   },
   {
     id: '2',
-    imgPath: '../../source/public/images/prime-minister.png',
+    imgPath: '../public/images/prime-minister.png',
     url: '#',
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
@@ -39,7 +39,7 @@ const type_mostViewed_data = [
   },
   {
     id: '3',
-    imgPath: '../../source/public/images/prime-minister.png',
+    imgPath: '../public/images/prime-minister.png',
     url: '#',
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
@@ -50,7 +50,7 @@ const type_mostViewed_data = [
   },
   {
     id: '4',
-    imgPath: '../../source/public/images/prime-minister.png',
+    imgPath: '../public/images/prime-minister.png',
     url: '#',
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
@@ -61,7 +61,7 @@ const type_mostViewed_data = [
   },
   {
     id: '5',
-    imgPath: '../../source/public/images/prime-minister.png',
+    imgPath: '../public/images/prime-minister.png',
     url: '#',
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
@@ -72,7 +72,7 @@ const type_mostViewed_data = [
   },
   {
     id: '6',
-    imgPath: '../../source/public/images/prime-minister.png',
+    imgPath: '../public/images/prime-minister.png',
     url: '#',
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
@@ -83,7 +83,7 @@ const type_mostViewed_data = [
   },
   {
     id: '7',
-    imgPath: '../../source/public/images/prime-minister.png',
+    imgPath: '../public/images/prime-minister.png',
     url: '#',
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
@@ -94,7 +94,7 @@ const type_mostViewed_data = [
   },
   {
     id: '8',
-    imgPath: '../../source/public/images/prime-minister.png',
+    imgPath: '../public/images/prime-minister.png',
     url: '#',
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
@@ -105,7 +105,7 @@ const type_mostViewed_data = [
   },
   {
     id: '9',
-    imgPath: '../../source/public/images/prime-minister.png',
+    imgPath: '../public/images/prime-minister.png',
     url: '#',
     title: 'Đến lượt Anh muốn cấm TikTok',
     summary:
@@ -119,7 +119,7 @@ const type_mostViewed_data = [
 const type_latest_data = [
   {
     id: '0',
-    imgPath: '../../source/public/images/teaching.png',
+    imgPath: '../public/images/teaching.png',
     url: '#',
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
@@ -130,7 +130,7 @@ const type_latest_data = [
   },
   {
     id: '1',
-    imgPath: '../../source/public/images/teaching.png',
+    imgPath: '../public/images/teaching.png',
     url: '#',
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
@@ -141,7 +141,7 @@ const type_latest_data = [
   },
   {
     id: '2',
-    imgPath: '../../source/public/images/teaching.png',
+    imgPath: '../public/images/teaching.png',
     url: '#',
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
@@ -152,7 +152,7 @@ const type_latest_data = [
   },
   {
     id: '3',
-    imgPath: '../../source/public/images/teaching.png',
+    imgPath: '../public/images/teaching.png',
     url: '#',
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
@@ -163,7 +163,7 @@ const type_latest_data = [
   },
   {
     id: '4',
-    imgPath: '../../source/public/images/teaching.png',
+    imgPath: '../public/images/teaching.png',
     url: '#',
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
@@ -174,7 +174,7 @@ const type_latest_data = [
   },
   {
     id: '5',
-    imgPath: '../../source/public/images/teaching.png',
+    imgPath: '../public/images/teaching.png',
     url: '#',
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
@@ -185,7 +185,7 @@ const type_latest_data = [
   },
   {
     id: '6',
-    imgPath: '../../source/public/images/teaching.png',
+    imgPath: '../public/images/teaching.png',
     url: '#',
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
@@ -196,7 +196,7 @@ const type_latest_data = [
   },
   {
     id: '7',
-    imgPath: '../../source/public/images/teaching.png',
+    imgPath: '../public/images/teaching.png',
     url: '#',
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
@@ -207,7 +207,7 @@ const type_latest_data = [
   },
   {
     id: '8',
-    imgPath: '../../source/public/images/teaching.png',
+    imgPath: '../public/images/teaching.png',
     url: '#',
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
@@ -218,7 +218,7 @@ const type_latest_data = [
   },
   {
     id: '9',
-    imgPath: '../../source/public/images/teaching.png',
+    imgPath: '../public/images/teaching.png',
     url: '#',
     title: 'Chọn trường như thế nào thời bão giá leo thang?',
     summary:
@@ -232,7 +232,7 @@ const type_latest_data = [
 const type_top10_data = [
   {
     id: '0',
-    imgPath: '../../source/public/images/messi.png',
+    imgPath: '../public/images/messi.png',
     url: '#',
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
@@ -243,7 +243,7 @@ const type_top10_data = [
   },
   {
     id: '1',
-    imgPath: '../../source/public/images/messi.png',
+    imgPath: '../public/images/messi.png',
     url: '#',
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
@@ -254,7 +254,7 @@ const type_top10_data = [
   },
   {
     id: '2',
-    imgPath: '../../source/public/images/messi.png',
+    imgPath: '../public/images/messi.png',
     url: '#',
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
@@ -265,7 +265,7 @@ const type_top10_data = [
   },
   {
     id: '3',
-    imgPath: '../../source/public/images/messi.png',
+    imgPath: '../public/images/messi.png',
     url: '#',
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
@@ -276,7 +276,7 @@ const type_top10_data = [
   },
   {
     id: '4',
-    imgPath: '../../source/public/images/messi.png',
+    imgPath: '../public/images/messi.png',
     url: '#',
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
@@ -287,7 +287,7 @@ const type_top10_data = [
   },
   {
     id: '5',
-    imgPath: '../../source/public/images/messi.png',
+    imgPath: '../public/images/messi.png',
     url: '#',
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
@@ -298,7 +298,7 @@ const type_top10_data = [
   },
   {
     id: '6',
-    imgPath: '../../source/public/images/messi.png',
+    imgPath: '../public/images/messi.png',
     url: '#',
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
@@ -309,7 +309,7 @@ const type_top10_data = [
   },
   {
     id: '7',
-    imgPath: '../../source/public/images/messi.png',
+    imgPath: '../public/images/messi.png',
     url: '#',
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
@@ -320,7 +320,7 @@ const type_top10_data = [
   },
   {
     id: '8',
-    imgPath: '../../source/public/images/messi.png',
+    imgPath: '../public/images/messi.png',
     url: '#',
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:
@@ -331,7 +331,7 @@ const type_top10_data = [
   },
   {
     id: '9',
-    imgPath: '../../source/public/images/messi.png',
+    imgPath: '../public/images/messi.png',
     url: '#',
     title: 'World Cup 2026 sẽ đá 104 trận',
     summary:

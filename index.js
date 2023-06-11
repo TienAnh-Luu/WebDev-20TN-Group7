@@ -2,10 +2,10 @@
 
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 const expressHandlebars = require("express-handlebars");
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/source"));
 
 // config for express-handlebars
 app.engine(

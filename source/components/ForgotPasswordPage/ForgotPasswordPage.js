@@ -1,18 +1,18 @@
-import Logo from '../../../source/components/Logo/Logo.js';
-import EmailForm from '../../../source/components/ForgotPasswordPage/EmailForm/EmailForm.js';
-import OtpForm from '../../../source/components/ForgotPasswordPage/OtpForm/OtpForm.js';
-import PasswordForm from '../../../source/components/ForgotPasswordPage/PasswordForm/PasswordForm.js';
-import handleShowPassword from '../../../source/utils/handleShowPassword.js';
-import { validateOTP } from '../../../source/utils/validate.js';
-import { FP_STAGE } from '../../../source/utils/constants.js';
-import GoBackButton from '../../../source/components/GoBackButton/GoBackButton.js';
+import Logo from '../../components/Logo/Logo.js';
+import EmailForm from '../../components/ForgotPasswordPage/EmailForm/EmailForm.js';
+import OtpForm from '../../components/ForgotPasswordPage/OtpForm/OtpForm.js';
+import PasswordForm from '../../components/ForgotPasswordPage/PasswordForm/PasswordForm.js';
+import handleShowPassword from '../../utils/handleShowPassword.js';
+import { validateOTP } from '../../utils/validate.js';
+import { FP_STAGE } from '../../utils/constants.js';
+import GoBackButton from '../../components/GoBackButton/GoBackButton.js';
 
 const root = document.getElementById('root');
 
 root.innerHTML = `
 <div class="forgot-password-page">
     ${Logo('logo-login', 'dark-red-color', 'black-color')}
-    ${GoBackButton('../../../source/pages/LoginPage.html')}
+    ${GoBackButton('../../pages/LoginPage.html')}
     <div class="form-container" id="form-container"></div>
 </div>
 `;

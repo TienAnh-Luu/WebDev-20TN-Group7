@@ -1,4 +1,4 @@
-import NewsItem from '../../../../source/components/NewsItem/NewsItem.js';
+import NewsItem from '../../../components/NewsItem/NewsItem.js';
 
 const PaperItem = (data, context) => `
   <div class="state-item-container">

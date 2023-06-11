@@ -1,4 +1,4 @@
-import { dataToNewsItemList } from '../../../../source/utils/createHtmlElements.js';
+import { dataToNewsItemList } from '../../../utils/createHtmlElements.js';
 
 const EditorApprovalDashboard = (data) => {
   return `<div class="editor-dashboard-container">

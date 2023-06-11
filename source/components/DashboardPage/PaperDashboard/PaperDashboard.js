@@ -1,6 +1,6 @@
-import { loadWriterPaperDataOfType } from '../../../../source/utils/loadData.js';
-import { headlineOfType } from '../../../../source/utils/createHeadline.js';
-import { dataToPaperItemList } from '../../../../source/utils/createHtmlElements.js';
+import { loadWriterPaperDataOfType } from '../../../utils/loadData.js';
+import { headlineOfType } from '../../../utils/createHeadline.js';
+import { dataToPaperItemList } from '../../../utils/createHtmlElements.js';
 
 const PaperDashboard = (context) => {
   const data = loadWriterPaperDataOfType(context);

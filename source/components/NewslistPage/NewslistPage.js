@@ -1,12 +1,12 @@
-import Highlight from '../../../source/components/Highlight/Highlight.js';
-import Header from '../../../source/components/Header/Header.js';
-import Footer from '../../../source/components/Footer/Footer.js';
-import { handleSticky } from '../../../source/utils/handleSticky.js';
+import Highlight from '../../components/Highlight/Highlight.js';
+import Header from '../../components/Header/Header.js';
+import Footer from '../../components/Footer/Footer.js';
+import { handleSticky } from '../../utils/handleSticky.js';
 import {
   addOnclickToCateHeadline,
   addOnclickToHeaderItems,
   handleNavigateToNewslistPage,
-} from '../../../source/utils/addOnclick.js';
+} from '../../utils/addOnclick.js';
 import { CONTEXT } from '../../utils/constants.js';
 
 // When the user scrolls the page, execute myFunction

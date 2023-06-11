@@ -1,54 +1,46 @@
 <div id="root" class="pb340">
-    {{>header}}
-    <div class="main__features grid-container" id="features">
-        <div class="main__features-carousel">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    {{#each carouselPosts}}
-                        <div class="carousel-item" id="{{id}}">
-                            <div class="custom-carousel-item">
-                                <div class="carousel-thumbnail-container zoom-hover">
-                                    <img class="carousel-thumbnail" src={{imgPath}} alt="Carousel thumbnail" />
-                                </div>
-                                <div class="carousel-info">
-                                    <a class="carousel-title">{{title}}</a>
-                                    <p class="carousel-summary">
-                                        {{summary}}
-                                    </p>
-                                </div>
-                                <div class="news-tag">{{category}}</div>
-                            </div>
-                        </div>
-                    {{/each}}
-                </div>
-                <button
-                    class="carousel-control-prev"
-                    type="button"
-                    data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="prev"
-                >
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button
-                    class="carousel-control-next"
-                    type="button"
-                    data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="next"
-                >
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+  {{>header}}
+  <div class="main__features grid-container" id="features">
+    <div class="main__features-carousel">
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          {{#each carouselPosts}}
+          <div class="carousel-item {{#if @first}}active{{/if}}" id="carousel-post-{{id}}">
+            <div class="custom-carousel-item">
+              <div class="carousel-thumbnail-container zoom-hover">
+                <img class="carousel-thumbnail" src={{avatar_link}} alt="Carousel thumbnail" />
+              </div>
+              <div class="carousel-info">
+                <a class="carousel-title">{{title}}</a>
+                <p class="carousel-summary">
+                  {{summary}}
+                </p>
+              </div>
+              <div class="news-tag">{{category}}</div>
             </div>
+          </div>
+          {{/each}}
         </div>
-
-        {{!-- ${dataToNewsItemList(news_data.slice(3), CONTEXT.HOMEPAGE).join('\n')} --}}
-        {{#each anotherFeaturePosts}}
-        {{> newsItem}}
-        {{/each}}
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
-    {{>highlight headline='MỚI NHẤT' highlightData=latestPosts type='latest'}}
-    {{>highlight headline='NỔI BẬT' highlightData=featurePosts type='feature'}}
-    {{>highlight headline='TOP 10 CHUYÊN MỤC' highlightData=top10Posts type='top10'}}
-    {{>footer}}
+
+    {{!-- ${dataToNewsItemList(news_data.slice(3), CONTEXT.HOMEPAGE).join('\n')} --}}
+    {{#each anotherFeaturePosts}}
+    {{> newsItem}}
+    {{/each}}
+  </div>
+  {{>highlight headline='MỚI NHẤT' highlightData=latestPosts type='latest'}}
+  {{>highlight headline='NỔI BẬT' highlightData=featurePosts type='feature'}}
+  {{>highlight headline='TOP 10 CHUYÊN MỤC' highlightData=top10Posts type='top10'}}
+  {{>footer}}
 </div>

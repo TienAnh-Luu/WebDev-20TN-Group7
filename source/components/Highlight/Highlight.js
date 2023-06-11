@@ -1,8 +1,8 @@
-import { loadHighlightDataOfType } from '../../../source/utils/loadData.js';
-import { dataToNewsItemList } from '../../../source/utils/createHtmlElements.js';
-import { CATEGORY, CONTEXT } from '../../../source/utils/constants.js';
-import { headlineOfType } from '../../../source/utils/createHeadline.js';
-import { HomepageHeadline, NewsListHeadline } from '../../../source/components/Highlight/Headline/Headline.js';
+import { loadHighlightDataOfType } from '../../utils/loadData.js';
+import { dataToNewsItemList } from '../../utils/createHtmlElements.js';
+import { CATEGORY, CONTEXT } from '../../utils/constants.js';
+import { headlineOfType } from '../../utils/createHeadline.js';
+import { HomepageHeadline, NewsListHeadline } from '../../components/Highlight/Headline/Headline.js';
 
 const cateOfId = (id) => {
   let cateId = Number(id);
@@ -32,7 +32,7 @@ const Highlight = (type, tag = '') => {
      ${newsItemList.join('\n')}
      ${
        Number(sessionStorage.getItem('navigator')) === CONTEXT.HOMEPAGE
-         ? `<a href='../../../source/pages/NewslistPage.html' class="see-more-btn" id="see-more-${type}">Xem thêm</a>`
+         ? `<a href='../../pages/NewslistPage.html' class="see-more-btn" id="see-more-${type}">Xem thêm</a>`
          : ''
      }
    </div>

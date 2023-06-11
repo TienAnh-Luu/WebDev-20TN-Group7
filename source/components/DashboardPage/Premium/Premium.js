@@ -1,4 +1,4 @@
-import { convertMinutes } from '../../../../source/utils/timer.js';
+import { convertMinutes } from '../../../utils/timer.js';
 import Logo from '../../Logo/Logo.js';
 
 const Premium = (timeLeft) => `
