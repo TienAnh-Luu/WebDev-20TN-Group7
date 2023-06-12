@@ -4,6 +4,14 @@ const controller = {};
 const models = require("../models");
 
 controller.showHomepage = async (req, res) => {
+  const categories = await models.Category.findAll({
+    attributes: ["id", "name", "parent_category_id"],
+    where: {
+      parent_category_id: null,
+    },
+  });
+  res.locals.categories = categories;
+
   const latestPosts = await models.Post.findAll({
     attributes: [
       "id",
@@ -33,12 +41,9 @@ controller.showHomepage = async (req, res) => {
     order: [["base_rate", "DESC"]],
     limit: 16,
   });
-  res.locals.featurePosts = featurePosts;
-  res.locals.carouselPosts = featurePosts.slice(0, 2);
+  res.locals.featurePosts = featurePosts.slice(6);
+  res.locals.carouselPosts = featurePosts.slice(0, 3);
   res.locals.anotherFeaturePosts = featurePosts.slice(3, 6);
-
-  const categories = await models.Category.findAll();
-  res.locals.categoryArray = categories;
 
   const userTable = await models.User;
   const users = userTable.findAll();
