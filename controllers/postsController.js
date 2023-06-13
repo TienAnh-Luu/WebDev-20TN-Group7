@@ -29,8 +29,9 @@ controller.getData = async (req, res, next) => {
 };
 
 controller.show = async (req, res) => {
-  const category = isNaN(req.query.category) ? 0 : parseInt(req.query.category);
-  const brand = isNaN(req.query.brand) ? 0 : parseInt(req.query.brand);
+  const parent_category = isNaN(req.query.parent_category)
+    ? 0
+    : parseInt(req.query.parent_category);
   const tag = isNaN(req.query.tag) ? 0 : parseInt(req.query.tag);
   const keyword = req.query.keyword || "";
   const sort = ["price", "newest", "popular"].includes(req.query.sort)
@@ -49,27 +50,22 @@ controller.show = async (req, res) => {
   });
   res.locals.categories = categories;
 
-  const brands = await models.Brand.findAll({
-    include: [
-      {
-        model: models.Product,
-      },
-    ],
-  });
-  res.locals.brands = brands;
-
   const tags = await models.Tag.findAll();
   res.locals.tags = tags;
 
   const options = {
-    attributes: ["id", "name", "imagePath", "stars", "price", "oldPrice"],
+    attributes: [
+      "id",
+      "title",
+      "avatar_link",
+      "summary",
+      "published_time",
+      "isPremium",
+    ],
     where: {},
   };
-  if (category > 0) {
-    options.where.categoryId = category;
-  }
-  if (brand > 0) {
-    options.where.brandId = brand;
+  if (parent_category > 0) {
+    options.where.parent_category = parent_category;
   }
   if (tag > 0) {
     options.include = [
@@ -116,8 +112,8 @@ controller.show = async (req, res) => {
   };
 
   // const products = await models.Product.findAll(options);
-  res.locals.products = rows;
-  res.render("product-list");
+  res.locals.posts = rows;
+  res.render("posts-list");
 };
 
 controller.showDetails = async (req, res) => {

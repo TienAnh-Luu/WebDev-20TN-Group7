@@ -5,7 +5,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 const expressHandlebars = require("express-handlebars");
 
-app.use(express.static(__dirname + "/source"));
+// app.use(express.static(__dirname + "/source"));
+const path = require("path");
+app.use(express.static(path.join(__dirname + "/source")));
 
 // config for express-handlebars
 app.engine(

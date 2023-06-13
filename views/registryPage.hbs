@@ -1,0 +1,12 @@
+<div class="registry-page">
+    {{> Logo subclass='logo-login' firstLetterColor='dark-red-color' secondLetterColor='black-color'}}
+
+    <form action="#" class="login-form">
+        {{> FormInput label='Tên đăng nhập *' placeholder='Username', id='user-name', warningMessage='Enter user name' type='text'}}
+        {{> FormInput label='Email *' placeholder='Email' id='user-email', warningMessage='Enter correct email' type='email'}}
+        {{> FormInput label='Số điện thoại' placeholder='Phone' id='user-phone-number' warningMessage='Enter phone number' type='text'}}
+        {{> FormInput label='Mật khẩu *' placeholder='Password' id='user-password', 'Enter password' type='password'}}
+        {{> FormInput label='Xác nhận mật khẩu *' placeholder='Password' id='user-retype-password' warningMessage='Enter password' type='password'}}
+        {{> RoundButton type='submit' className='strawberry-backgroundcolor' id='login-btn' text='Tạo tài khoản'}}
+    </form>
+</div>
