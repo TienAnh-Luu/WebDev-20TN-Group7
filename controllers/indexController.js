@@ -38,6 +38,11 @@ controller.showHomepage = async (req, res) => {
       "is_premium",
       "published_time",
     ],
+    include: [
+      {
+        model: Category,
+      },
+    ],
     order: [["base_rate", "DESC"]],
     limit: 16,
   });
