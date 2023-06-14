@@ -1,7 +1,8 @@
 <div class="main__highlight grid-container">
+  {{!-- using if statement make headline --}}
   <div class="main__highlight-headline"><a href="/posts?type={{type}}" class="headline-text">{{headline}}</a></div>
   {{#each highlightData}}
   {{>newsItem}}
   {{/each}}
-  <a href="/posts?type={{type}}" class="see-more-btn">Xem thêm</a>
+  {{!-- <a href="/posts?type={{type}}" class="see-more-btn">Xem thêm</a> --}}
 </div>

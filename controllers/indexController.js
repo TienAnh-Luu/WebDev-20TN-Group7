@@ -17,7 +17,6 @@ controller.showHomepage = async (req, res) => {
       "id",
       "title",
       "avatar_link",
-      "background_image_link",
       "summary",
       "is_premium",
       "published_time",
@@ -69,9 +68,8 @@ controller.showPage = (req, res, next) => {
     "contact",
     "login",
     "my-account",
-    "product-detail",
-    "product-list",
-    "wishlist",
+    "newsDetailPage",
+    "newslistPage",
   ];
   if (pages.includes(req.params.page)) {
     return res.render(req.params.page);

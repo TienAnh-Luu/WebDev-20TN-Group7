@@ -30,7 +30,7 @@ app.set("view engine", "hbs");
 
 // routes
 app.use("/", require("./routes/indexRouter"));
-// app.use("/products", require("./routes/productsRouter"));
+app.use("/posts", require("./routes/postsRouter"));
 // app.use("/users", require("./routes/authRouter"));
 // app.use("/users", require("./routes/usersRouter"));
 

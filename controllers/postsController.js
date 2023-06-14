@@ -13,14 +13,14 @@ controller.getData = async (req, res, next) => {
   });
   res.locals.categories = categories;
 
-  const brands = await models.Brand.findAll({
-    include: [
-      {
-        model: models.Product,
-      },
-    ],
-  });
-  res.locals.brands = brands;
+  // const brands = await models.Brand.findAll({
+  //   include: [
+  //     {
+  //       model: models.Product,
+  //     },
+  //   ],
+  // });
+  // res.locals.brands = brands;
 
   const tags = await models.Tag.findAll();
   res.locals.tags = tags;
@@ -29,9 +29,7 @@ controller.getData = async (req, res, next) => {
 };
 
 controller.show = async (req, res) => {
-  const parent_category = isNaN(req.query.parent_category)
-    ? 0
-    : parseInt(req.query.parent_category);
+  const category = isNaN(req.query.category) ? 0 : parseInt(req.query.category);
   const tag = isNaN(req.query.tag) ? 0 : parseInt(req.query.tag);
   const keyword = req.query.keyword || "";
   const sort = ["price", "newest", "popular"].includes(req.query.sort)
@@ -42,11 +40,10 @@ controller.show = async (req, res) => {
     : Math.max(1, parseInt(req.query.page));
 
   const categories = await models.Category.findAll({
-    include: [
-      {
-        model: models.Product,
-      },
-    ],
+    attributes: ["id", "name", "parent_category_id"],
+    where: {
+      parent_category_id: null,
+    },
   });
   res.locals.categories = categories;
 
@@ -60,49 +57,59 @@ controller.show = async (req, res) => {
       "avatar_link",
       "summary",
       "published_time",
-      "isPremium",
+      "is_premium",
+    ],
+    include: [
+      {
+        model: models.Category,
+        as: "main_category",
+      },
     ],
     where: {},
   };
-  if (parent_category > 0) {
-    options.where.parent_category = parent_category;
+  if (category > 0) {
+    // options.where["$or"] = [
+    //   { category_id: category },
+    //   { main_category_id: category },
+    // ];
+    options.where.main_category_id = category;
   }
-  if (tag > 0) {
-    options.include = [
-      {
-        model: models.Tag,
-        where: { id: tag },
-      },
-    ];
-  }
-  if (keyword.trim() != "") {
-    options.where.name = {
-      [Op.iLike]: `%${keyword}%`,
-    };
-  }
-  switch (sort) {
-    case "newest":
-      options.order = [["createdAt", "DESC"]];
-      break;
-    case "popular":
-      options.order = [["stars", "DESC"]];
-      break;
-    default:
-      options.order = [["price", "ASC"]];
-  }
+  // if (tag > 0) {
+  //   options.include = [
+  //     {
+  //       model: models.Tag,
+  //       where: { id: tag },
+  //     },
+  //   ];
+  // }
+  // if (keyword.trim() != "") {
+  //   options.where.name = {
+  //     [Op.iLike]: `%${keyword}%`,
+  //   };
+  // }
+  // switch (sort) {
+  //   case "newest":
+  //     options.order = [["createdAt", "DESC"]];
+  //     break;
+  //   case "popular":
+  //     options.order = [["stars", "DESC"]];
+  //     break;
+  //   default:
+  //     options.order = [["price", "ASC"]];
+  // }
 
-  res.locals.sort = sort;
-  res.locals.originalUrl = removeParam("sort", req.originalUrl);
-  if (Object.keys(req.query).length == 0) {
-    res.locals.originalUrl += "?";
-  } else {
-    res.locals.originalUrl += "&";
-  }
+  // res.locals.sort = sort;
+  // res.locals.originalUrl = removeParam("sort", req.originalUrl);
+  // if (Object.keys(req.query).length == 0) {
+  //   res.locals.originalUrl += "?";
+  // } else {
+  //   res.locals.originalUrl += "&";
+  // }
 
   const limit = 6;
   options.limit = limit;
   options.offset = limit + (page - 1);
-  const { rows, count } = await models.Product.findAndCountAll(options);
+  const { rows, count } = await models.Post.findAndCountAll(options);
 
   res.locals.pagination = {
     page,
@@ -113,7 +120,7 @@ controller.show = async (req, res) => {
 
   // const products = await models.Product.findAll(options);
   res.locals.posts = rows;
-  res.render("posts-list");
+  res.render("newslistPage");
 };
 
 controller.showDetails = async (req, res) => {
