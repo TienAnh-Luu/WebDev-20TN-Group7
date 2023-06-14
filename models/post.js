@@ -15,8 +15,14 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "post_id",
         otherKey: "tag_id",
       });
-      Post.belongsTo(models.Category, { foreignKey: "main_category_id" });
-      Post.belongsTo(models.Category, { foreignKey: "category_id" });
+      Post.belongsTo(models.Category, {
+        foreignKey: "main_category_id",
+        as: "main_category",
+      });
+      Post.belongsTo(models.Category, {
+        foreignKey: "category_id",
+        as: "category",
+      });
       Post.belongsTo(models.Writer, { foreignKey: "writer_id" });
     }
   }

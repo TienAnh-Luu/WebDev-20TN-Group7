@@ -1,6 +1,10 @@
 <a class="news-item-container ignore-click">
   <div class="news-thumbnail-container zoom-hover">
-    <img class="news-thumbnail" src="{{background_image_link}}" alt="Thumbnail" />
+    <img
+      class="news-thumbnail"
+      src="{{background_image_link}}"
+      alt="Thumbnail"
+    />
   </div>
   <div class="news-info">
     <h3 class="news-title">{{title}}</h3>
@@ -8,6 +12,6 @@
       {{summary}}
     </p>
   </div>
-  <div class="news-tag">{{category}}</div>
+  <div class="news-tag">{{main_category.name}}</div>
   {{! ${NewsItemFooter(context, data.date)} }}
 </a>

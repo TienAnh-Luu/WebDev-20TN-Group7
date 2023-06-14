@@ -22,6 +22,12 @@ controller.showHomepage = async (req, res) => {
       "is_premium",
       "published_time",
     ],
+    include: [
+      {
+        model: models.Category,
+        as: "main_category",
+      },
+    ],
     order: [["createdAt", "DESC"]],
     limit: 10,
   });
@@ -40,7 +46,8 @@ controller.showHomepage = async (req, res) => {
     ],
     include: [
       {
-        model: Category,
+        model: models.Category,
+        as: "main_category",
       },
     ],
     order: [["base_rate", "DESC"]],
