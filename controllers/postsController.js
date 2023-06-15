@@ -5,11 +5,10 @@ const Op = sequelize.Op;
 
 controller.getData = async (req, res, next) => {
   const categories = await models.Category.findAll({
-    include: [
-      {
-        model: models.Post,
-      },
-    ],
+    attributes: ["id", "name", "parent_category_id"],
+    where: {
+      parent_category_id: null,
+    },
   });
   res.locals.categories = categories;
 
@@ -32,20 +31,23 @@ controller.show = async (req, res) => {
   const category = isNaN(req.query.category) ? 0 : parseInt(req.query.category);
   const tag = isNaN(req.query.tag) ? 0 : parseInt(req.query.tag);
   const keyword = req.query.keyword || "";
-  const sort = ["price", "newest", "popular"].includes(req.query.sort)
-    ? req.query.sort
-    : "price";
+  // const sort = ["price", "newest", "popular"].includes(req.query.sort)
+  //   ? req.query.sort
+  //   : "price";
+  const type = ["latest", "feature", "top10"].includes(req.query.type)
+    ? req.query.type
+    : "latest";
   const page = isNaN(req.query.page)
     ? 1
     : Math.max(1, parseInt(req.query.page));
 
-  const categories = await models.Category.findAll({
-    attributes: ["id", "name", "parent_category_id"],
-    where: {
-      parent_category_id: null,
-    },
-  });
-  res.locals.categories = categories;
+  // const categories = await models.Category.findAll({
+  //   attributes: ["id", "name", "parent_category_id"],
+  //   where: {
+  //     parent_category_id: null,
+  //   },
+  // });
+  // res.locals.categories = categories;
 
   const tags = await models.Tag.findAll();
   res.locals.tags = tags;
@@ -72,7 +74,7 @@ controller.show = async (req, res) => {
     //   { category_id: category },
     //   { main_category_id: category },
     // ];
-    options.where.main_category_id = category;
+    options.where.main_category_id = category; // this should be SELECT ... FROM ... WHERE category_id = category OR main_category_id = category
   }
   // if (tag > 0) {
   //   options.include = [
@@ -87,16 +89,16 @@ controller.show = async (req, res) => {
   //     [Op.iLike]: `%${keyword}%`,
   //   };
   // }
-  // switch (sort) {
-  //   case "newest":
-  //     options.order = [["createdAt", "DESC"]];
-  //     break;
-  //   case "popular":
-  //     options.order = [["stars", "DESC"]];
-  //     break;
-  //   default:
-  //     options.order = [["price", "ASC"]];
-  // }
+  switch (type) {
+    case "premium":
+      options.order = [["createdAt", "DESC"]]; // fix this
+      break;
+    case "feature":
+      options.order = [["base_rate", "DESC"]]; // fix this follow the formula
+      break;
+    default:
+      options.order = [["createdAt", "DESC"]];
+  }
 
   // res.locals.sort = sort;
   // res.locals.originalUrl = removeParam("sort", req.originalUrl);
@@ -125,47 +127,59 @@ controller.show = async (req, res) => {
 
 controller.showDetails = async (req, res) => {
   const id = isNaN(req.params.id) ? 0 : parseInt(req.params.id);
-  const product = await models.Product.findOne({
+  const post = await models.Post.findOne({
     attributes: [
       "id",
-      "name",
-      "stars",
-      "oldPrice",
-      "price",
-      "summary",
-      "description",
-      "specification",
+      "title",
+      "avatar_link",
+      "background_image_link",
+      "content",
+      "is_premium",
+      "published_time",
     ],
     where: { id },
     include: [
       {
-        model: models.Image,
-        attributes: ["name", "imagePath"],
+        model: models.Writer,
+        attributes: ["nickname"],
       },
       {
-        model: models.Review,
-        attributes: ["id", "review", "stars", "createdAt"],
+        model: models.Comment,
+        attributes: ["id", "content", "stars", "createdAt"],
         include: [
           {
             model: models.User,
-            attributes: ["firstName", "lastName"],
+            attributes: ["name"],
           },
         ],
       },
       {
         model: models.Tag,
-        attributes: ["id"],
+        attributes: ["id", "name"],
       },
     ],
   });
 
-  res.locals.product = product;
+  res.locals.post = post;
 
   let tagIds = [];
-  product.Tags.forEach((tag) => tagIds.push(tag.id));
+  post.Tags.forEach((tag) => tagIds.push(tag.id));
 
-  const relatedProducts = await models.Product.findAll({
-    attributes: ["id", "name", "imagePath", "oldPrice", "price"],
+  const relatedPosts = await models.Post.findAll({
+    attributes: [
+      "id",
+      "title",
+      "avatar_link",
+      "summary",
+      "is_premium",
+      "published_time",
+    ],
+    include: [
+      {
+        model: models.Category,
+        as: "main_category",
+      },
+    ],
     include: [
       {
         model: models.Tag,
@@ -175,11 +189,13 @@ controller.showDetails = async (req, res) => {
         },
       },
     ],
-    limit: 10,
+    limit: 6,
   });
-  res.locals.relatedProducts = relatedProducts;
+  res.locals.relatedPosts = relatedPosts;
 
-  res.render("product-detail");
+  console.log(post);
+
+  res.render("newsDetailPage");
 };
 
 function removeParam(key, sourceURL) {
