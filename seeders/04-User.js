@@ -116,6 +116,46 @@ module.exports = {
         name: "Admin 2",
         role_id: 5,
       },
+      {
+        username: "comment1",
+        password: "comment",
+        avatar_link: "https://i.pravatar.cc/200?img=15",
+        email: "fox.pet.baal1234@gmail.com",
+        name: "Commentor 1",
+        role_id: 1,
+      },
+      {
+        username: "comment2",
+        password: "comment",
+        avatar_link: "https://i.pravatar.cc/200?img=16",
+        email: "fox.pet.baal1235@gmail.com",
+        name: "Commentor 2",
+        role_id: 1,
+      },
+      {
+        username: "comment3",
+        password: "comment",
+        avatar_link: "https://i.pravatar.cc/200?img=17",
+        email: "fox.pet.baal1236@gmail.com",
+        name: "Commentor 3",
+        role_id: 1,
+      },
+      {
+        username: "comment4",
+        password: "comment",
+        avatar_link: "https://i.pravatar.cc/200?img=18",
+        email: "fox.pet.baal1237@gmail.com",
+        name: "Commentor 4",
+        role_id: 1,
+      },
+      {
+        username: "comment5",
+        password: "comment",
+        avatar_link: "https://i.pravatar.cc/200?img=19",
+        email: "fox.pet.baal1238@gmail.com",
+        name: "Commentor 5",
+        role_id: 1,
+      },
     ];
     items.forEach((item) => {
       item.createdAt = Sequelize.literal("NOW()");
