@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 const expressHandlebars = require("express-handlebars");
+const { createFooterForNewsItem } = require("./controllers/handlebarsHelper");
 
 // app.use(express.static(__dirname + "/source"));
 const path = require("path");
@@ -20,10 +21,11 @@ app.engine(
     runtimeOptions: {
       allowProtoPropertiesByDefault: true,
     },
-    // helpers: {
-    //   createStarList,
-    //   createPagination,
-    // },
+    helpers: {
+      // createStarList,
+      // createPagination,
+      createFooterForNewsItem,
+    },
   })
 );
 app.set("view engine", "hbs");

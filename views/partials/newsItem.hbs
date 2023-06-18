@@ -1,13 +1,14 @@
-<a class="news-item-container" href="/posts/{{id}}">
+<a class="news-item-container" href="/posts/{{data.id}}">
   <div class="news-thumbnail-container zoom-hover">
-    <img class="news-thumbnail" src="{{avatar_link}}" alt="Thumbnail" />
+    <img class="news-thumbnail" src="{{data.avatar_link}}" alt="Thumbnail" />
   </div>
   <div class="news-info">
-    <h3 class="news-title">{{title}}</h3>
+    <h3 class="news-title">{{data.title}}</h3>
+    {{!-- <h3 class="news-title">{{context}}</h3> --}}
     <p class="news-summary">
-      {{summary}}
+      {{data.summary}}
     </p>
   </div>
-  <div class="news-tag">{{main_category.name}}</div>
-  {{! ${NewsItemFooter(context, data.date)} }}
+  <div class="news-tag">{{data.main_category.name}}</div>
+  {{{createFooterForNewsItem context data.published_time}}}
 </a>

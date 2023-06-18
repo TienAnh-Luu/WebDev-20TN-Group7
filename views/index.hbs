@@ -36,11 +36,11 @@
 
     {{!-- ${dataToNewsItemList(news_data.slice(3), CONTEXT.HOMEPAGE).join('\n')} --}}
     {{#each anotherFeaturePosts}}
-    {{> newsItem}}
+    {{> newsItem data=this context='homepage'}}
     {{/each}}
   </div>
-  {{>highlight headline='MỚI NHẤT' highlightData=latestPosts type='latest'}}
-  {{>highlight headline='NỔI BẬT' highlightData=featurePosts type='feature'}}
-  {{>highlight headline='TOP 10 CHUYÊN MỤC' highlightData=top10Posts type='top10'}}
+  {{>highlight headline='MỚI NHẤT' highlightData=latestPosts type='latest' context='homepage'}}
+  {{>highlight headline='NỔI BẬT' highlightData=featurePosts type='feature' context='homepage'}}
+  {{>highlight headline='TOP 10 CHUYÊN MỤC' highlightData=top10Posts type='top10' context='homepage'}}
   {{>footer}}
 </div>
