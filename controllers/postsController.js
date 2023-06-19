@@ -60,6 +60,7 @@ controller.show = async (req, res) => {
       "summary",
       "published_time",
       "is_premium",
+      "status",
     ],
     include: [
       {
@@ -67,7 +68,9 @@ controller.show = async (req, res) => {
         as: "main_category",
       },
     ],
-    where: {},
+    where: {
+      status: "Published",
+    },
   };
   if (category > 0) {
     // options.where["$or"] = [
@@ -159,8 +162,30 @@ controller.showDetails = async (req, res) => {
       },
     ],
   });
-
   res.locals.post = post;
+
+  const comments = await models.Comment.findAll({
+    attributes: ["id", "content", "createdAt"],
+    include: [
+      {
+        model: models.User,
+        attributes: ["name", "avatar_link"],
+        include: [
+          {
+            model: models.Role,
+            attributes: ["name"],
+          },
+        ],
+      },
+    ],
+    where: {
+      post_id: id,
+    },
+    order: [["createdAt", "DESC"]],
+  });
+  res.locals.comments = comments;
+
+  console.log(comments);
 
   let tagIds = [];
   post.Tags.forEach((tag) => tagIds.push(tag.id));
@@ -176,17 +201,16 @@ controller.showDetails = async (req, res) => {
     ],
     include: [
       {
-        model: models.Category,
-        as: "main_category",
-      },
-    ],
-    include: [
-      {
         model: models.Tag,
         attributes: ["id"],
         where: {
           id: { [Op.in]: tagIds },
         },
+      },
+      {
+        model: models.Category,
+        as: "main_category",
+        attributes: ["id", "name"],
       },
     ],
     limit: 6,

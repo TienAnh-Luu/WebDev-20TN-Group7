@@ -35,22 +35,22 @@
                 </div>
                 <div class="comments-list">
                     {{!-- ${dataToCommentAreaItemList(sampleData).join('\n')} --}}
-                    {{#each post.Comment}}
+                    {{#each comments}}
                     <div class="comments-item">
-                        <img src="" alt="avatar" class="comments-item-img" />
+                        <img src="{{User.avatar_link}}" alt="avatar" class="comments-item-img" />
                         <div class="comments-item-right-section">
                             <div class="comments-item-name-container">
-                                <div class="comments-item-name">${data.name}</div>
-                                ${data.isSubscriber ? `<i class="fa-solid fa-gem comments-item-premium-icon"></i>` : ''}
+                                <div class="comments-item-name">{{User.name}}</div>
+                                {{!-- ${data.isSubscriber ? `<i class="fa-solid fa-gem comments-item-premium-icon"></i>` : ''} --}}
                             </div>
-                            <p class="comments-item-timestamp">${data.date}</p>
-                            <p class="comments-item-text">${data.text}</p>
+                            <p class="comments-item-timestamp">{{createdAt}}</p>
+                            <p class="comments-item-text">{{content}}</p>
                         </div>
                     </div>
                     {{/each}}
                     <div class="comments-see-more-btn">Xem thêm</div>
                 </div>
-            </div>`;
+            </div>
             <div class="suggestions-container">
                 <div class="unlinked-headline"><div class="unlinked-headline-text">Cùng chủ đề</div></div>
                 <div class="suggestions-list">
@@ -58,7 +58,17 @@
                         <i class="fa-solid fa-chevron-left suggestions-chevron-icon"></i>
                     </div>
                     <div class="suggestions-items">
-                        ${dataToSuggestionItemList(sampleData).join('\n')}
+                        {{!-- ${dataToSuggestionItemList(sampleData).join('\n')} --}}
+                        {{#each relatedPosts}}
+                        <div class="suggestions-item-container">
+                            <img class="suggestions-item-thumbnail" src={{avatar_link}} alt="Thumbnail" />
+                            <p class="suggestions-item-title">{{title}}</p>
+                            <div class="suggestions-item-footer">
+                                <a href="/posts?category={{main_category.id}}" class="suggestions-item-cate">{{main_category.name}}</a>
+                                <div class="suggestions-item-date">{{published_time}}</div>
+                            </div>
+                        </div>
+                        {{/each}}
                     </div>
                     <div class="chevron-icon-container-right">
                         <i class="fa-solid fa-chevron-right suggestions-chevron-icon"></i>
