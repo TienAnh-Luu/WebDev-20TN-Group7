@@ -3,6 +3,10 @@
 const controller = {};
 const models = require("../models");
 
+// TODO:
+// + Add feature formula
+// + Rewrite 'top 10 posts' query
+
 controller.showHomepage = async (req, res) => {
   const categories = await models.Category.findAll({
     attributes: ["id", "name", "parent_category_id"],
@@ -78,11 +82,13 @@ controller.showHomepage = async (req, res) => {
           "is_premium",
           "published_time",
           "status",
+          "main_category_id",
         ],
         order: [["createdAt", "DESC"]],
         limit: 1,
         where: {
           status: "Published",
+          // main_category_id: { $col: "Category.id" },
         },
       },
     ],
@@ -90,9 +96,9 @@ controller.showHomepage = async (req, res) => {
       parent_category_id: null,
     },
   });
-  res.locals.top10Posts = top10Posts;
+  res.locals.top10Posts = latestPosts;
 
-  console.log(top10Posts[0].Posts);
+  console.log(top10Posts);
 
   const userTable = await models.User;
   const users = userTable.findAll();
@@ -101,11 +107,9 @@ controller.showHomepage = async (req, res) => {
 
 controller.showPage = (req, res, next) => {
   const pages = [
-    "cart",
-    "checkout",
-    "contact",
-    "login",
-    "my-account",
+    "dashboardPage",
+    "registryPage",
+    "loginPage",
     "newsDetailPage",
     "newslistPage",
   ];
