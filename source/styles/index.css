@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+body {
+  /* height: 3000px; */
+  min-width: 1287px;
+  font-family: 'Roboto Flex', 'Noticia Text', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+.white-color {
+  color: white;
+}
+
+.black-color {
+  color: black;
+}
+
+.dark-red-color {
+  color: #b83730;
+}
+
+.dark-red-backgroundcolor {
+  background-color: #b83730;
+}
+
+.strawberry-backgroundcolor {
+  background-color: #e36060;
+}
+
+.mb30 {
+  margin-bottom: 30px;
+}
+
+.mb340 {
+  margin-bottom: 340px;
+}
+
+.pb340 {
+  padding-bottom: 340px;
+}
+
+.f1 {
+  flex: 1;
+}
+
+.f2 {
+  flex: 2;
+}
+
+.f3 {
+  flex: 3;
+}
+
+.zoom-hover img {
+  transition: transform 0.2s ease-in-out;
+}
+
+.zoom-hover:hover img {
+  transform: scale(1.5);
+}
+
+.grid-container {
+  display: grid !important;
+  justify-content: center;
+  width: 100%;
+}
+
+#root {
+  width: 100%;
+  /* height: 100%; */
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main {
+  margin-top: 60px;
+  width: 100%;
+}

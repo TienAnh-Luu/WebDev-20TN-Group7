@@ -4,6 +4,8 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 const expressHandlebars = require("express-handlebars");
+
+const { createPagination } = require("express-handlebars-paginate");
 const { createFooterForNewsItem } = require("./controllers/handlebarsHelper");
 
 // app.use(express.static(__dirname + "/source"));
@@ -23,8 +25,8 @@ app.engine(
     },
     helpers: {
       // createStarList,
-      // createPagination,
       createFooterForNewsItem,
+      createPagination,
     },
   })
 );

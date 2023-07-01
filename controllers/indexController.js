@@ -111,7 +111,7 @@ controller.showPage = (req, res, next) => {
     "registryPage",
     "loginPage",
     "newsDetailPage",
-    "newslistPage",
+    "news-list-page",
   ];
   if (pages.includes(req.params.page)) {
     return res.render(req.params.page);
