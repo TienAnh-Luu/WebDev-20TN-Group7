@@ -26,6 +26,10 @@
   padding: 5px;
 }
 
+.carousel-title {
+  color: black;
+}
+
 .carousel-thumbnail-container:hover ~ .carousel-info > .carousel-title,
 .carousel-info:hover .carousel-title {
   color: #ed1c24 !important;

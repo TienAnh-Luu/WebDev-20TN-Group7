@@ -1,5 +1,5 @@
-<div id="root" class="pb340">
-  {{>header categories=categories }}
+<div id="root">
+  {{>header }}
   <div class="main__features grid-container" id="features">
     <div class="main__features-carousel">
       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -7,11 +7,15 @@
           {{#each carouselPosts}}
           <div class="carousel-item {{#if @first}}active{{/if}}" id="carousel-post-{{id}}">
             <div class="custom-carousel-item">
-              <div class="carousel-thumbnail-container zoom-hover">
-                <img class="carousel-thumbnail" src={{avatar_link}} alt="Carousel thumbnail" />
-              </div>
+              <a href="/posts/{{id}}">
+                <div class="carousel-thumbnail-container zoom-hover">
+                  <img class="carousel-thumbnail" src={{avatar_link}} alt="Carousel thumbnail" />
+                </div>
+              </a>
               <div class="carousel-info">
-                <a class="carousel-title">{{title}}</a>
+                <a href="/posts/{{id}}">
+                  <div class="carousel-title">{{title}}</div>
+                </a>
                 <p class="carousel-summary">
                   {{summary}}
                 </p>

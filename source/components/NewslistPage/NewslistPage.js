@@ -18,9 +18,9 @@ const navigator = Number(sessionStorage.getItem('navigator'));
 
 const root = document.getElementById('root');
 root.innerHTML = `
-    <div class="newslist-page">
+    <div class="news-list">
         ${Header}
-        <div class="newslist-main" id="newslist-main">
+        <div class="news-list-main" id="news-list-main">
             ${Highlight(navigator)}
         </div>
         ${Footer}
