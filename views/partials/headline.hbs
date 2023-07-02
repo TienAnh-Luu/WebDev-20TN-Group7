@@ -29,6 +29,11 @@
             href="/posts?search={{searchHeadline}}"
             class="news-list-headline-text-sub"
           >{{searchHeadline}}</a>
+        {{else}}
+          <a
+            href="{{originalUrl}}"
+            class="news-list-headline-text-main"
+          >{{headline}}</a>
         {{/if}}
       {{/if}}
     {{/if}}

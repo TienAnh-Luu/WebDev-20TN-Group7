@@ -10,7 +10,7 @@
   position: relative;
 }
 
-.comments-see-more-btn {
+.comments-load-more-btn {
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
@@ -19,6 +19,6 @@
   bottom: 0;
 }
 
-.comments-see-more-btn:hover {
+.comments-load-more-btn:hover {
   text-decoration: underline;
 }

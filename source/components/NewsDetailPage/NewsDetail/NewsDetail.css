@@ -101,6 +101,7 @@
   font-size: 18px;
   font-weight: 500;
   margin-left: 5px;
+  margin-right: 7px;
   cursor: pointer;
   transition: all 0.2s;
 }

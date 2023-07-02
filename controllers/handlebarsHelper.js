@@ -63,4 +63,8 @@ helper.createFooterForNewsItem = (context, date) => {
       </div>`;
 };
 
+helper.geHandlebars = (index, threshold) => {
+  return index >= threshold;
+};
+
 module.exports = helper;
