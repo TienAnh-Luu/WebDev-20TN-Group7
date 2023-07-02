@@ -28,10 +28,16 @@
       <div class="header__category-tooltip tooltip">Home Page</div>
     </a>
     {{#each categories}}
-    <a href="/posts?category={{id}}" class="header__category-container header-item">
-      {{name}}
-      <div class="header__category-tooltip tooltip">{{name}}</div>
-    </a>
+    <div class="dropdown">
+      <a href="/posts?category={{dataValues.id}}" class="dropbtn">{{dataValues.name}} 
+        <i class="fa fa-caret-down"></i>
+      </a>
+      <div class="dropdown-content">
+        {{#each child_categories}}
+        <a href="/posts?category={{dataValues.id}}">{{dataValues.name}}</a>
+        {{/each}}
+      </div>
+    </div> 
     {{/each}}
   </div>
 </header>

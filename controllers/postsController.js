@@ -271,8 +271,6 @@ controller.showDetails = async (req, res) => {
   });
   res.locals.relatedPosts = relatedPosts;
 
-  console.log(post);
-
   res.render("newsDetailPage");
 };
 

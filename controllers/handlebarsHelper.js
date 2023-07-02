@@ -38,8 +38,6 @@ helper.createFooterForNewsItem = (context, date) => {
     <div class="tooltip news-footer-icon-tooltip">Reject</div>
 </div>`;
 
-  console.log(context, date);
-
   return `<div class="news-footer">
           ${context === "homepage" ? dateIcon : ``}
           ${
