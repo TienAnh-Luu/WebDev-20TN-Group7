@@ -1867,9 +1867,20 @@ module.exports = {
       },
     ];
     items.forEach((item) => {
-      item.published_time = Sequelize.literal("NOW()");
-      item.createdAt = Sequelize.literal("NOW()");
-      item.updatedAt = Sequelize.literal("NOW()");
+      const currentDate = new Date();
+      const pastDate = new Date();
+      const nextDate = new Date();
+      pastDate.setDate(currentDate.getDate() - 14);
+      nextDate.setDate(currentDate.getDate() + 7);
+
+      const randomTimestamp = new Date(
+        pastDate.getTime() +
+          Math.random() * (nextDate.getTime() - pastDate.getTime())
+      );
+
+      item.published_time = randomTimestamp;
+      item.createdAt = randomTimestamp;
+      item.updatedAt = randomTimestamp;
     });
     await queryInterface.bulkInsert("Posts", items, {});
   },
