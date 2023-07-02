@@ -1,0 +1,40 @@
+{{#if path-headline}}
+  <div class="news-list-headline">
+    {{#if categoryHeadline}}
+      {{#with categoryHeadline}}
+        {{#with main}}
+          <a
+            href="/posts?category={{id}}"
+            class="news-list-headline-text-main"
+          >{{name}}</a>
+        {{/with}}
+        {{#each subs}}
+          <a
+            href="/posts?category={{id}}"
+            class="news-list-headline-text-sub"
+          >{{name}}</a>
+        {{/each}}
+      {{/with}}
+    {{else}}
+      {{#if tagHeadline}}
+        <div class="news-list-headline-text-main">Nhãn</div>
+        <a
+          href="/posts?tag={{tagHeadline.id}}"
+          class="news-list-headline-text-sub"
+        >{{tagHeadline.name}}</a>
+      {{else}}
+        {{#if searchHeadline}}
+          <div class="news-list-headline-text-main">Tìm kiếm</div>
+          <a
+            href="/posts?search={{searchHeadline}}"
+            class="news-list-headline-text-sub"
+          >{{searchHeadline}}</a>
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  </div>
+{{else}}
+  <div class="main__highlight-headline">
+    <a href="{{originalUrl}}" class="headline-text">{{headline}}</a>
+  </div>
+{{/if}}

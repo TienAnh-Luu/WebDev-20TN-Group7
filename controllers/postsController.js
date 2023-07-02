@@ -34,9 +34,6 @@ controller.show = async (req, res) => {
     : parseInt(req.query.category);
   const queryTag = isNaN(req.query.tag) ? 0 : parseInt(req.query.tag);
   const querySearch = req.query.search || "";
-  // const sort = ["price", "newest", "popular"].includes(req.query.sort)
-  //   ? req.query.sort
-  //   : "price";
   const queryType = ["latest", "feature", "premium"].includes(req.query.type)
     ? req.query.type
     : "latest";
@@ -45,18 +42,10 @@ controller.show = async (req, res) => {
     ? 1
     : Math.max(1, parseInt(req.query.page));
 
-  // const categories = await models.Category.findAll({
-  //   attributes: ["id", "name", "parent_category_id"],
-  //   where: {
-  //     parent_category_id: null,
-  //   },
-  // });
-  // res.locals.categories = categories;
-
   const tags = await models.Tag.findAll();
   res.locals.tags = tags;
 
-  // Filter option post with query data
+  // Filter option with query data
   const options = {
     attributes: [
       "id",
@@ -86,17 +75,23 @@ controller.show = async (req, res) => {
     ];
   }
 
-  // if (queryTag > 0) {
-  //   options.include = [
-  //     {
-  //       model: models.Tag,
-  //       where: { id: queryTag },
-  //     },
-  //   ];
-  // }
-  // if (keyword.trim() != "") {
+  // Query tag
+  if (queryTag > 0) {
+    const postIds = [];
+    await models.PostTag.findAll({
+      where: { tag_id: queryTag },
+      attributes: ["post_id"],
+    }).then((posts) => {
+      posts.forEach((post) => postIds.push(post.post_id));
+    });
+
+    options.where.id = { [Op.in]: postIds };
+  }
+
+  // Query search
+  // if (search.trim() != "") {
   //   options.where.name = {
-  //     [Op.iLike]: `%${keyword}%`,
+  //     [Op.iLike]: `%${search}%`,
   //   };
   // }
 
@@ -191,6 +186,8 @@ controller.showDetails = async (req, res) => {
       "content",
       "is_premium",
       "published_time",
+      "main_category_id",
+      "category_id",
     ],
     where: { id },
     include: [
@@ -198,25 +195,18 @@ controller.showDetails = async (req, res) => {
         model: models.Writer,
         attributes: ["nickname"],
       },
-      {
-        model: models.Comment,
-        attributes: ["id", "content", "stars", "createdAt"],
-        include: [
-          {
-            model: models.User,
-            attributes: ["name"],
-          },
-        ],
-      },
-      {
-        model: models.Tag,
-        attributes: ["id", "name"],
-      },
     ],
   });
-  res.locals.post = post;
 
-  const comments = await models.Comment.findAll({
+  // Headline
+  const categoryHeadline = {
+    main: await models.Category.findByPk(post.main_category_id),
+    subs: [await models.Category.findByPk(post.category_id)],
+  };
+  res.locals.categoryHeadline = categoryHeadline;
+
+  // Comment
+  post.comments = await models.Comment.findAll({
     attributes: ["id", "content", "createdAt"],
     include: [
       {
@@ -235,13 +225,25 @@ controller.showDetails = async (req, res) => {
     },
     order: [["createdAt", "DESC"]],
   });
-  res.locals.comments = comments;
 
-  console.log(comments);
+  // Tag
+  const tagIds = [];
+  await models.PostTag.findAll({
+    where: { post_id: id },
+    attributes: ["tag_id"],
+  }).then((tags) => {
+    tags.forEach((tag) => tagIds.push(tag.tag_id));
+  });
 
-  let tagIds = [];
-  post.Tags.forEach((tag) => tagIds.push(tag.id));
+  post.tags = await models.Tag.findAll({
+    where: {
+      id: { [Op.in]: tagIds },
+    },
+  });
 
+  res.locals.post = post;
+
+  // Related Posts
   const relatedPosts = await models.Post.findAll({
     attributes: [
       "id",
