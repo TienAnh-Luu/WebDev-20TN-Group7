@@ -10,29 +10,6 @@ const models = require("../models");
 // + Rewrite 'top 10 posts' query
 
 controller.showHomepage = async (req, res) => {
-  const parent_categories = await models.Category.findAll({
-    attributes: ["id", "name", "parent_category_id"],
-    where: {
-      parent_category_id: null,
-    },
-  });
-  const child_categories = await models.Category.findAll({
-    attributes: ["id", "name", "parent_category_id"],
-    where: {
-      parent_category_id: {
-        [Op.not]: null,
-      },
-    },
-  });
-  const categories = parent_categories.map((cate) => {
-    const child = child_categories.filter(
-      (c) => c.parent_category_id == cate.id
-    );
-    // console.log(child);
-    return { ...cate, child_categories: child };
-  });
-  res.locals.categories = categories;
-
   // Feature posts in week
   const today = new Date();
   const limitDate = new Date();

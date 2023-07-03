@@ -11,6 +11,8 @@ const {
   geHandlebars,
 } = require("./controllers/handlebarsHelper");
 
+const headerDataController = require("./controllers/headerDataController");
+
 // app.use(express.static(__dirname + "/source"));
 const path = require("path");
 app.use(express.static(path.join(__dirname + "/source")));
@@ -42,13 +44,21 @@ app.use("/posts", require("./routes/postsRouter"));
 // app.use("/users", require("./routes/authRouter"));
 // app.use("/users", require("./routes/usersRouter"));
 
-app.use((req, res, next) => {
-  res.status(404).render("error", { message: "Page not found" });
+app.use(async (req, res, next) => {
+  const categories = await headerDataController.getHeaderData(req, res);
+  res.status(404).render("error", {
+    layout: "layout",
+    message: "Không tìm thấy trang",
+  });
 });
 
-app.use((error, req, res, next) => {
+app.use(async (error, req, res, next) => {
   console.error(error);
-  res.status(500).render("error", { message: "Internal Server Error" });
+  const categories = await headerDataController.getHeaderData(req, res);
+  res.status(500).render("error", {
+    layout: "layout",
+    message: "Lỗi hệ thống",
+  });
 });
 
 // start the server

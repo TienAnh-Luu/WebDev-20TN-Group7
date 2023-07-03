@@ -3,46 +3,33 @@ const models = require("../models");
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
 
-controller.getData = async (req, res, next) => {
-  const parent_categories = await models.Category.findAll({
-    attributes: ["id", "name", "parent_category_id"],
-    where: {
-      parent_category_id: null,
-    },
-  });
-  const child_categories = await models.Category.findAll({
-    attributes: ["id", "name", "parent_category_id"],
-    where: {
-      parent_category_id: {
-        [Op.not]: null,
-      },
-    },
-  });
-  const categories = parent_categories.map((cate) => {
-    const child = child_categories.filter(
-      (c) => c.parent_category_id == cate.id
-    );
-    // console.log(child);
-    return { ...cate, child_categories: child };
-  });
-  res.locals.categories = categories;
-
-  const tags = await models.Tag.findAll();
-  res.locals.tags = tags;
-
-  next();
-};
-
 controller.show = async (req, res) => {
+  let countFilter = 0;
   // Get query data
-  const queryCategory = isNaN(req.query.category)
-    ? 0
-    : parseInt(req.query.category);
-  const queryTag = isNaN(req.query.tag) ? 0 : parseInt(req.query.tag);
-  const querySearch = req.query.search || "";
-  const queryType = ["latest", "feature", "premium"].includes(req.query.type)
-    ? req.query.type
-    : "latest";
+  let queryCategory = 0;
+  if (!isNaN(req.query.category)) {
+    countFilter += 1;
+    queryCategory = parseInt(req.query.category);
+  }
+
+  let queryTag = 0;
+  if (!isNaN(req.query.tag)) {
+    countFilter += 1;
+    queryTag = parseInt(req.query.tag);
+  }
+
+  let querySearch = "";
+  if (req.query.search & (req.query.search !== "")) {
+    countFilter += 1;
+    querySearch = req.query.search;
+  }
+
+  let queryType = "latest";
+  if (["latest", "feature", "premium"].includes(req.query.type)) {
+    countFilter += 1;
+    queryType = req.query.type;
+    console.log(queryType);
+  }
 
   const queryPage = isNaN(req.query.page)
     ? 1
@@ -50,6 +37,55 @@ controller.show = async (req, res) => {
 
   const tags = await models.Tag.findAll();
   res.locals.tags = tags;
+
+  // Headline
+  //// Headline for Category
+  if (queryCategory > 0) {
+    const categoryHeadline = {
+      main: null,
+      subs: [],
+    };
+
+    const queriedCategory = await models.Category.findByPk(queryCategory);
+
+    if (queriedCategory === null) {
+      res.locals.newsListMessage = "Không tìm thấy chuyên mục";
+    } else {
+      categoryHeadline.main =
+        queriedCategory.parent_category_id !== null
+          ? await models.Category.findByPk(queriedCategory.parent_category_id)
+          : queriedCategory;
+      categoryHeadline.subs = await models.Category.findAll({
+        where: { parent_category_id: categoryHeadline.main.id },
+      });
+      res.locals.categoryHeadline = categoryHeadline;
+    }
+  }
+
+  //// Headline for Tag
+  if (queryTag > 0) {
+    const tagHeadline = await models.Tag.findByPk(queryTag);
+    if (tagHeadline === null) {
+      res.locals.newsListMessage = "Không tìm thấy nhãn";
+    } else {
+      res.locals.tagHeadline = tagHeadline;
+    }
+  }
+
+  //// Headline for Search
+  if (querySearch !== "") {
+    res.locals.searchHeadline = querySearch;
+  }
+
+  if (countFilter > 1) {
+    res.locals.newsListMessage =
+      "Đang sử dụng nhiều bộ lọc.<br>Vui lòng chỉ chọn một trong các bộ lọc:<ul><li>Chuyên mục</li><li>Nhãn</li><li>Từ khoá</li><li>Mới nhất</li><li>Xem nhiều</li><li>Premium</li></ul>";
+  }
+
+  if (res.locals.newsListMessage) {
+    res.render("news-list-page");
+    return;
+  }
 
   // Filter option with query data
   const options = {
@@ -115,6 +151,13 @@ controller.show = async (req, res) => {
       headline = "Mới nhất";
       options.order = [["createdAt", "DESC"]];
   }
+  res.locals.headline = headline;
+
+  // Get originalUrl for headline link
+  res.locals.originalUrl = removeParam("page", req.originalUrl);
+  if (Object.keys(req.query).length == 0) {
+    res.locals.originalUrl = res.locals.originalUrl + "?";
+  }
 
   // res.locals.sort = sort;
   // res.locals.originalUrl = removeParam("sort", req.originalUrl);
@@ -138,46 +181,8 @@ controller.show = async (req, res) => {
     queryParams: req.query,
   };
 
-  res.locals.headline = headline;
-
-  // Get originalUrl for headline link
-  res.locals.originalUrl = removeParam("page", req.originalUrl);
-  if (Object.keys(req.query).length == 0) {
-    res.locals.originalUrl = res.locals.originalUrl + "?";
-  }
-
-  // TODO : Handle not found category, tag
-  // Headline
-  //// Headline for Category
-  if (queryCategory > 0) {
-    const categoryHeadline = {
-      main: null,
-      subs: [],
-    };
-
-    const queriedCategory = await models.Category.findByPk(queryCategory);
-    categoryHeadline.main = queriedCategory.parent_category_id
-      ? await models.Category.findByPk(queriedCategory.parent_category_id)
-      : queriedCategory;
-    categoryHeadline.subs = await models.Category.findAll({
-      where: { parent_category_id: categoryHeadline.main.id },
-    });
-    res.locals.categoryHeadline = categoryHeadline;
-  }
-
-  //// Headline for Tag
-  if (queryTag > 0) {
-    const tagHeadline = await models.Tag.findByPk(queryTag);
-    res.locals.tagHeadline = tagHeadline;
-  }
-
-  //// Headline for Search
-  if (querySearch != "") {
-    res.locals.searchHeadline = querySearch;
-  }
-
-  // Render
   res.locals.posts = rows;
+
   res.render("news-list-page");
 };
 

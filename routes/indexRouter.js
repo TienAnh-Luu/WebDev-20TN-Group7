@@ -3,6 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/indexController");
+const headerDataController = require("../controllers/headerDataController");
 
 router.get("/createTables", (req, res) => {
   const models = require("../models");
@@ -11,6 +12,6 @@ router.get("/createTables", (req, res) => {
   });
 });
 
-router.get("/", controller.showHomepage);
+router.get("/", headerDataController.getHeaderData, controller.showHomepage);
 
 module.exports = router;
