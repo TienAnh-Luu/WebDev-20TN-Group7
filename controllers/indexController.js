@@ -32,7 +32,6 @@ controller.showHomepage = async (req, res) => {
     return { ...cate, child_categories: child };
   });
   res.locals.categories = categories;
-  console.log(categories);
 
   // Feature posts in week
   const today = new Date();
