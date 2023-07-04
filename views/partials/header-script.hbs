@@ -1,0 +1,8 @@
+<script>
+  document.getElementById('search-input').addEventListener('change', (e) => {
+  localStorage.setItem('searchQuery', e.target.value); });
+  document.getElementById('search').addEventListener('click', (e) => { const
+  searchQuery = localStorage.getItem('searchQuery');
+  localStorage.setItem('searchQuery', ''); window.location =
+  `/posts?search=${searchQuery}`})
+</script>

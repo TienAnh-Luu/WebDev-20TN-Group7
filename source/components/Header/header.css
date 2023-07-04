@@ -139,6 +139,12 @@
 .header__top-searchIcon {
   position: absolute;
   right: 4%;
+  color: black;
+  cursor: pointer;
+}
+
+.header__top-searchIcon:hover {
+  color: black;
 }
 
 .header__middle {
@@ -177,7 +183,7 @@
   background-color: rgba(255, 255, 255, 0.25);
 }
 
-.dropdown {
+.dropdown-cate {
   /* overflow: hidden; */
   flex: 1;
   font-weight: 700;
@@ -186,7 +192,7 @@
   background-color: rgb(68, 68, 68);
 }
 
-.dropbtn {
+.dropbtn-cate {
   height: 50px;
   border: none;
   outline: none;
@@ -195,7 +201,7 @@
   padding: 16px 5px;
 }
 
-.dropbtn:hover {
+.dropbtn-cate:hover {
   background-color: rgba(255, 255, 255, 0.25);
 }
 
@@ -228,11 +234,11 @@
   background-color: rgba(255, 255, 255, 0.25);
 }
 
-.dropdown:hover {
+.dropdown-cate:hover {
   height: auto;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-cate:hover .dropdown-content {
   display: block;
 }
 

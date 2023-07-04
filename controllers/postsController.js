@@ -19,7 +19,7 @@ controller.show = async (req, res) => {
   }
 
   let querySearch = "";
-  if (req.query.search & (req.query.search !== "")) {
+  if (req.query.search && req.query.search !== "") {
     countFilter += 1;
     querySearch = req.query.search;
   }
@@ -28,7 +28,6 @@ controller.show = async (req, res) => {
   if (["latest", "feature", "premium"].includes(req.query.type)) {
     countFilter += 1;
     queryType = req.query.type;
-    console.log(queryType);
   }
 
   const queryPage = isNaN(req.query.page)
@@ -73,9 +72,9 @@ controller.show = async (req, res) => {
   }
 
   //// Headline for Search
-  if (querySearch !== "") {
-    res.locals.searchHeadline = querySearch;
-  }
+  // if (querySearch !== "") {
+  //   res.locals.searchHeadline = querySearch;
+  // }
 
   if (countFilter > 1) {
     res.locals.newsListMessage =
@@ -94,6 +93,7 @@ controller.show = async (req, res) => {
       "title",
       "avatar_link",
       "summary",
+      "content",
       "published_time",
       "is_premium",
       "status",
@@ -104,14 +104,16 @@ controller.show = async (req, res) => {
         as: "main_category",
       },
     ],
-    where: {
-      status: "Published",
-    },
+    where: [
+      {
+        status: "Published",
+      },
+    ],
   };
 
   // Query category
   if (queryCategory > 0) {
-    options.where[Op.or] = [
+    options.where[0][Op.or] = [
       { category_id: queryCategory },
       { main_category_id: queryCategory },
     ];
@@ -127,7 +129,31 @@ controller.show = async (req, res) => {
       posts.forEach((post) => postIds.push(post.post_id));
     });
 
-    options.where.id = { [Op.in]: postIds };
+    options.where[0].id = { [Op.in]: postIds };
+  }
+
+  if (querySearch !== "") {
+    res.locals.searchHeadline = querySearch;
+
+    const searchFilter = req.query.filter;
+
+    if (["title", "content", "summary"].includes(searchFilter)) {
+      options.where.push(
+        sequelize.literal(
+          `to_tsvector('english', ${searchFilter}) @@ plainto_tsquery('english', :query)`
+        )
+      );
+    } else {
+      options.where.push(
+        sequelize.literal(
+          `to_tsvector('english', title) @@ plainto_tsquery('english', :query)`
+        )
+      );
+    }
+
+    options.replacements = {
+      query: querySearch,
+    };
   }
 
   // Query search

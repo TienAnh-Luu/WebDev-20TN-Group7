@@ -14,7 +14,7 @@
     <div class="header__top-right">
       <div class="header__top-searchContainer">
         <input type="text" name="search" class="search-input" id="search-input" placeholder="Tìm kiếm..." />
-        <i class="fa-solid fa-magnifying-glass header__top-searchIcon"></i>
+        <a class="header__top-searchIcon" href="#" id="search"><i class="fa-solid fa-magnifying-glass" id="search-icon"></i></a>
       </div>
       <div class="header__top-userIconContainer">
         <a class="header__top-userIcon" href=""><i class="fa-solid fa-user"></i></a>
@@ -28,8 +28,8 @@
       <div class="header__category-tooltip tooltip">Home Page</div>
     </a>
     {{#each categories}}
-    <div class="dropdown">
-      <a href="/posts?category={{dataValues.id}}" class="dropbtn">{{dataValues.name}} 
+    <div class="dropdown-cate">
+      <a href="/posts?category={{dataValues.id}}" class="dropbtn-cate">{{dataValues.name}} 
         <i class="fa fa-caret-down"></i>
       </a>
       <div class="dropdown-content">
@@ -41,3 +41,5 @@
     {{/each}}
   </div>
 </header>
+
+{{>header-script}}

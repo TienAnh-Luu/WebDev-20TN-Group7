@@ -29,6 +29,26 @@
             href="/posts?search={{searchHeadline}}"
             class="news-list-headline-text-sub"
           >{{searchHeadline}}</a>
+          <select
+            class="search-filter-box"
+            name="search-filter"
+            id="search-filter"
+          >
+            <option class="search-filter-option" value="title">Tìm kiếm theo...</option>
+            <option class="search-filter-option" value="title">Tiêu đề</option>
+            <option class="search-filter-option" value="summary">Tóm tắt</option>
+            <option class="search-filter-option" value="content">Nội dung</option>
+          </select>
+          {{!-- <div class="dropdown-filter">
+            <button class="dropbtn-filter">Tìm kiếm theo... 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content-filter">
+              <a href="/posts?filter=title&search={{searchHeadline}}">Tiêu đề</a>
+              <a href="/posts?filter=summary&search={{searchHeadline}}">Tóm tắt</a>
+              <a href="/posts?filter=content&search={{searchHeadline}}">Nội dung</a>
+            </div>
+          </div>  --}}
         {{else}}
           <a
             href="{{originalUrl}}"
@@ -43,3 +63,5 @@
     <a href="{{originalUrl}}" class="headline-text">{{headline}}</a>
   </div>
 {{/if}}
+
+{{>headline-script}}
