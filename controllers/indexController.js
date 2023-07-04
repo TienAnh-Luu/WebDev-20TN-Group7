@@ -63,7 +63,7 @@ controller.showHomepage = async (req, res) => {
     where: {
       status: "Published",
     },
-    order: [["createdAt", "DESC"]],
+    order: [["published_time", "DESC"]],
     limit: 10,
   });
   res.locals.latestPosts = latestPosts;
@@ -149,7 +149,7 @@ controller.showPage = (req, res, next) => {
     "dashboardPage",
     "registryPage",
     "loginPage",
-    "newsDetailPage",
+    "news-detail-page",
     "news-list-page",
   ];
   if (pages.includes(req.params.page)) {

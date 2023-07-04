@@ -149,7 +149,7 @@ controller.show = async (req, res) => {
       break;
     default:
       headline = "Mới nhất";
-      options.order = [["createdAt", "DESC"]];
+      options.order = [["published_time", "DESC"]];
   }
   res.locals.headline = headline;
 
@@ -266,23 +266,20 @@ controller.showDetails = async (req, res) => {
     ],
     include: [
       {
-        model: models.Tag,
-        attributes: ["id"],
-        where: {
-          id: { [Op.in]: tagIds },
-        },
-      },
-      {
         model: models.Category,
         as: "main_category",
         attributes: ["id", "name"],
       },
     ],
+    where: {
+      main_category_id: categoryHeadline.main.id,
+    },
+    order: [["published_time", "DESC"]],
     limit: 5,
   });
   res.locals.relatedPosts = relatedPosts;
 
-  res.render("newsDetailPage");
+  res.render("news-detail-page");
 };
 
 function removeParam(key, sourceURL) {
