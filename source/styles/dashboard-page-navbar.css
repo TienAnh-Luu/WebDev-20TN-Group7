@@ -1,0 +1,39 @@
+.dashboard-page-navbar {
+  width: 23%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: grey;
+  padding: 112px 16px 20px 16px;
+}
+
+.nav-item-container {
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: rgb(243, 247, 255);
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.nav-item-container:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-item-container .nav-item-icon {
+  margin-right: 15px;
+}
+
+.nav-item-container .nav-item-text {
+  line-height: 100%;
+  font-size: 22px;
+  padding: 0;
+  margin: 0;
+}

@@ -1,43 +1,39 @@
-"use strict";
+'use strict';
 
 const controller = {};
-const sequelize = require("sequelize");
-const { Op } = require("sequelize");
-const models = require("../models");
-
-// TODO:
-// + Add feature formula
-// + Rewrite 'top 10 posts' query
+const sequelize = require('sequelize');
+const { Op } = require('sequelize');
+const models = require('../models');
 
 controller.showHomepage = async (req, res) => {
   // Feature posts in week
   const today = new Date();
   const limitDate = new Date();
   limitDate.setDate(today.getDate() - 7);
-  console.log("Limit date : " + limitDate);
+  console.log('Limit date : ' + limitDate);
 
   const featurePosts = await models.Post.findAll({
     attributes: [
-      "id",
-      "title",
-      "avatar_link",
-      "background_image_link",
-      "summary",
-      "is_premium",
-      "published_time",
-      "status",
+      'id',
+      'title',
+      'avatar_link',
+      'background_image_link',
+      'summary',
+      'is_premium',
+      'published_time',
+      'status',
     ],
     include: [
       {
         model: models.Category,
-        as: "main_category",
+        as: 'main_category',
       },
     ],
     where: {
-      status: "Published",
+      status: 'Published',
       published_time: { [Op.gte]: limitDate },
     },
-    order: [["view_count", "DESC"]],
+    order: [['view_count', 'DESC']],
     limit: 6,
   });
   res.locals.carouselPosts = featurePosts.slice(0, 3);
@@ -45,64 +41,45 @@ controller.showHomepage = async (req, res) => {
 
   // Latest posts
   const latestPosts = await models.Post.findAll({
-    attributes: [
-      "id",
-      "title",
-      "avatar_link",
-      "summary",
-      "is_premium",
-      "published_time",
-      "status",
-    ],
+    attributes: ['id', 'title', 'avatar_link', 'summary', 'is_premium', 'published_time', 'status'],
     include: [
       {
         model: models.Category,
-        as: "main_category",
+        as: 'main_category',
       },
     ],
     where: {
-      status: "Published",
+      status: 'Published',
     },
-    order: [["published_time", "DESC"]],
+    order: [['published_time', 'DESC']],
     limit: 10,
   });
   res.locals.latestPosts = latestPosts;
 
   // Most view posts
   const mostViewPosts = await models.Post.findAll({
-    attributes: [
-      "id",
-      "title",
-      "avatar_link",
-      "summary",
-      "is_premium",
-      "published_time",
-      "status",
-    ],
+    attributes: ['id', 'title', 'avatar_link', 'summary', 'is_premium', 'published_time', 'status'],
     include: [
       {
         model: models.Category,
-        as: "main_category",
+        as: 'main_category',
       },
     ],
     where: {
-      status: "Published",
+      status: 'Published',
     },
-    order: [["view_count", "DESC"]],
+    order: [['view_count', 'DESC']],
     limit: 10,
   });
   res.locals.mostViewPosts = mostViewPosts;
 
   // Top 10 category with a post
   const top10Categories = await models.Post.findAll({
-    attributes: [
-      "main_category_id",
-      [sequelize.literal("CAST(MAX(view_count) AS INTEGER)"), "max_view_count"],
-    ],
+    attributes: ['main_category_id', [sequelize.literal('CAST(MAX(view_count) AS INTEGER)'), 'max_view_count']],
     where: {
-      status: "Published",
+      status: 'Published',
     },
-    group: ["main_category_id"],
+    group: ['main_category_id'],
     limit: 10,
   });
 
@@ -110,48 +87,42 @@ controller.showHomepage = async (req, res) => {
     top10Categories.map(async (item) => {
       const post = await models.Post.findOne({
         attributes: [
-          "id",
-          "title",
-          "avatar_link",
-          "background_image_link",
-          "summary",
-          "is_premium",
-          "published_time",
-          "status",
-          "main_category_id",
-          "view_count",
+          'id',
+          'title',
+          'avatar_link',
+          'background_image_link',
+          'summary',
+          'is_premium',
+          'published_time',
+          'status',
+          'main_category_id',
+          'view_count',
         ],
         include: [
           {
             model: models.Category,
-            as: "main_category",
+            as: 'main_category',
           },
         ],
         where: {
-          status: "Published",
+          status: 'Published',
           main_category_id: item.main_category_id,
           view_count: item.dataValues.max_view_count,
         },
       });
 
       return post;
-    })
+    }),
   );
   res.locals.top10Posts = top10Posts;
 
   const userTable = await models.User;
   const users = userTable.findAll();
-  res.render("index", { users });
+  res.render('index', { users });
 };
 
 controller.showPage = (req, res, next) => {
-  const pages = [
-    "dashboardPage",
-    "registryPage",
-    "loginPage",
-    "news-detail-page",
-    "news-list-page",
-  ];
+  const pages = ['dashboardPage', 'registryPage', 'loginPage', 'news-detail-page', 'news-list-page'];
   if (pages.includes(req.params.page)) {
     return res.render(req.params.page);
   }

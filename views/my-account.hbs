@@ -1,0 +1,28 @@
+<div id="root">
+  <div class="dashboard-page">
+    {{>header}}
+    <main class="main" id="dashboard-main">
+      <ul class="dashboard-page-navbar" id="dashboard-navbar">
+        {{#each navItems}}
+          {{>nav-item data=this}}
+        {{/each}}
+      </ul>
+      <div class="main-content" id="main-content">
+        <div class='dashboard-account-info'>
+          <h3 class='info-header'>THÔNG TIN TÀI KHOẢN</h3>
+          <div class='info-wrapper'>
+            {{>info-item label="Biệt danh" data=data.name}}
+            {{>info-item label="Tên đăng nhập" data=data.username}}
+            {{>info-item label="Email" data=data.email}}
+            <div class='info-button-container'>
+              {{>roundButton type="button" className="strawberry-backgroundcolor" id='edit-btn' text='Chỉnh sửa'}}
+              {{>roundButton type="button" className="strawberry-backgroundcolor" id='change-password-btn' text='Đổi mật
+              khẩu'}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    {{!-- {{>footer}} --}}
+  </div>
+</div>

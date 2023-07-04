@@ -9,7 +9,8 @@
 
 body {
   /* height: 3000px; */
-  min-width: 1287px;
+  /* min-width: 1287px; */
+  width: 100%;
   font-family: 'Roboto Flex', 'Noticia Text', sans-serif;
 }
 

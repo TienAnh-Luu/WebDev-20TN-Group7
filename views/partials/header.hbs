@@ -17,7 +17,7 @@
         <i class="fa-solid fa-magnifying-glass header__top-searchIcon"></i>
       </div>
       <div class="header__top-userIconContainer">
-        <a class="header__top-userIcon" href=""><i class="fa-solid fa-user"></i></a>
+        <a class="header__top-userIcon" href={{#if isLoggedIn}}"/users/my-account"{{else}}"/users/login"{{/if}}><i class="fa-solid fa-user"></i></a>
         <div class="tooltip userIcon-tooltip">User</div>
       </div>
     </div>

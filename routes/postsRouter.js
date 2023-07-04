@@ -1,11 +1,10 @@
-"use strict";
+'use strict';
 
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const controller = require("../controllers/postsController");
-const headerDataController = require("../controllers/headerDataController");
+const controller = require('../controllers/postsController');
 
-router.get("/", headerDataController.getHeaderData, controller.show);
-router.get("/:id", headerDataController.getHeaderData, controller.showDetails);
+router.get('/', controller.show);
+router.get('/:id', controller.showDetails);
 
 module.exports = router;
