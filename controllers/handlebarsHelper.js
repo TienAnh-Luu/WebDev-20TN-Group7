@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const helper = {};
 
@@ -39,32 +39,20 @@ helper.createFooterForNewsItem = (context, date) => {
 </div>`;
 
   return `<div class="news-footer">
-          ${context === "homepage" ? dateIcon : ``}
-          ${
-            context === "published" || context === "approved"
-              ? `${previewIcon} ${feedbackIcon}`
-              : ""
-          }
-          ${
-            context === "waiting"
-              ? `${previewIcon} ${editIcon} ${deleteIcon}`
-              : ""
-          }
-          ${
-            context === "rejected"
-              ? `${previewIcon} ${editIcon} ${deleteIcon} ${feedbackIcon}`
-              : ""
-          }
-          ${
-            context === "editor"
-              ? `${previewIcon} ${approveIcon} ${rejectIcon}`
-              : ""
-          }
+          ${context === 'homepage' ? dateIcon : ``}
+          ${context === 'published' || context === 'approved' ? `${previewIcon} ${feedbackIcon}` : ''}
+          ${context === 'waiting' ? `${previewIcon} ${editIcon} ${deleteIcon}` : ''}
+          ${context === 'rejected' ? `${previewIcon} ${editIcon} ${deleteIcon} ${feedbackIcon}` : ''}
+          ${context === 'editor' ? `${previewIcon} ${approveIcon} ${rejectIcon}` : ''}
       </div>`;
 };
 
 helper.geHandlebars = (index, threshold) => {
   return index >= threshold;
+};
+
+helper.equalString = (s1, s2) => {
+  return s1 === s2;
 };
 
 module.exports = helper;
