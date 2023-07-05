@@ -122,7 +122,7 @@ controller.showHomepage = async (req, res) => {
 };
 
 controller.showPage = (req, res, next) => {
-  const pages = ['dashboardPage', 'registryPage', 'loginPage', 'news-detail-page', 'news-list-page'];
+  const pages = ['dashboardPage', 'news-list-page', 'news-detail-page', 'login-page', 'register-page'];
   if (pages.includes(req.params.page)) {
     return res.render(req.params.page);
   }

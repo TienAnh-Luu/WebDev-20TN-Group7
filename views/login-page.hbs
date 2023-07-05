@@ -10,13 +10,13 @@
     {{/if}}
 
     <form action="/users/login" method="post" class="login-form">
-      {{>formInput label='Tên đăng nhập' placeholder='Username' id='username' warningMessage='Nhập tên đăng nhập'
+      {{>form-input label='Tên đăng nhập' placeholder='Username' id='username' warningMessage='Nhập tên đăng nhập'
       type='text'}}
-      {{>formInput label='Mật khẩu' placeholder='Password' id='password' warningMessage='Nhập mật khẩu'
+      {{>form-input label='Mật khẩu' placeholder='Password' id='password' warningMessage='Nhập mật khẩu'
       type='password'}}
       <div class="form-checkbox">
         <input type="checkbox" class="form-checkbox-input" id="keep-signed-in" name="keepSignedIn" />
-        <label class="form-label" for="keep-signed-in">Keep me signed in</label>
+        <label class="form-label" for="keep-signed-in">Giữ trạng thái đăng nhập</label>
       </div>
       <input type="hidden" name="reqUrl" value="{{reqUrl}}">
       {{>roundButton type='submit' className='strawberry-backgroundcolor' id='login-btn' text='Đăng nhập'}}
@@ -25,11 +25,13 @@
     <a href="/users/forgot" class="forget-password-btn">Quên mật khẩu</a>
 
     <div class="other-login-btns">
-      <button class="loginBtn loginBtn--facebook">Login with Facebook</button>
-      <button class="loginBtn loginBtn--google">Login with Google</button>
+      <button class="loginBtn loginBtn--facebook">Đăng nhập bằng Facebook</button>
+      <button class="loginBtn loginBtn--google">Đăng nhập bằng Google</button>
     </div>
 
-    {{>roundButton type="button" className="dark-red-backgroundcolor" id="registry-btn" text="Tạo tài khoản mới"}}
+    <a href="/users/register">
+      {{>roundButton type="button" className="dark-red-backgroundcolor" id="register-btn" text="Tạo tài khoản mới"}}
+    </a>
   </div>
 </div>
 

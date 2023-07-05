@@ -25,7 +25,7 @@ root.innerHTML = `
         <button class="loginBtn loginBtn--google">Login with Google</button>
     </div>
 
-    ${RoundButton('button', 'dark-red-backgroundcolor', 'registry-btn', 'Tạo tài khoản mới')}
+    ${RoundButton('button', 'dark-red-backgroundcolor', 'register-btn', 'Tạo tài khoản mới')}
 </div>
 `;
 

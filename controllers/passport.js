@@ -66,29 +66,32 @@ passport.use(
   'local-register',
   new LocalStrategy(
     {
-      usernameField: 'email',
+      usernameField: 'username',
       passwordField: 'password',
       passReqToCallback: true,
     },
-    async (req, email, password, done) => {
-      if (email) email = email.toLowerCase();
+    async (req, username, password, done) => {
+      if (username) username = username.toLowerCase();
+      let email;
+      if (req.body.email) email = req.body.email.toLowerCase();
       if (req.user) return done(null, req.user);
-      try {
-        let user = await models.User.findOne({ where: { email } });
 
-        // If the user is existed
-        if (user) return done(null, false, req.flash('registerMessage', 'Email is already taken!'));
+      try {
+        let user = await models.User.findOne({ where: { username } });
+        if (user) return done(null, false, req.flash('registerMessage', 'Tên đăng nhập đã được dùng'));
+
+        user = await models.User.findOne({ where: { email: email } });
+        if (user) return done(null, false, req.flash('registerMessage', 'Email đã được dùng'));
 
         // Create new user
         user = await models.User.create({
+          username: username,
           email: email,
           password: bcrypt.hashSync(password, bcrypt.genSaltSync(8)),
-          firstName: req.body.firstName,
-          lastName: req.body.lastName,
-          mobile: req.body.mobile,
+          name: req.body.name,
         });
 
-        done(null, false, req.flash('registerMessage', 'You have registered successfully. Please login!'));
+        done(null, false, req.flash('registerMessage', 'Bạn đã đăng ký thành công'));
       } catch (err) {
         done(err);
       }

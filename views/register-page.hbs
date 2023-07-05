@@ -1,0 +1,64 @@
+<div id="root">
+  <div class="register-page">
+    {{> logo subclass='logo-login' firstLetterColor='dark-red-color' secondLetterColor='black-color'}}
+
+    {{#if registerMessage}}
+    <div class="alert alert-danger">
+      {{{registerMessage}}}
+    </div>
+    {{/if}}
+
+    <form action="/users/register" method="post" class="register-form">
+      <div class="register-content">
+        <div class="register-column">
+          {{> form-input label='Tên đăng nhập *' placeholder='Username' id='username' warningMessage='Enter user name'
+          type='text'}}
+          {{> form-input label='Email *' placeholder='Email' id='email' warningMessage='Enter correct email'
+          type='email'}}
+          {{> form-input label='Biệt danh *' placeholder='Nickname' id='name' warningMessage='Enter nick name'
+          type='text'}}
+        </div>
+        <div class="register-column">
+          {{> form-input label='Mật khẩu *' placeholder='Password' id='password' warningMessage='Enter password'
+          type='password'}}
+          {{> form-input label='Xác nhận mật khẩu *' placeholder='Password' id='retypePassword'
+          warningMessage='Enter
+          password' type='password'}}
+        </div>
+      </div>
+      {{> roundButton type='submit' className='strawberry-backgroundcolor' id='login-btn' text='Tạo tài khoản'}}
+    </form>
+  </div>
+</div>
+
+<script>
+  const showPassBtn = document.querySelector("#show-password");
+  const userPassword = showPassBtn.previousElementSibling;
+  showPassBtn.onclick = function () {
+    if
+      (showPassBtn.classList.contains('fa-eye')) {
+      userPassword.setAttribute('type',
+        'text'); showPassBtn.classList.remove('fa-eye');
+      showPassBtn.classList.add('fa-eye-slash');
+    } else {
+      userPassword.setAttribute('type', 'password');
+      showPassBtn.classList.add('fa-eye');
+      showPassBtn.classList.remove('fa-eye-slash');
+    }
+  };
+
+  const showRetypePassBtn = document.querySelector("#show-retypePassword");
+  const userRetypePassword = showRetypePassBtn.previousElementSibling;
+  showRetypePassBtn.onclick = function () {
+    if
+      (showRetypePassBtn.classList.contains('fa-eye')) {
+      userRetypePassword.setAttribute('type',
+        'text'); showRetypePassBtn.classList.remove('fa-eye');
+      showRetypePassBtn.classList.add('fa-eye-slash');
+    } else {
+      userRetypePassword.setAttribute('type', 'password');
+      showRetypePassBtn.classList.add('fa-eye');
+      showRetypePassBtn.classList.remove('fa-eye-slash');
+    }
+  };
+</script>

@@ -8,7 +8,7 @@ import handleShowPassword from '../../utils/handleShowPassword.js';
 const root = document.getElementById('root');
 
 root.innerHTML = `
-<div class="registry-page">
+<div class="register-page">
     ${Logo('logo-login', 'dark-red-color', 'black-color')}
 
     <form action="#" class="login-form">
