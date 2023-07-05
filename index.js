@@ -65,6 +65,8 @@ app.use(passport.session());
 // Setup connect-flash for session error warning
 app.use(flash());
 
+app.use('/', require('./routes/createTablesRouter'));
+
 // Setup init middleware
 app.use(async (req, res, next) => {
   res.locals.isLoggedIn = req.isAuthenticated();
