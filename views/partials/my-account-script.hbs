@@ -1,0 +1,10 @@
+<script>
+  const navItems = document.getElementsByClassName('nav-item-container'); for
+  (let i = 0; i < navItems.length; i++) { navItems[i].addEventListener('click',
+  (e) => handleOnclick(e)); } const handleOnclick = (e) => { const target =
+  e.target; const items = document.getElementsByClassName('nav-item-container');
+  for (let i = 0; i < items.length; i++) { items[i].style.backgroundColor = '';
+  } switch (target.getAttribute('value')) { case 'log-out': {
+  target.style.backgroundColor = 'rgba(255,255,255,0.2)'; window.location =
+  '/users/logout'; break; } } }
+</script>

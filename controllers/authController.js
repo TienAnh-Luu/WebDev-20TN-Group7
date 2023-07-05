@@ -1,23 +1,23 @@
-'use strict';
+"use strict";
 
 const controller = {};
-const passport = require('./passport');
-const models = require('../models');
+const passport = require("./passport");
+const models = require("../models");
 
 controller.showLogin = (req, res) => {
-  if (req.isAuthenticated()) return res.redirect('/');
+  if (req.isAuthenticated()) return res.redirect("/");
 
-  res.render('login-page', {
-    loginMessage: req.flash('loginMessage'),
+  res.render("login-page", {
+    loginMessage: req.flash("loginMessage"),
     reqUrl: req.query.reqUrl,
   });
 };
 
 controller.login = (req, res, next) => {
   const keepSignedIn = req.body.keepSignedIn;
-  const reqUrl = req.body.reqUrl ? req.body.reqUrl : '/users/my-account';
+  const reqUrl = req.body.reqUrl ? req.body.reqUrl : "/users/my-account";
 
-  passport.authenticate('local-login', (err, user) => {
+  passport.authenticate("local-login", (err, user) => {
     if (err) return next(err);
     if (!user) return res.redirect(`/users/login?reqUrl=${reqUrl}`);
 
@@ -36,18 +36,18 @@ controller.isLoggedIn = (req, res, next) => {
 };
 
 controller.showRegister = (req, res) => {
-  if (req.isAuthenticated()) return res.redirect('/');
+  if (req.isAuthenticated()) return res.redirect("/");
 
-  res.render('register-page', {
-    registerMessage: req.flash('registerMessage'),
+  res.render("register-page", {
+    registerMessage: req.flash("registerMessage"),
     reqUrl: req.query.reqUrl,
   });
 };
 
 controller.register = (req, res, next) => {
-  const reqUrl = req.body.reqUrl ? req.body.reqUrl : '/users/my-account';
+  const reqUrl = req.body.reqUrl ? req.body.reqUrl : "/users/my-account";
 
-  passport.authenticate('local-register', (err, user) => {
+  passport.authenticate("local-register", (err, user) => {
     if (err) return next(err);
     if (!user) return res.redirect(`/users/login?reqUrl=${reqUrl}`);
     req.logIn(user, (err) => {
@@ -55,6 +55,15 @@ controller.register = (req, res, next) => {
       res.redirect(reqUrl);
     });
   })(req, res, next);
+};
+
+controller.logout = (req, res, next) => {
+  req.logout((error) => {
+    if (error) {
+      return next(error);
+    }
+    res.redirect("/");
+  });
 };
 
 module.exports = controller;
