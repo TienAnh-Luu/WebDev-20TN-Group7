@@ -8,6 +8,7 @@
 }
 
 .news-thumbnail-container {
+  position: relative;
   min-width: 172px;
   width: 172px;
   height: 100%;
@@ -58,10 +59,17 @@
 }
 
 .news-premium-icon {
-  position: relative;
-  top: 0;
-  right: 0;
+  position: absolute;
+  top: 5;
+  right: 5;
   z-index: 1;
+  color: gold;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.news-premium-icon:hover {
+  color: gold;
 }
 
 .news-footer {

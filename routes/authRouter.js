@@ -7,8 +7,6 @@ const { body, getErrorMessage } = require('../controllers/validator');
 
 const Recaptcha = require('express-recaptcha').RecaptchaV2;
 const recaptcha = new Recaptcha('6LfSSvwmAAAAABaBtD9hSNrhg9kHuGjqG7knDvxu', '6LfSSvwmAAAAAK4kZ9M__Q110omBt1iFBA8kfs2r');
-// const recaptcha = new Recaptcha('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe');
-console.log(recaptcha);
 
 router.get('/login', controller.showLogin);
 

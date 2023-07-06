@@ -1,9 +1,9 @@
 <a class='news-item-container' href='/posts/{{data.id}}'>
-  <div class='news-thumbnail-container zoom-hover'>
+  <div class='news-thumbnail-container'>
     <img class='news-thumbnail' src='{{data.avatar_link}}' alt='Thumbnail' />
     <div class='news-tag'>{{data.main_category.name}}</div>
     {{#if data.is_premium}}
-      <div class='news-premium-icon'><i class='fa-solid fa-gem'></i></div>
+      <i class='fa-solid fa-gem news-premium-icon'></i>
     {{/if}}
   </div>
   <div class='news-info'>

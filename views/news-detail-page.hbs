@@ -64,6 +64,9 @@
             <div class="suggestions-item-container">
               <a href="/posts/{{id}}">
                 <img class="suggestions-item-thumbnail" src={{avatar_link}} alt="Thumbnail" />
+                {{#if is_premium}}
+                <i class='fa-solid fa-gem news-premium-icon'></i>
+                {{/if}}
                 <p class="suggestions-item-title">{{title}}</p>
               </a>
               <div class="suggestions-item-footer">

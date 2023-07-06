@@ -12,6 +12,15 @@ controller.showHomepage = async (req, res) => {
   limitDate.setDate(today.getDate() - 7);
   console.log('Limit date : ' + limitDate);
 
+  const user = req.user;
+  const now = new Date();
+  let premiumOptions;
+  if (!user || (user.role_id == 1 && user.premiumTime < now)) {
+    premiumOptions = ['false'];
+  } else {
+    premiumOptions = ['false', 'true'];
+  }
+
   const featurePosts = await models.Post.findAll({
     attributes: [
       'id',
@@ -35,6 +44,9 @@ controller.showHomepage = async (req, res) => {
         [Op.lte]: new Date(),
       },
       published_time: { [Op.gte]: limitDate },
+      is_premium: {
+        [Op.in]: premiumOptions,
+      },
     },
     order: [['view_count', 'DESC']],
     limit: 6,
@@ -56,6 +68,9 @@ controller.showHomepage = async (req, res) => {
       published_time: {
         [Op.lte]: new Date(),
       },
+      is_premium: {
+        [Op.in]: premiumOptions,
+      },
     },
     order: [['published_time', 'DESC']],
     limit: 10,
@@ -76,6 +91,9 @@ controller.showHomepage = async (req, res) => {
       published_time: {
         [Op.lte]: new Date(),
       },
+      is_premium: {
+        [Op.in]: premiumOptions,
+      },
     },
     order: [['view_count', 'DESC']],
     limit: 10,
@@ -89,6 +107,9 @@ controller.showHomepage = async (req, res) => {
       status: 'Publish',
       published_time: {
         [Op.lte]: new Date(),
+      },
+      is_premium: {
+        [Op.in]: premiumOptions,
       },
     },
     group: ['main_category_id'],
@@ -120,6 +141,9 @@ controller.showHomepage = async (req, res) => {
           status: 'Publish',
           published_time: {
             [Op.lte]: new Date(),
+          },
+          is_premium: {
+            [Op.in]: premiumOptions,
           },
           main_category_id: item.main_category_id,
           view_count: item.dataValues.max_view_count,
