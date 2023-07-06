@@ -1,0 +1,16 @@
+<a class='news-item-container' href='/posts/{{data.id}}'>
+  <div class='news-thumbnail-container zoom-hover'>
+    <img class='news-thumbnail' src='{{data.avatar_link}}' alt='Thumbnail' />
+    <div class='news-tag'>{{data.main_category.name}}</div>
+    {{#if data.is_premium}}
+      <div class='news-premium-icon'><i class='fa-solid fa-gem'></i></div>
+    {{/if}}
+  </div>
+  <div class='news-info'>
+    <h3 class='news-title'>{{data.title}}</h3>
+    <p class='news-summary'>
+      {{data.summary}}
+    </p>
+  </div>
+  {{{createFooterForNewsItem context data.published_time}}}
+</a>

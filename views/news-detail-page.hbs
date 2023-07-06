@@ -38,7 +38,7 @@
         <div class="comments-list">
           {{!-- ${dataToCommentAreaItemList(sampleData).join('\n')} --}}
           {{#each post.comments}}
-          <div class="comments-item" {{#if (geHandlebars @index 4)}}style="display:none"{{/if}}>
+          <div class="comments-item" {{#if (geHandlebars @index 4)}}style="display:none" {{/if}}>
             <img src="{{User.avatar_link}}" alt="avatar" class="comments-item-img" />
             <div class="comments-item-right-section">
               <div class="comments-item-name-container">
@@ -62,8 +62,10 @@
             {{!-- ${dataToSuggestionItemList(sampleData).join('\n')} --}}
             {{#each relatedPosts}}
             <div class="suggestions-item-container">
-              <img class="suggestions-item-thumbnail" src={{avatar_link}} alt="Thumbnail" />
-              <p class="suggestions-item-title">{{title}}</p>
+              <a href="/posts/{{id}}">
+                <img class="suggestions-item-thumbnail" src={{avatar_link}} alt="Thumbnail" />
+                <p class="suggestions-item-title">{{title}}</p>
+              </a>
               <div class="suggestions-item-footer">
                 <a href="/posts?category={{main_category.id}}" class="suggestions-item-cate">{{main_category.name}}</a>
                 <div class="suggestions-item-date">{{published_time}}</div>
