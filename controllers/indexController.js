@@ -30,7 +30,10 @@ controller.showHomepage = async (req, res) => {
       },
     ],
     where: {
-      status: 'Published',
+      status: 'Publish',
+      published_time: {
+        [Op.lte]: new Date(),
+      },
       published_time: { [Op.gte]: limitDate },
     },
     order: [['view_count', 'DESC']],
@@ -49,7 +52,10 @@ controller.showHomepage = async (req, res) => {
       },
     ],
     where: {
-      status: 'Published',
+      status: 'Publish',
+      published_time: {
+        [Op.lte]: new Date(),
+      },
     },
     order: [['published_time', 'DESC']],
     limit: 10,
@@ -66,7 +72,10 @@ controller.showHomepage = async (req, res) => {
       },
     ],
     where: {
-      status: 'Published',
+      status: 'Publish',
+      published_time: {
+        [Op.lte]: new Date(),
+      },
     },
     order: [['view_count', 'DESC']],
     limit: 10,
@@ -77,7 +86,10 @@ controller.showHomepage = async (req, res) => {
   const top10Categories = await models.Post.findAll({
     attributes: ['main_category_id', [sequelize.literal('CAST(MAX(view_count) AS INTEGER)'), 'max_view_count']],
     where: {
-      status: 'Published',
+      status: 'Publish',
+      published_time: {
+        [Op.lte]: new Date(),
+      },
     },
     group: ['main_category_id'],
     limit: 10,
@@ -105,7 +117,10 @@ controller.showHomepage = async (req, res) => {
           },
         ],
         where: {
-          status: 'Published',
+          status: 'Publish',
+          published_time: {
+            [Op.lte]: new Date(),
+          },
           main_category_id: item.main_category_id,
           view_count: item.dataValues.max_view_count,
         },

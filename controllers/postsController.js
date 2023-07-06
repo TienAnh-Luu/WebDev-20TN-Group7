@@ -95,7 +95,10 @@ controller.show = async (req, res) => {
     ],
     where: [
       {
-        status: 'Published',
+        status: 'Publish',
+        published_time: {
+          [Op.lte]: new Date(),
+        },
       },
     ],
   };
@@ -193,7 +196,7 @@ controller.show = async (req, res) => {
 };
 
 controller.showDetails = async (req, res) => {
-  const id = isNaN(req.params.id) ? 0 : parseInt(req.params.id);
+  const queryId = isNaN(req.params.id) ? 0 : parseInt(req.params.id);
   const post = await models.Post.findOne({
     attributes: [
       'id',
@@ -206,7 +209,7 @@ controller.showDetails = async (req, res) => {
       'main_category_id',
       'category_id',
     ],
-    where: { id },
+    where: { id: queryId },
     include: [
       {
         model: models.Writer,
@@ -238,7 +241,7 @@ controller.showDetails = async (req, res) => {
       },
     ],
     where: {
-      post_id: id,
+      post_id: queryId,
     },
     order: [['createdAt', 'DESC']],
   });
@@ -246,7 +249,7 @@ controller.showDetails = async (req, res) => {
   // Tag
   const tagIds = [];
   await models.PostTag.findAll({
-    where: { post_id: id },
+    where: { post_id: queryId },
     attributes: ['tag_id'],
   }).then((tags) => {
     tags.forEach((tag) => tagIds.push(tag.tag_id));
@@ -272,11 +275,23 @@ controller.showDetails = async (req, res) => {
     ],
     where: {
       main_category_id: categoryHeadline.main.id,
+      status: 'Publish',
+      published_time: {
+        [Op.lte]: new Date(),
+      },
+      id: {
+        [Op.ne]: queryId,
+      },
     },
-    order: [['published_time', 'DESC']],
-    limit: 5,
   });
-  res.locals.relatedPosts = relatedPosts;
+
+  // Shuffle the relatedPosts array randomly
+  const shuffledPosts = relatedPosts.sort(() => 0.5 - Math.random());
+
+  // Retrieve only the first 5 shuffled posts
+  const randomRelatedPosts = shuffledPosts.slice(0, 5);
+
+  res.locals.relatedPosts = randomRelatedPosts;
 
   res.render('news-detail-page');
 };
