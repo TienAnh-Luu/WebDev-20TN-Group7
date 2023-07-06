@@ -1,5 +1,5 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -9,12 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasOne(models.Admin, { foreignKey: "user_id" });
-      User.hasOne(models.Editor, { foreignKey: "user_id" });
-      User.hasOne(models.Writer, { foreignKey: "user_id" });
-      User.hasOne(models.Subscriber, { foreignKey: "user_id" });
-      User.belongsTo(models.Role, { foreignKey: "role_id" });
-      User.hasMany(models.Comment, { foreignKey: "author_id" });
+      User.hasOne(models.Admin, { foreignKey: 'user_id' });
+      User.hasOne(models.Editor, { foreignKey: 'user_id' });
+      User.hasOne(models.Writer, { foreignKey: 'user_id' });
+      User.hasOne(models.Subscriber, { foreignKey: 'user_id' });
+      User.belongsTo(models.Role, { foreignKey: 'role_id' });
+      User.hasMany(models.Comment, { foreignKey: 'author_id' });
     }
   }
   User.init(
@@ -24,11 +24,12 @@ module.exports = (sequelize, DataTypes) => {
       avatar_link: DataTypes.STRING,
       email: DataTypes.STRING,
       name: DataTypes.STRING,
+      premiumTime: DataTypes.DATE,
     },
     {
       sequelize,
-      modelName: "User",
-    }
+      modelName: 'User',
+    },
   );
   return User;
 };

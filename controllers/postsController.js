@@ -24,7 +24,7 @@ controller.show = async (req, res) => {
     querySearch = req.query.search;
   }
 
-  let queryType = 'latest';
+  let queryType = 'default';
   if (['latest', 'feature', 'premium'].includes(req.query.type)) {
     countFilter += 1;
     queryType = req.query.type;
@@ -95,9 +95,13 @@ controller.show = async (req, res) => {
     ],
     where: [
       {
-        status: 'Published',
+        status: 'Publish',
+        published_time: {
+          [Op.lte]: new Date(),
+        },
       },
     ],
+    order: [['is_premium', 'DESC']],
   };
 
   // Query category
@@ -136,6 +140,32 @@ controller.show = async (req, res) => {
     };
   }
 
+  const user = req.user;
+  console.log(user);
+  const now = new Date();
+  let premiumOptions;
+  if (!user || (user.role_id == 1 && user.premiumTime < now)) {
+    premiumOptions = ['false'];
+  } else {
+    premiumOptions = ['false', 'true'];
+  }
+
+  if (queryType === 'premium') {
+    let premiumMessage;
+    if (!user) {
+      premiumMessage = 'Vui lòng đăng nhập để theo dõi những bài viết Premium';
+      res.render('premium-user-page', { premiumMessage: premiumMessage });
+      return;
+    } else if (user.role_id == 1 && user.premiumTime < now) {
+      console.log(user.premiumTime < now);
+      premiumMessage = 'Hãy gia hạn để theo dõi những bài viết Premium';
+      res.render('premium-user-page', { premiumMessage: premiumMessage });
+      return;
+    }
+  }
+
+  options.where[0].is_premium = { [Op.in]: premiumOptions };
+
   // Query search
   // if (search.trim() != "") {
   //   options.where.name = {
@@ -147,15 +177,18 @@ controller.show = async (req, res) => {
   switch (queryType) {
     case 'premium':
       headline = 'Premium';
-      options.order = [['createdAt', 'DESC']]; // fix this
+      options.where[0].is_premium = { [Op.in]: [true] }; // fix this
       break;
     case 'feature':
       headline = 'Xem nhiều';
-      options.order = [['base_rate', 'DESC']]; // fix this follow the formula
+      options.order = [['view_count', 'DESC']]; // fix this follow the formula
       break;
-    default:
+    case 'latest':
       headline = 'Mới nhất';
       options.order = [['published_time', 'DESC']];
+      break;
+    case 'default':
+      options.order.push(['published_time', 'DESC']);
   }
   res.locals.headline = headline;
 
@@ -193,7 +226,7 @@ controller.show = async (req, res) => {
 };
 
 controller.showDetails = async (req, res) => {
-  const id = isNaN(req.params.id) ? 0 : parseInt(req.params.id);
+  const queryId = isNaN(req.params.id) ? 0 : parseInt(req.params.id);
   const post = await models.Post.findOne({
     attributes: [
       'id',
@@ -206,7 +239,7 @@ controller.showDetails = async (req, res) => {
       'main_category_id',
       'category_id',
     ],
-    where: { id },
+    where: { id: queryId },
     include: [
       {
         model: models.Writer,
@@ -238,7 +271,7 @@ controller.showDetails = async (req, res) => {
       },
     ],
     where: {
-      post_id: id,
+      post_id: queryId,
     },
     order: [['createdAt', 'DESC']],
   });
@@ -246,7 +279,7 @@ controller.showDetails = async (req, res) => {
   // Tag
   const tagIds = [];
   await models.PostTag.findAll({
-    where: { post_id: id },
+    where: { post_id: queryId },
     attributes: ['tag_id'],
   }).then((tags) => {
     tags.forEach((tag) => tagIds.push(tag.tag_id));
@@ -260,6 +293,15 @@ controller.showDetails = async (req, res) => {
 
   res.locals.post = post;
 
+  const user = req.user;
+  const now = new Date();
+  let premiumOptions;
+  if (!user || (user.role_id == 1 && user.premiumTime < now)) {
+    premiumOptions = ['false'];
+  } else {
+    premiumOptions = ['false', 'true'];
+  }
+
   // Related Posts
   const relatedPosts = await models.Post.findAll({
     attributes: ['id', 'title', 'avatar_link', 'summary', 'is_premium', 'published_time'],
@@ -272,11 +314,26 @@ controller.showDetails = async (req, res) => {
     ],
     where: {
       main_category_id: categoryHeadline.main.id,
+      status: 'Publish',
+      published_time: {
+        [Op.lte]: new Date(),
+      },
+      id: {
+        [Op.ne]: queryId,
+      },
+      is_premium: {
+        [Op.in]: premiumOptions,
+      },
     },
-    order: [['published_time', 'DESC']],
-    limit: 5,
   });
-  res.locals.relatedPosts = relatedPosts;
+
+  // Shuffle the relatedPosts array randomly
+  const shuffledPosts = relatedPosts.sort(() => 0.5 - Math.random());
+
+  // Retrieve only the first 5 shuffled posts
+  const randomRelatedPosts = shuffledPosts.slice(0, 5);
+
+  res.locals.relatedPosts = randomRelatedPosts;
 
   res.render('news-detail-page');
 };

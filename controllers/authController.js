@@ -9,6 +9,7 @@ controller.showLogin = (req, res) => {
 
   res.render("login-page", {
     loginMessage: req.flash("loginMessage"),
+    finishRegisterMessage: req.flash("finishRegisterMessage"),
     reqUrl: req.query.reqUrl,
   });
 };
