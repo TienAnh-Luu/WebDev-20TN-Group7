@@ -89,9 +89,15 @@ passport.use(
           email: email,
           password: bcrypt.hashSync(password, bcrypt.genSaltSync(8)),
           name: req.body.name,
+          role_id: 1,
+          avatar_link: 'https://i.pravatar.cc/200',
         });
 
-        done(null, false, req.flash('registerMessage', 'Bạn đã đăng ký thành công'));
+        done(
+          null,
+          false,
+          req.flash('finishRegisterMessage', 'Bạn đã đăng ký thành công và có thể đăng nhập để sử dụng'),
+        );
       } catch (err) {
         done(err);
       }
