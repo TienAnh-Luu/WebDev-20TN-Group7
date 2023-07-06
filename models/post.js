@@ -1,5 +1,5 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
     /**
@@ -9,21 +9,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Post.hasMany(models.Comment, { foreignKey: "post_id" });
+      Post.hasMany(models.Comment, { foreignKey: 'post_id' });
       Post.belongsToMany(models.Tag, {
-        through: "PostTag",
-        foreignKey: "post_id",
-        otherKey: "tag_id",
+        through: 'PostTag',
+        foreignKey: 'post_id',
+        otherKey: 'tag_id',
       });
       Post.belongsTo(models.Category, {
-        foreignKey: "main_category_id",
-        as: "main_category",
+        foreignKey: 'main_category_id',
+        as: 'main_category',
       });
       Post.belongsTo(models.Category, {
-        foreignKey: "category_id",
-        as: "category",
+        foreignKey: 'category_id',
+        as: 'category',
       });
-      Post.belongsTo(models.Writer, { foreignKey: "writer_id" });
+      Post.belongsTo(models.Writer, { foreignKey: 'writer_id' });
     }
   }
   Post.init(
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       view_count: DataTypes.DECIMAL,
       is_premium: DataTypes.BOOLEAN,
       published_time: DataTypes.DATE,
-      post_approver: DataTypes.STRING,
+      post_approver_id: DataTypes.DECIMAL,
       status: DataTypes.STRING,
       feedback: DataTypes.TEXT,
       pdf_link: DataTypes.STRING,
@@ -44,8 +44,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Post",
-    }
+      modelName: 'Post',
+    },
   );
   return Post;
 };

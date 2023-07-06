@@ -11,7 +11,7 @@ module.exports = {
     users.forEach((user) => {
       updatedUsers.push({
         id: user.id,
-        password: bcrypt.hashSync(user.password, 7),
+        password: bcrypt.hashSync(user.password, 8),
       });
     });
 
