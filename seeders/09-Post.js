@@ -1853,8 +1853,8 @@ module.exports = {
         const currentDate = new Date();
         const pastDate = new Date();
         const nextDate = new Date();
-        pastDate.setDate(currentDate.getDate() - 14);
-        nextDate.setDate(currentDate.getDate() + 7);
+        pastDate.setDate(currentDate.getDate() - 21);
+        nextDate.setDate(currentDate.getDate());
 
         const randomTimestamp = new Date(
           pastDate.getTime() + Math.random() * (nextDate.getTime() - pastDate.getTime()),

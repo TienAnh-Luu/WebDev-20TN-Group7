@@ -57,3 +57,10 @@
   color: #b83730;
   margin-right: 10px;
 }
+
+.info-wrapper .alert {
+  font-size: 18px;
+  padding: 7px 20px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}

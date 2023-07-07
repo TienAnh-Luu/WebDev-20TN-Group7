@@ -4,7 +4,7 @@
     <main class="main" id="dashboard-main">
       <ul class="dashboard-page-navbar" id="dashboard-navbar">
         {{#each navItems}}
-          {{>nav-item data=this}}
+        {{>nav-item data=this}}
         {{/each}}
       </ul>
       <div class="main-content" id="main-content">
@@ -19,6 +19,11 @@
               {{>roundButton type="button" className="strawberry-backgroundcolor" id='change-password-btn' text='Đổi mật
               khẩu'}}
             </div>
+            {{#if editMessage}}
+            <div class="alert alert-warning">
+              {{editMessage}}
+            </div>
+            {{/if}}
           </div>
         </div>
       </div>
