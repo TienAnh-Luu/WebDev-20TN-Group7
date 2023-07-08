@@ -249,10 +249,10 @@ controller.showDetails = async (req, res) => {
   });
 
   // Headline
-  const categoryHeadline = {
-    main: await models.Category.findByPk(post.main_category_id),
-    subs: [await models.Category.findByPk(post.category_id)],
-  };
+  const categoryHeadline = {};
+  categoryHeadline.main = await models.Category.findByPk(post.main_category_id);
+  if (post.main_category_id != post.category_id)
+    categoryHeadline.subs = [await models.Category.findByPk(post.category_id)];
   res.locals.categoryHeadline = categoryHeadline;
 
   // Comment
@@ -336,6 +336,57 @@ controller.showDetails = async (req, res) => {
   res.locals.relatedPosts = randomRelatedPosts;
 
   res.render('news-detail-page');
+};
+
+controller.showPreview = async (req, res) => {
+  const queryId = isNaN(req.params.id) ? 0 : parseInt(req.params.id);
+  const post = await models.Post.findOne({
+    attributes: [
+      'id',
+      'title',
+      'avatar_link',
+      'background_image_link',
+      'content',
+      'is_premium',
+      'published_time',
+      'main_category_id',
+      'category_id',
+      'updatedAt',
+    ],
+    where: { id: queryId },
+    include: [
+      {
+        model: models.Writer,
+        attributes: ['nickname'],
+      },
+    ],
+  });
+
+  // Headline
+  const categoryHeadline = {};
+  categoryHeadline.main = await models.Category.findByPk(post.main_category_id);
+  if (post.main_category_id != post.category_id)
+    categoryHeadline.subs = [await models.Category.findByPk(post.category_id)];
+  res.locals.categoryHeadline = categoryHeadline;
+
+  // Tag
+  const tagIds = [];
+  await models.PostTag.findAll({
+    where: { post_id: queryId },
+    attributes: ['tag_id'],
+  }).then((tags) => {
+    tags.forEach((tag) => tagIds.push(tag.tag_id));
+  });
+
+  post.tags = await models.Tag.findAll({
+    where: {
+      id: { [Op.in]: tagIds },
+    },
+  });
+
+  res.locals.post = post;
+
+  res.render('news-preview-page');
 };
 
 function removeParam(key, sourceURL) {

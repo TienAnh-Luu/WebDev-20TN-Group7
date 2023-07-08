@@ -4,13 +4,15 @@
   document.getElementById('edit-btn').addEventListener('click', () => {
     const popUpAccountForm = ` 
     <div class="modal" id="account-modal"> 
-      <div class="modal-content"> <div class="modal-form-container"> 
-        <a class="modal-close-btn" id="popup-account-close">&times;</a> 
-        <form class="modal-form" action="/users/my-account" method="post"> 
-          <h2 class="modal-title">Chỉnh sửa thông tin</h2> 
-          <input class="modal-form-input" type="text" name="change-nickname" id="change-nickname" placeholder="Biệt danh" required/> 
-          <button class="modal-form-submit-btn" type="submit">Submit</button> 
-        </form> 
+      <div class="modal-content"> 
+        <div class="modal-form-container"> 
+          <a class="modal-close-btn" id="popup-account-close">&times;</a> 
+          <form class="modal-form" action="/users/my-account" method="post"> 
+            <h2 class="modal-title">Chỉnh sửa thông tin</h2> 
+            <input class="modal-form-input" type="text" name="change-nickname" id="change-nickname" placeholder="Biệt danh" required/> 
+            <button class="modal-form-submit-btn" type="submit">Submit</button> 
+          </form> 
+        </div>
       </div> 
     </div>`;
     const popUpAccountFormElement = document.createElement('div');

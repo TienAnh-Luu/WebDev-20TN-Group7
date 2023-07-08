@@ -83,11 +83,14 @@ app.use(async (req, res, next) => {
   next();
 });
 
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+
 // Routes
 app.use('/', require('./routes/indexRouter'));
 app.use('/posts', require('./routes/postsRouter'));
 app.use('/users', require('./routes/authRouter'));
 app.use('/users', require('./routes/usersRouter'));
+app.use('/writers', require('./routes/writersRouter'));
 
 app.use(async (req, res, next) => {
   res.status(404).render('error', {
