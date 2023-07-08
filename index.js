@@ -94,6 +94,7 @@ app.use('/posts', require('./routes/postsRouter'));
 app.use('/users', require('./routes/authRouter'));
 app.use('/users', require('./routes/usersRouter'));
 app.use('/writers', require('./routes/writersRouter'));
+app.use('/editors', require('./routes/editorsRouter'));
 
 app.use(async (req, res, next) => {
   res.status(404).render('error', {

@@ -78,17 +78,38 @@ helper.NAV_ITEMS = [
     {
       icon: 'fa-solid fa-user',
       text: 'Thông tin biên tập viên',
-      value: 'editor-info',
+      value: 'account-info',
+      link: '/users/my-account',
     },
     {
       icon: 'fa-solid fa-newspaper',
+      text: 'Thông tin biên tập viên',
+      value: 'account-info',
+      link: '/editors/info',
+    },
+    {
+      icon: 'fa-solid fa-ellipsis-h',
       text: 'Bài viết chờ duyệt',
       value: 'editor-waiting',
+      link: '/editors/waiting',
+    },
+    {
+      icon: 'fa-solid fa-check',
+      text: 'Bài viết đã duyệt',
+      value: 'editor-waiting',
+      link: '/editors/approved',
+    },
+    {
+      icon: 'fa-solid fa-times',
+      text: 'Bài viết đã từ chối',
+      value: 'editor-waiting',
+      link: '/editors/waiting',
     },
     {
       icon: 'fa-solid fa-right-from-bracket',
       text: 'Đăng xuất',
       value: 'log-out',
+      link: '/users/logout',
     },
   ],
   [

@@ -1,0 +1,132 @@
+'use strict';
+
+const controller = {};
+const models = require('../models');
+const sequelize = require('sequelize');
+const Op = sequelize.Op;
+const { NAV_ITEMS } = require('../controllers/constrants');
+
+controller.isEditor = async (req, res, next) => {
+  if (req.user.role_id === 4) {
+    req.user = await models.User.findOne({
+      attributes: ['id', 'username', 'email', 'name', 'avatar_link', 'role_id', 'premiumTime'],
+      include: [
+        {
+          model: models.Editor,
+          attributes: ['id', 'work_email', 'telephone', 'manage_category_id'],
+        },
+      ],
+      where: { id: req.user.id },
+    });
+    return next();
+  }
+
+  res.status(404).render('error', {
+    message: 'Không tìm thấy trang',
+  });
+};
+
+controller.showCheck = async (req, res) => {
+  const queryId = isNaN(req.params.id) ? 0 : parseInt(req.params.id);
+  const post = await models.Post.findOne({
+    attributes: [
+      'id',
+      'title',
+      'avatar_link',
+      'background_image_link',
+      'content',
+      'is_premium',
+      'published_time',
+      'main_category_id',
+      'category_id',
+      'updatedAt',
+      'status',
+    ],
+    where: { id: queryId },
+    include: [
+      {
+        model: models.Writer,
+        attributes: ['nickname'],
+      },
+    ],
+  });
+
+  if (
+    req.user.Editor.manage_category_id !== post.main_category_id &&
+    req.user.Editor.manage_category_id !== post.category_id
+  ) {
+    res.status(404).render('error', {
+      message: 'Không tìm thấy trang',
+    });
+    return;
+  }
+
+  // Headline
+  const categoryHeadline = {};
+  categoryHeadline.main = await models.Category.findByPk(post.main_category_id);
+  if (post.main_category_id != post.category_id)
+    categoryHeadline.subs = [await models.Category.findByPk(post.category_id)];
+  res.locals.categoryHeadline = categoryHeadline;
+
+  // Tag
+  const tagIds = [];
+  await models.PostTag.findAll({
+    where: { post_id: queryId },
+    attributes: ['tag_id'],
+  }).then((tags) => {
+    tags.forEach((tag) => tagIds.push(tag.tag_id));
+  });
+
+  post.tags = await models.Tag.findAll({
+    where: {
+      id: { [Op.in]: tagIds },
+    },
+  });
+
+  res.locals.post = post;
+  res.locals.data = req.user;
+  res.locals.navItems = NAV_ITEMS[parseInt(req.user.role_id, 10) - 1];
+  res.render('editor-check');
+};
+
+controller.approve = async (req, res) => {
+  const postid = req.params.id;
+  const post_approver_id = req.user.id;
+  const dateParts = req.body.published_time.split('-');
+  const [year, month, day] = dateParts;
+  const published_time = new Date();
+  published_time.setDate(day);
+  published_time.setMonth(month - 1);
+  published_time.setFullYear(year);
+
+  await models.Post.update(
+    {
+      post_approver_id,
+      published_time,
+      status: 'Publish',
+    },
+    { where: { id: postid } },
+  );
+
+  res.redirect(`/posts/${postid}/preview`);
+};
+
+controller.reject = async (req, res) => {
+  const postid = req.params.id;
+  const post_approver_id = req.user.id;
+  const feedback = req.body.feedback;
+
+  await models.Post.update(
+    {
+      post_approver_id,
+      feedback,
+      status: 'Reject',
+    },
+    { where: { id: postid } },
+  );
+
+  res.render('test', { data: feedback });
+  // res.redirect(`/posts/${postid}/preview`);
+};
+
+module.exports = controller;

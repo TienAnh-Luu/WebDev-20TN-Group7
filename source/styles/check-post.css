@@ -1,0 +1,10 @@
+.check-post {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.check-post button {
+  width: 40%;
+}
