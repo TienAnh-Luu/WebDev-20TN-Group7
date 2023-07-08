@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').config();
 
 const express = require('express');
 const app = express();
@@ -56,7 +57,7 @@ app.use(express.urlencoded({ extended: false }));
 // Setup session
 app.use(
   session({
-    secret: 'process.env.SESSION_SECRET',
+    secret: process.env.SESSION_SECRET,
     // store: new redisStore({ client: redisClient }),
     resave: false,
     saveUninitialized: false,

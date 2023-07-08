@@ -10,7 +10,6 @@ controller.showHomepage = async (req, res) => {
   const today = new Date();
   const limitDate = new Date();
   limitDate.setDate(today.getDate() - 7);
-  console.log('Limit date : ' + limitDate);
 
   const user = req.user;
   const now = new Date();

@@ -141,7 +141,6 @@ controller.show = async (req, res) => {
   }
 
   const user = req.user;
-  console.log(user);
   const now = new Date();
   let premiumOptions;
   if (!user || (user.role_id == 1 && user.premiumTime < now)) {
@@ -157,7 +156,6 @@ controller.show = async (req, res) => {
       res.render('premium-user-page', { premiumMessage: premiumMessage });
       return;
     } else if (user.role_id == 1 && user.premiumTime < now) {
-      console.log(user.premiumTime < now);
       premiumMessage = 'Hãy gia hạn để theo dõi những bài viết Premium';
       res.render('premium-user-page', { premiumMessage: premiumMessage });
       return;
@@ -177,11 +175,11 @@ controller.show = async (req, res) => {
   switch (queryType) {
     case 'premium':
       headline = 'Premium';
-      options.where[0].is_premium = { [Op.in]: [true] }; // fix this
+      options.where[0].is_premium = { [Op.in]: [true] };
       break;
     case 'feature':
       headline = 'Xem nhiều';
-      options.order = [['view_count', 'DESC']]; // fix this follow the formula
+      options.order = [['view_count', 'DESC']];
       break;
     case 'latest':
       headline = 'Mới nhất';
@@ -197,14 +195,6 @@ controller.show = async (req, res) => {
   if (Object.keys(req.query).length == 0) {
     res.locals.originalUrl = res.locals.originalUrl + '?';
   }
-
-  // res.locals.sort = sort;
-  // res.locals.originalUrl = removeParam("sort", req.originalUrl);
-  // if (Object.keys(req.query).length == 0) {
-  //   res.locals.originalUrl += "?";
-  // } else {
-  //   res.locals.originalUrl += "&";
-  // }
 
   // Pagination
   const postLimit = 6;

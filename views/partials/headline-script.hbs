@@ -1,7 +1,11 @@
 <script>
   const select = document.getElementById('search-filter');
   /*alert(select.options[select.selectedIndex].text)*/
-  select.addEventListener('change', (e) => { const filter = select.value || '';
-  const searchQuery = window.location.href.split('search=')[1]; window.location
-  = `/posts?filter=${filter}&search=${searchQuery}`; });
+  if (select) {
+    select.addEventListener('change', (e) => {
+      const filter = select.value || '';
+      const searchQuery = window.location.href.split('search=')[1]; window.location
+        = `/posts?filter=${filter}&search=${searchQuery}`;
+    });
+  }
 </script>

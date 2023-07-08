@@ -53,7 +53,7 @@ controller.new = async (req, res) => {
     await models.PostTag.create({ post_id: post.id, tag_id: queriedTag.id });
   });
 
-  res.render('test', { data: post });
+  res.redirect(`/posts/${post.id}/preview`);
 };
 
 module.exports = controller;

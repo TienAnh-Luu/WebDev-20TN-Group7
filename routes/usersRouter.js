@@ -5,7 +5,6 @@ const router = express.Router();
 const controller = require('../controllers/usersController');
 const authController = require('../controllers/authController');
 const { NAV_ITEMS } = require('../controllers/constrants');
-const { formatDateTime } = require('../source/js/dateTime');
 
 router.use(authController.isLoggedIn);
 
@@ -19,12 +18,9 @@ router.get('/my-account', (req, res) => {
 router.post('/my-account', controller.edit);
 
 router.get('/my-premium', (req, res) => {
-  const premiumTimeFormat = formatDateTime(req.user.premiumTime);
-
   res.render('my-premium', {
     data: req.user,
     navItems: NAV_ITEMS[parseInt(req.user.role_id, 10) - 1],
-    premiumTimeFormat,
   });
 });
 

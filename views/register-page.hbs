@@ -1,6 +1,7 @@
 <div id="root">
   <div class="register-page">
     {{> logo subclass='logo-login' firstLetterColor='dark-red-color' secondLetterColor='black-color'}}
+    {{>goBackButton link='/users/login'}}
 
     {{#if registerMessage}}
     <div class="alert alert-danger">
@@ -26,7 +27,7 @@
           password' type='password'}}
         </div>
       </div>
-      <div class="g-recaptcha" data-sitekey="6LfSSvwmAAAAABaBtD9hSNrhg9kHuGjqG7knDvxu"></div>
+      <div class="g-recaptcha" data-sitekey="{{RECAPTCHA_SITE_KEY}}"></div>
       {{> roundButton type='submit' className='strawberry-backgroundcolor' id='login-btn' text='Tạo tài khoản'}}
     </form>
   </div>

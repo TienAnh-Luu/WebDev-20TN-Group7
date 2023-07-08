@@ -20,6 +20,7 @@ router.get('/write', (req, res) => {
   res.render('writer-write', {
     data: req.user,
     navItems: NAV_ITEMS[parseInt(req.user.role_id, 10) - 1],
+    TINYMCE_KEY: process.env.TINYMCE_KEY,
   });
 });
 

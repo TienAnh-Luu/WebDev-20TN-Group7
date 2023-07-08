@@ -53,14 +53,12 @@ controller.extendPremium = async (req, res) => {
   let currentPremiumTime = new Date();
   let newPremiumTime = new Date();
 
-  console.log(user.premiumTime);
   if (user.premiumTime < now) {
     currentPremiumTime = now;
   } else {
     currentPremiumTime = user.premiumTime;
   }
   newPremiumTime.setDate(currentPremiumTime.getDate() + 7);
-  console.log(newPremiumTime);
 
   await models.User.update(
     {
