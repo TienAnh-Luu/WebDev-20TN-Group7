@@ -14,6 +14,7 @@ const {
   isPremium,
   formatDateTime,
   isDate,
+  equalInt,
 } = require('./controllers/handlebarsHelper');
 
 const session = require('express-session');
@@ -45,6 +46,7 @@ app.engine(
       isPremium,
       formatDateTime,
       isDate,
+      equalInt,
     },
   }),
 );

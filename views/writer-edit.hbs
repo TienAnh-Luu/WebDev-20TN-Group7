@@ -1,0 +1,117 @@
+<div id="root">
+  <div class="dashboard-page">
+    {{>header}}
+    <main class="main main-writer-new" id="dashboard-main">
+      <ul class="dashboard-page-navbar" id="dashboard-navbar">
+        {{#each navItems}}
+        {{>nav-item data=this}}
+        {{/each}}
+      </ul>
+      <div class="main-content" id="main-content">
+        <form action="/writers/edit/{{post.id}}" class="writer-editor" method="post">
+          <div class="titleInput">
+            <label class="input-label" for="title">Tiêu đề:</label>
+            <textarea rows="1" id="title" name="title" style="width: 100%" required>{{post.title}}</textarea>
+          </div>
+
+          <div class="grid-container">
+            <div class="avatarInput">
+              <div>Ảnh đại diện:</div>
+              <div id="avatarBox" class="image-box">
+                <img id="avatar_img" src="{{post.avatar_link}}">
+              </div>
+              <input type="text" id="avatar_link_input" name="avatar_link" value="{{post.avatar_link}}"
+                style="display:none">
+            </div>
+
+            <div class="categoryInput">
+              <div class="form-group">
+                <label for="categoryDropdown">Chuyên mục</label>
+                <div class="dropdown">
+                  <select id="categoryDropdown" name="category" class="form-select" aria-label="Dropdown menu" required>
+                    {{#each categories}}
+                    <option value="{{dataValues.id}}" {{#if (equalInt dataValues.id post.id)}}selected{{/if}}>
+                      {{dataValues.name}}</option>
+                    {{#each child_categories}}
+                    <option value="{{id}}" {{#if (equalInt id post.id)}}selected{{/if}}> + {{name}}</option>
+                    {{/each}}
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="tagsInput">
+              <label for="tags">Nhãn <p>( phân cách bằng / )</p></label>
+              <input type="text" id="tags" name="tags" value="{{tags}}" />
+            </div>
+          </div>
+
+          <div class="summaryInput">
+            <label for="summary">Tóm tắt:</label>
+            <textarea rows="2" id="summary" name="summary" style="width: 100%" required>{{post.summary}}</textarea>
+          </div>
+
+          <div class="main-editor">
+            <label class="input-label" for="mainEditor">Nội dung:</label>
+            <textarea rows="20" id="mainEditor" name="mainEditor">{{post.content}}</textarea>
+          </div>
+
+          {{>roundButton type='submit' className='strawberry-backgroundcolor writer-editor-button submitButton'
+          id='submit-btn' text='Gửi bài'}}
+        </form>
+      </div>
+    </main>
+    {{!-- {{>footer}} --}}
+  </div>
+</div>
+
+<!-- Script element sourcing TinyMCE -->
+<script type="application/javascript" src="/tinymce/tinymce.min.js"></script>
+<!-- Script element sourcing the TinyMCE configuration -->
+<script type="application/javascript" src="/js/my-tinymce-config.js"></script>
+
+<script>
+  const textareas = document.querySelectorAll('textarea');
+
+  textareas.forEach(textarea => {
+    textarea.addEventListener('input', () => {
+      textarea.style.height = 'auto';
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    });
+  });
+
+  document.getElementById('avatarBox').addEventListener('click', () => {
+    const popupAvatar = ` 
+    <div class="modal" id="account-modal"> 
+      <div class="modal-content"> 
+        <div class="modal-form-container"> 
+          <a class="modal-close-btn" id="popup-account-close">&times;</a> 
+          <div class="modal-form"> 
+            <h2 class="modal-title">Đường dẫn ảnh mới</h2> 
+            <input class="modal-form-input" type="text" name="avatar_popup" id="avatar_popup" placeholder="Đường dẫn" required/> 
+            <button class="modal-form-submit-btn" type="button" id="avatar_popup_btn">Submit</button> 
+          </div> 
+        <div>
+      </div> 
+    </div>`;
+
+    const popupAvatarElement = document.createElement('div');
+    popupAvatarElement.innerHTML = popupAvatar.trim();
+    document.getElementById('dashboard-main').appendChild(popupAvatarElement);
+    document.getElementById('account-modal').style.display = 'block';
+    document.getElementById('popup-account-close').addEventListener('click', () => {
+      document.getElementById('dashboard-main').removeChild(popupAvatarElement)
+    });
+
+    const button = document.querySelector("#avatar_popup_btn");
+    if (button) {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        document.querySelector('#avatar_link_input').value = document.querySelector('#avatar_popup').value;
+        document.querySelector('#avatar_img').src = document.querySelector('#avatar_popup').value;
+        document.getElementById('dashboard-main').removeChild(popupAvatarElement)
+      })
+    }
+  });
+</script>

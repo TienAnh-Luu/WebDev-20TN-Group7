@@ -59,6 +59,12 @@ helper.equalString = (s1, s2) => {
   return s1 === s2;
 };
 
+helper.equalInt = (s1, s2) => {
+  s1 = parseInt(s1, 10);
+  s2 = parseInt(s2, 10);
+  return s1 === s2;
+};
+
 helper.isPremium = (time) => {
   return time >= new Date();
 };
