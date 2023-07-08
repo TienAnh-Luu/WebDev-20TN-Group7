@@ -1,4 +1,10 @@
 <div class='info-container'>
-  <p class='info-label'>{{label}}:</p>
-  <p class='info-data'>{{data}}</p>
+  <p class='info-label'>{{label}}{{#if data}}:{{/if}}</p>
+  <p class='info-data'>
+    {{#if (isDate data)}}
+    {{formatDateTime data}}
+    {{else}}
+    {{data}}
+    {{/if}}
+  </p>
 </div>

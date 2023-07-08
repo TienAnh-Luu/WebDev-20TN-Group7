@@ -1,0 +1,28 @@
+<div id="root">
+  <div class="dashboard-page">
+    {{>header}}
+    <main class="main" id="dashboard-main">
+      <ul class="dashboard-page-navbar" id="dashboard-navbar">
+        {{#each navItems}}
+        {{>nav-item data=this}}
+        {{/each}}
+      </ul>
+      <div class="main-content" id="main-content">
+        <div class='dashboard-account-info'>
+          <h3 class='info-header'>GIA HẠN PREMIUM</h3>
+          <div class='info-wrapper'>
+            <form action="/users/extend-premium" method="post">
+              <div class='info-button-container'>
+                {{>roundButton type="submit" className="strawberry-backgroundcolor" id='confirm-extend' text='Gia
+                hạn'}}
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    {{!-- {{>footer}} --}}
+  </div>
+</div>
+
+{{>my-account-script editMessage}}

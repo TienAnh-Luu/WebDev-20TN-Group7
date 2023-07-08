@@ -9,9 +9,6 @@ controller.edit = async (req, res) => {
   const userid = req.user.id;
   let editMessage;
 
-  console.log(req.body['change-nickname']);
-  console.log(req.body['current-password']);
-
   if (req.body['change-nickname']) {
     await models.User.update(
       {
@@ -44,6 +41,39 @@ controller.edit = async (req, res) => {
 
   res.render('my-account', {
     editMessage: editMessage,
+    data: req.user,
+    navItems: NAV_ITEMS[parseInt(req.user.role_id, 10) - 1],
+  });
+};
+
+controller.extendPremium = async (req, res) => {
+  const userid = req.user.id;
+  const user = await models.User.findOne({ where: { id: userid } });
+  const now = new Date();
+  let currentPremiumTime = new Date();
+  let newPremiumTime = new Date();
+
+  console.log(user.premiumTime);
+  if (user.premiumTime < now) {
+    currentPremiumTime = now;
+  } else {
+    currentPremiumTime = user.premiumTime;
+  }
+  newPremiumTime.setDate(currentPremiumTime.getDate() + 7);
+  console.log(newPremiumTime);
+
+  await models.User.update(
+    {
+      premiumTime: newPremiumTime,
+    },
+    {
+      where: { id: userid },
+    },
+  );
+
+  req.user = await models.User.findOne({ where: { id: userid } });
+
+  res.render('my-premium', {
     data: req.user,
     navItems: NAV_ITEMS[parseInt(req.user.role_id, 10) - 1],
   });

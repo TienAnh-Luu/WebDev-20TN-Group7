@@ -23,8 +23,20 @@
   transition: background-color 0.2s;
 }
 
-.nav-item-container:hover {
+a:hover {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-item-container .nav-item-icon,
+.nav-item-container .nav-item-text {
+  color: white;
+}
+
+.dashboard-page-navbar a {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .nav-item-container .nav-item-icon {

@@ -7,7 +7,7 @@
       </div>
       <div class="detail-cate-and-date">
         {{>headline path-headline=true}}
-        <div class="detail-date">{{post.published_time}}</div>
+        <div class="detail-date">{{formatDateTime post.published_time}}</div>
       </div>
       <h1 class="detail-title">{{post.title}}</h1>
       <div class="detail-descriptions">
@@ -71,7 +71,7 @@
               </a>
               <div class="suggestions-item-footer">
                 <a href="/posts?category={{main_category.id}}" class="suggestions-item-cate">{{main_category.name}}</a>
-                <div class="suggestions-item-date">{{published_time}}</div>
+                <div class="suggestions-item-date">{{formatDateTime published_time}}</div>
               </div>
             </div>
             {{/each}}

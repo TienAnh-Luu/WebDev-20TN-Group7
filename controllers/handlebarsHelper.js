@@ -5,7 +5,7 @@ const helper = {};
 helper.createFooterForNewsItem = (context, date) => {
   const dateIcon = `<div class="news-footer-icon-container" id="date">
     <i class="fa-solid fa-clock news-footer-icon"></i>
-    <div class="tooltip news-footer-icon-tooltip">${date}</div>
+    <div class="tooltip news-footer-icon-tooltip">${helper.formatDateTime(date)}</div>
 </div>`;
 
   const previewIcon = `<div class="news-footer-icon-container news-preview-icon" id="preview">
@@ -51,8 +51,35 @@ helper.geHandlebars = (index, threshold) => {
   return index >= threshold;
 };
 
+helper.geHandlebars = (index, threshold) => {
+  return index >= threshold;
+};
+
 helper.equalString = (s1, s2) => {
   return s1 === s2;
+};
+
+helper.isPremium = (time) => {
+  return time >= new Date();
+};
+
+helper.isDate = (input) => {
+  return input instanceof Date;
+};
+
+helper.formatDateTime = (dateTime) => {
+  const vietnameseLocale = 'vi-VN';
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  };
+
+  return dateTime.toLocaleString(vietnameseLocale, options);
 };
 
 module.exports = helper;

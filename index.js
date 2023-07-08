@@ -6,7 +6,14 @@ const port = process.env.PORT || 3000;
 const expressHandlebars = require('express-handlebars');
 
 const { createPagination } = require('express-handlebars-paginate');
-const { createFooterForNewsItem, geHandlebars, equalString } = require('./controllers/handlebarsHelper');
+const {
+  createFooterForNewsItem,
+  geHandlebars,
+  equalString,
+  isPremium,
+  formatDateTime,
+  isDate,
+} = require('./controllers/handlebarsHelper');
 
 const session = require('express-session');
 const passport = require('./controllers/passport');
@@ -30,11 +37,13 @@ app.engine(
       allowProtoPropertiesByDefault: true,
     },
     helpers: {
-      // createStarList,
       createFooterForNewsItem,
       geHandlebars,
       equalString,
       createPagination,
+      isPremium,
+      formatDateTime,
+      isDate,
     },
   }),
 );
