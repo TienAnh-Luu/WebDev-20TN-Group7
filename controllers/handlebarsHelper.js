@@ -1,29 +1,39 @@
-'use strict';
+"use strict";
 
 const helper = {};
 
-helper.createFooterForNewsItem = (context, date) => {
+helper.createFooterForNewsItem = (context, data) => {
   const dateIcon = `<div class="news-footer-icon-container" id="date">
-    <i class="fa-solid fa-clock news-footer-icon"></i>
-    <div class="tooltip news-footer-icon-tooltip">${helper.formatDateTime(date)}</div>
+      <i class="fa-solid fa-clock news-footer-icon"></i>
+      <div class="tooltip news-footer-icon-tooltip">${helper.formatDateTime(
+        data.published_time
+      )}</div>
+  </div>`;
+
+  const previewIcon = `<a
+  href="/posts/${data.id}/preview"
+  class="news-footer-icon-container news-preview-icon"
+  id="preview"
+>
+  <i class="fa-solid fa-magnifying-glass-arrow-right news-footer-icon"></i>
+  <div class="tooltip news-footer-icon-tooltip">Preview</div>
+</a>`;
+
+  const feedbackIcon = `<div
+  class="news-footer-icon-container news-feedback-icon"
+  id="see-feedback"
+  data-value="${data.feedback}"
+>
+  <i class="fa-solid fa-comments news-footer-icon"></i>
+  <div class="tooltip news-footer-icon-tooltip">Feedback</div>
 </div>`;
 
-  const previewIcon = `<div class="news-footer-icon-container news-preview-icon" id="preview">
-    <i class="fa-solid fa-magnifying-glass-arrow-right news-footer-icon"></i>
-    <div class="tooltip news-footer-icon-tooltip">Preview</div>
-</div>`;
-
-  const feedbackIcon = `<div class="news-footer-icon-container news-feedback-icon" id="see-feedback">
-    <i class="fa-solid fa-comments news-footer-icon"></i>
-    <div class="tooltip news-footer-icon-tooltip">Feedback</div>
-</div>`;
-
-  const editIcon = `<div class="news-footer-icon-container news-edit-icon" id="edit">
+  const editIcon = `<a href="/writers/edit/${data.id}" class="news-footer-icon-container news-edit-icon" id="edit">
     <i class="fa-solid fa-pen-to-square news-footer-icon"></i>
     <div class="tooltip news-footer-icon-tooltip">Edit</div>
-</div>`;
+</a>`;
 
-  const deleteIcon = `<div class="news-footer-icon-container news-delete-icon" id="delete">
+  const deleteIcon = `<div class="news-footer-icon-container news-delete-icon" id="delete" data-value="${data.id}">
     <i class="fa-solid fa-trash-can news-footer-icon"></i>
     <div class="tooltip news-footer-icon-tooltip">Delete</div>
 </div>`;
@@ -39,11 +49,27 @@ helper.createFooterForNewsItem = (context, date) => {
 </div>`;
 
   return `<div class="news-footer">
-          ${context === 'homepage' ? dateIcon : ``}
-          ${context === 'published' || context === 'approved' ? `${previewIcon} ${feedbackIcon}` : ''}
-          ${context === 'waiting' ? `${previewIcon} ${editIcon} ${deleteIcon}` : ''}
-          ${context === 'rejected' ? `${previewIcon} ${editIcon} ${deleteIcon} ${feedbackIcon}` : ''}
-          ${context === 'editor' ? `${previewIcon} ${approveIcon} ${rejectIcon}` : ''}
+          ${context === "homepage" ? dateIcon : ``}
+          ${
+            context === "published" || context === "approved"
+              ? `${previewIcon} ${feedbackIcon}`
+              : ""
+          }
+          ${
+            context === "waiting"
+              ? `${previewIcon} ${editIcon} ${deleteIcon}`
+              : ""
+          }
+          ${
+            context === "rejected"
+              ? `${previewIcon} ${editIcon} ${deleteIcon} ${feedbackIcon}`
+              : ""
+          }
+          ${
+            context === "editor"
+              ? `${previewIcon} ${approveIcon} ${rejectIcon}`
+              : ""
+          }
       </div>`;
 };
 
@@ -74,18 +100,21 @@ helper.isDate = (input) => {
 };
 
 helper.formatDateTime = (dateTime) => {
-  const vietnameseLocale = 'vi-VN';
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-  };
+  if (dateTime) {
+    const vietnameseLocale = "vi-VN";
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    };
 
-  return dateTime.toLocaleString(vietnameseLocale, options);
+    return dateTime.toLocaleString(vietnameseLocale, options);
+  }
+  return "";
 };
 
 module.exports = helper;

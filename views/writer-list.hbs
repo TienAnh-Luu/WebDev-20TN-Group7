@@ -1,0 +1,78 @@
+<div id="root">
+  <div class="dashboard-page">
+    {{>header}}
+    <main class="main" id="dashboard-main">
+      <ul class="dashboard-page-navbar" id="dashboard-navbar">
+        {{#each navItems}}
+        {{>nav-item data=this}}
+        {{/each}}
+      </ul>
+      <div class="main-content" id="main-content">
+        <div class="main__highlight grid-container">            
+            {{#each posts}}
+            {{>writer-news-item context=../context data=this}}
+            {{/each}}
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+    const feedbackIcons = document.getElementsByClassName('news-feedback-icon');
+    for(let i = 0; i < feedbackIcons.length; i++) {
+        feedbackIcons[i].addEventListener('click', (e) => {
+            const popUp = ` 
+                <div class="modal" id="feedback-modal"> 
+                    <div class="modal-content"> 
+                        <div class="modal-form-container"> 
+                            <a class="modal-close-btn" id="popup-feedback-close">&times;</a> 
+                            <div class="modal-form"> 
+                                <h2 class="modal-title">Feedback</h2> 
+                                <p>${e.target.parentElement.dataset.value}</p>
+                            </div> 
+                        </div>
+                    </div> 
+                </div>`;
+            const popUpElement = document.createElement('div');
+            popUpElement.innerHTML = popUp.trim();
+            document.getElementById('main-content').appendChild(popUpElement);
+            document.getElementById('feedback-modal').style.display = 'block';
+            document.getElementById('popup-feedback-close').addEventListener('click', () => {
+                document.getElementById('main-content').removeChild(popUpElement)
+            });
+        })
+    }
+
+    const deleteIcons = document.getElementsByClassName('news-delete-icon');
+    for(let i = 0; i < deleteIcons.length; i++) {
+        deleteIcons[i].addEventListener('click', (e) => {
+            const idToDelete = e.target.parentElement.dataset.value
+            const popUpConfirmDelete = ` 
+                <div class="modal" id="confirm-delete-modal"> 
+                    <div class="modal-content"> 
+                        <div class="modal-form-container"> 
+                            <a class="modal-close-btn" id="popup-confirm-close">&times;</a> 
+                            <div class="modal-form"> 
+                                <h2 class="modal-title">Bạn muốn xóa bài viết?</h2> 
+                                <div class="modal-options">
+                                    <a id="yes" href="/writers/delete/${idToDelete}">Có</a>
+                                    <div id="no">Không</div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div> 
+                </div>`;
+            const popUpConfirmDeleteElement = document.createElement('div');
+            popUpConfirmDeleteElement.innerHTML = popUpConfirmDelete.trim();
+            document.getElementById('main-content').appendChild(popUpConfirmDeleteElement);
+            document.getElementById('confirm-delete-modal').style.display = 'block';
+            document.getElementById('popup-confirm-close').addEventListener('click', () => {
+                document.getElementById('main-content').removeChild(popUpConfirmDeleteElement)
+            });
+            document.getElementById('no').addEventListener('click', () => {
+                document.getElementById('main-content').removeChild(popUpConfirmDeleteElement)
+            })
+        })
+    }
+</script>

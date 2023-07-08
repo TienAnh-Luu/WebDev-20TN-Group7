@@ -162,3 +162,28 @@
   outline: none;
   padding: 10px;
 }
+
+.modal-options {
+  display: flex;
+  width: 100%;
+}
+
+.modal-options #yes,
+.modal-options #no {
+  width: 80px;
+  color: black;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 12px 10px;
+  margin-right: 20px;
+  background-color: rgb(201, 191, 191);
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.modal-options #yes:hover,
+.modal-options #no:hover {
+  color: black;
+  background-color: rgb(182, 174, 174);
+}
