@@ -1,0 +1,24 @@
+<div id="root">
+  <div class="dashboard-page">
+    {{>header}}
+    <main class="main" id="dashboard-main">
+      <ul class="dashboard-page-navbar" id="dashboard-navbar">
+        {{#each navItems}}
+        {{>nav-item data=this}}
+        {{/each}}
+      </ul>
+      <div class="main-content" id="main-content">
+        <div class='dashboard-account-info'>
+          <h3 class='info-header'>THÔNG TIN QUẢN TRỊ</h3>
+          <div class='info-wrapper'>
+            {{>info-item label="Chuyên mục" data="Thêm / Điều chỉnh bậc"}}
+            {{>info-item label="Nhãn" data="Thêm / Xoá"}}
+            {{>info-item label="Bài viết" data="Duyệt / Xoá"}}
+            {{>info-item label="Người dùng" data="Gia hạn Premium / Phân công chuyên mục"}}
+          </div>
+        </div>
+      </div>
+    </main>
+    {{!-- {{>footer}} --}}
+  </div>
+</div>

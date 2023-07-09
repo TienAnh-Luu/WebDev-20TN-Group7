@@ -9,6 +9,14 @@ const { NAV_ITEMS } = require('../controllers/constrants');
 router.use(authController.isLoggedIn);
 
 router.get('/my-account', (req, res) => {
+  if (req.user.role_id === 5) {
+    res.render('admin-dashboard', {
+      data: req.user,
+      navItems: NAV_ITEMS[parseInt(req.user.role_id, 10) - 1],
+    });
+    return;
+  }
+
   res.render('my-account', {
     data: req.user,
     navItems: NAV_ITEMS[parseInt(req.user.role_id, 10) - 1],

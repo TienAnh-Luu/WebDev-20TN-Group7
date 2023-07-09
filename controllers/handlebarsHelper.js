@@ -65,6 +65,46 @@ helper.createFooterForNewsItem = (context, data) => {
       </div>`;
 };
 
+helper.createFooterForNewsItemAdminPost = (context, data) => {
+  const checkIcon = `<a
+  href="/admin/check/${data.id}"
+  class="news-footer-icon-container news-preview-icon"
+  id="preview"
+>
+  <i class="fa-solid fa-magnifying-glass-arrow-right news-footer-icon"></i>
+  <div class="tooltip news-footer-icon-tooltip">Preview</div>
+</a>`;
+
+  const premiumIcon = `<div class="news-footer-icon-container news-premium-footer-icon" id="premium" data-value="${data.id}">
+  <i class="fa-solid fa-gem news-footer-icon"></i>
+  <div class="tooltip news-footer-icon-tooltip">Premium</div>
+</div>`;
+
+  const feedbackIcon = `<div
+  class="news-footer-icon-container news-feedback-icon"
+  id="see-feedback"
+  data-value="${data.feedback}"
+>
+  <i class="fa-solid fa-comments news-footer-icon"></i>
+  <div class="tooltip news-footer-icon-tooltip">Feedback</div>
+</div>`;
+
+  const deleteIcon = `<div class="news-footer-icon-container news-delete-icon" id="delete" data-value="${data.id}">
+    <i class="fa-solid fa-trash-can news-footer-icon"></i>
+    <div class="tooltip news-footer-icon-tooltip">Delete</div>
+</div>`;
+
+  if (context === 'admin-post') {
+    return `<div class="news-footer">
+  ${data.status === 'Publish' && data.is_premium === false ? `${checkIcon} ${premiumIcon} ${deleteIcon}` : ''}
+  ${data.status === 'Publish' && data.is_premium === true ? `${checkIcon} ${deleteIcon}` : ''}
+  ${data.status === 'Draft' ? `${checkIcon} ${deleteIcon}` : ''}
+  ${data.status === 'Reject' ? `${checkIcon} ${feedbackIcon} ${deleteIcon}` : ''}
+  ${data.status === 'Delete' ? `${checkIcon}` : ''}
+</div>`;
+  }
+};
+
 helper.geHandlebars = (index, threshold) => {
   return index >= threshold;
 };
@@ -111,6 +151,15 @@ helper.formatDateTime = (dateTime) => {
     return dateTime.toLocaleString(vietnameseLocale, options);
   }
   return '';
+};
+
+helper.formatStatus = (data, status) => {
+  const now = new Date();
+  if (status === 'Draft') return 'Bản nháp';
+  if (status === 'Reject') return 'Bị từ chối';
+  if (status === 'Publish' && data.published_time > now) return 'Đã duyệt';
+  if (status === 'Publish' && data.published_time <= now) return 'Đã xuất bản';
+  if (status === 'Delete') return 'Bị xoá';
 };
 
 module.exports = helper;

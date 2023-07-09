@@ -117,21 +117,25 @@ helper.NAV_ITEMS = [
       icon: 'fa-solid fa-table-cells-large',
       text: 'Quản lý chuyên mục',
       value: 'admin-category',
+      link: '/admin/category',
     },
     {
       icon: 'fa-solid fa-tag',
       text: 'Quản lý nhãn',
       value: 'admin-tag',
+      link: '/admin/tag',
     },
     {
       icon: 'fa-solid fa-clipboard',
       text: 'Quản lý bài viết',
       value: 'admin-post',
+      link: '/admin/post',
     },
     {
       icon: 'fa-solid fa-user',
       text: 'Quản lý người dùng',
       value: 'admin-user',
+      link: '/admin/user',
     },
     {
       icon: 'fa-solid fa-right-from-bracket',

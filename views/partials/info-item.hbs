@@ -4,7 +4,11 @@
     {{#if (isDate data)}}
     {{formatDateTime data}}
     {{else}}
+    {{#if statusformat}}
+    {{formatStatus statusformat data}}
+    {{else}}
     {{data}}
+    {{/if}}
     {{/if}}
   </p>
 </div>

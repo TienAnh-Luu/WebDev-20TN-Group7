@@ -1,0 +1,93 @@
+<div class="news-detail-page">
+  {{>header}}
+  <div id="dashboard-main" class="main news-detail-main">
+    <div class="news-detail-container">
+      <div class="detail-thumbnail-container">
+        <img class="detail-thumbnail" src="{{ post.avatar_link }}" alt="Detail thumbnail" />
+      </div>
+      <div class="detail-cate-and-date">
+        {{>headline path-headline=true}}
+        <div class="detail-date">{{formatDateTime post.updatedAt}}</div>
+      </div>
+      <h1 class="detail-title">{{ post.title }}</h1>
+      <div class="detail-descriptions">
+        {{{post.content}}}
+      </div>
+      <div class="detail-writer">{{ post.Writer.nickname }}</div>
+      <div class="detail-tags-container">
+        <i class="fa-solid fa-tags detail-tags-icon"></i>
+        <div class="detail-tags">
+          {{#each post.tags}}
+          <a href="/posts?tag={{ id }}">{{ name }}</a> {{#unless @last}}/{{/unless}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class="check-post">
+      {{#if (equalString post.status 'Publish')}}
+      <div class="alert alert-success">Bài viết đã được duyệt</div>
+      {{else}}
+      {{>roundButton type='button' className='strawberry-backgroundcolor' id='approve-btn' text='Duyệt'}}
+      {{>roundButton type='button' className='strawberry-backgroundcolor' id='reject-btn' text='Từ chối'}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelector('#approve-btn').addEventListener('click', () => {
+    const popUpApproveForm = ` 
+    <div class="modal" id="account-modal"> 
+      <div class="modal-content"> 
+        <div class="modal-form-container"> 
+          <a class="modal-close-btn" id="popup-account-close">&times;</a> 
+          <form class="modal-form" action="/admin/approve/{{post.id}}" method="post"> 
+            <h2 class="modal-title">Duyệt bài viết</h2> 
+            <input class="modal-form-input" type="date" name="published_time" id="published_time" required/> 
+            <button class="modal-form-submit-btn" type="submit">Duyệt</button> 
+          </form> 
+        </div>
+      </div> 
+    </div>`;
+
+    const popUpApproveFormElement = document.createElement('div');
+    popUpApproveFormElement.innerHTML = popUpApproveForm.trim();
+    document.getElementById('dashboard-main').appendChild(popUpApproveFormElement);
+    document.getElementById('account-modal').style.display = 'block';
+    document.getElementById('popup-account-close').addEventListener('click', () => {
+      document.getElementById('dashboard-main').removeChild(popUpApproveFormElement)
+    });
+  });
+
+  console.log(document.querySelector('#reject-btn'));
+
+  document.querySelector('#reject-btn').addEventListener('click', () => {
+    const popUpRejectForm = ` 
+    <div class="modal" id="account-modal"> 
+      <div class="modal-content"> 
+        <div class="modal-form-container"> 
+          <a class="modal-close-btn" id="popup-account-close">&times;</a> 
+          <form class="modal-form" action="/admin/reject/{{post.id}}" method="post"> 
+            <h2 class="modal-title">Từ chối bài viết</h2> 
+            <textarea rows="2" class="modal-form-input" name="feedback" id="feedback" style="width: 100%" required/></textarea>
+            <button class="modal-form-submit-btn" type="submit">Từ chối</button> 
+          </form> 
+        </div>
+      </div> 
+    </div>`;
+
+    const popUpRejectFormElement = document.createElement('div');
+    popUpRejectFormElement.innerHTML = popUpRejectForm.trim();
+    document.getElementById('dashboard-main').appendChild(popUpRejectFormElement);
+    document.getElementById('account-modal').style.display = 'block';
+    document.getElementById('popup-account-close').addEventListener('click', () => {
+      document.getElementById('dashboard-main').removeChild(popUpRejectFormElement)
+    });
+
+    const textareaInput = document.querySelector('#feedback');
+    textareaInput.addEventListener('input', () => {
+      textareaInput.style.height = 'auto';
+      textareaInput.style.height = `${textareaInput.scrollHeight}px`;
+    });
+  });
+</script>
