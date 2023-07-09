@@ -65,7 +65,7 @@ helper.createFooterForNewsItem = (context, data) => {
       </div>`;
 };
 
-helper.createFooterForNewsItemAdminPost = (context, data) => {
+helper.createFooterForNewsItemAdminPost = (data) => {
   const checkIcon = `<a
   href="/admin/check/${data.id}"
   class="news-footer-icon-container news-preview-icon"
@@ -94,15 +94,29 @@ helper.createFooterForNewsItemAdminPost = (context, data) => {
     <div class="tooltip news-footer-icon-tooltip">Delete</div>
 </div>`;
 
-  if (context === 'admin-post') {
-    return `<div class="news-footer">
+  return `<div class="news-footer">
   ${data.status === 'Publish' && data.is_premium === false ? `${checkIcon} ${premiumIcon} ${deleteIcon}` : ''}
   ${data.status === 'Publish' && data.is_premium === true ? `${checkIcon} ${deleteIcon}` : ''}
   ${data.status === 'Draft' ? `${checkIcon} ${deleteIcon}` : ''}
   ${data.status === 'Reject' ? `${checkIcon} ${feedbackIcon} ${deleteIcon}` : ''}
   ${data.status === 'Delete' ? `${checkIcon}` : ''}
 </div>`;
-  }
+};
+
+helper.createFooterForNewsItemAdminTag = (data) => {
+  const editIcon = `<div class="news-footer-icon-container news-edit-icon" id="edit" data-value="${data.id}">
+<i class="fa-solid fa-pen-to-square news-footer-icon"></i>
+<div class="tooltip news-footer-icon-tooltip">Edit</div>
+</div>`;
+
+  const deleteIcon = `<div class="news-footer-icon-container news-delete-icon" id="delete" data-value="${data.id}">
+    <i class="fa-solid fa-trash-can news-footer-icon"></i>
+    <div class="tooltip news-footer-icon-tooltip">Delete</div>
+</div>`;
+
+  return `<div class="news-footer">
+  ${`${editIcon} ${deleteIcon}`}
+</div>`;
 };
 
 helper.geHandlebars = (index, threshold) => {

@@ -17,6 +17,7 @@ const {
   equalInt,
   formatStatus,
   createFooterForNewsItemAdminPost,
+  createFooterForNewsItemAdminTag,
 } = require('./controllers/handlebarsHelper');
 
 const session = require('express-session');
@@ -51,6 +52,7 @@ app.engine(
       equalInt,
       formatStatus,
       createFooterForNewsItemAdminPost,
+      createFooterForNewsItemAdminTag,
     },
   }),
 );
