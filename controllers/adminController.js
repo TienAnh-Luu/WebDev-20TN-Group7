@@ -478,7 +478,7 @@ controller.user = async (req, res) => {
           model: models.Role,
         },
       ],
-      where: { role_id: 1 },
+      where: { role_id: 1, status: 'Active' },
     })),
   );
 
@@ -493,7 +493,7 @@ controller.user = async (req, res) => {
           model: models.Role,
         },
       ],
-      where: { role_id: 3 },
+      where: { role_id: 3, status: 'Active' },
     })),
   );
 
@@ -513,7 +513,7 @@ controller.user = async (req, res) => {
           model: models.Role,
         },
       ],
-      where: { role_id: 4 },
+      where: { role_id: 4, status: 'Active' },
     })),
   );
 
@@ -528,7 +528,7 @@ controller.user = async (req, res) => {
           model: models.Role,
         },
       ],
-      where: { role_id: 5 },
+      where: { role_id: 5, status: 'Active' },
     })),
   );
 
@@ -547,9 +547,12 @@ controller.user = async (req, res) => {
 
 controller.deleteUser = async (req, res) => {
   const userid = req.params.id;
-  await models.User.destroy({
-    where: { id: userid },
-  });
+  await models.User.update(
+    { status: 'Deactived' },
+    {
+      where: { id: userid },
+    },
+  );
 
   res.redirect(`/admin/user`);
 };
@@ -557,7 +560,7 @@ controller.deleteUser = async (req, res) => {
 controller.premiumUser = async (req, res) => {
   const userid = req.params.id;
 
-  const user = await models.User.findOne({ where: { id: userid } });
+  const user = await models.User.findOne({ where: { id: userid, status: 'Active' } });
 
   const now = new Date();
   let currentPremiumTime = new Date();

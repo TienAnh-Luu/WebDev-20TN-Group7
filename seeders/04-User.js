@@ -161,6 +161,7 @@ module.exports = {
       item.premiumTime = Sequelize.literal('NOW()');
       item.createdAt = Sequelize.literal('NOW()');
       item.updatedAt = Sequelize.literal('NOW()');
+      item.status = 'Active';
     });
     await queryInterface.bulkInsert('Users', items, {});
   },

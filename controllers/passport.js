@@ -37,7 +37,7 @@ passport.use(
       try {
         // Not login yet
         if (!req.user) {
-          const user = await models.User.findOne({ where: { username } });
+          const user = await models.User.findOne({ where: { username, status: 'Active' } });
 
           // Not register yet
           if (!user) {
