@@ -1,25 +1,19 @@
-"use strict";
+'use strict';
 
 const controller = {};
-const models = require("../models");
-const { NAV_ITEMS } = require("../controllers/constrants");
+const models = require('../models');
+const { NAV_ITEMS } = require('../controllers/constrants');
+const sequelize = require('sequelize');
+const Op = sequelize.Op;
 
 controller.isWriter = async (req, res, next) => {
   if (req.user.role_id === 3) {
     req.user = await models.User.findOne({
-      attributes: [
-        "id",
-        "username",
-        "email",
-        "name",
-        "avatar_link",
-        "role_id",
-        "premiumTime",
-      ],
+      attributes: ['id', 'username', 'email', 'name', 'avatar_link', 'role_id', 'premiumTime'],
       include: [
         {
           model: models.Writer,
-          attributes: ["id", "nickname", "work_email", "telephone"],
+          attributes: ['id', 'nickname', 'work_email', 'telephone'],
         },
       ],
       where: { id: req.user.id },
@@ -27,8 +21,8 @@ controller.isWriter = async (req, res, next) => {
     return next();
   }
 
-  res.status(404).render("error", {
-    message: "Không tìm thấy trang",
+  res.status(404).render('error', {
+    message: 'Không tìm thấy trang',
   });
 };
 
@@ -46,14 +40,14 @@ controller.new = async (req, res) => {
   data.content = req.body.mainEditor;
   data.writer_id = req.user.Writer.id;
   data.is_premium = false;
-  data.status = "Draft";
+  data.status = 'Draft';
   data.avatar_link = req.body.avatar_link;
   data.background_image_link = req.body.avatar_link;
 
   const post = await models.Post.create(data);
   console.log(post.id);
 
-  let tags = req.body.tags.split("/");
+  let tags = req.body.tags.split('/');
   tags = tags.map((tag) => tag.trim());
   tags.forEach(async (tag) => {
     let queriedTag = await models.Tag.findOne({ where: { name: tag } });
@@ -79,7 +73,7 @@ controller.edit = async (req, res) => {
     : data.main_category_id.id;
   data.summary = req.body.summary;
   data.content = req.body.mainEditor;
-  data.status = "Draft";
+  data.status = 'Draft';
   data.avatar_link = req.body.avatar_link;
   data.background_image_link = req.body.avatar_link;
 
@@ -96,12 +90,12 @@ controller.edit = async (req, res) => {
     },
     {
       where: { id: queryId },
-    }
+    },
   );
 
   await models.PostTag.destroy({ where: { post_id: queryId } });
 
-  let tags = req.body.tags.split("/");
+  let tags = req.body.tags.split('/');
   tags = tags.map((tag) => tag.trim());
   tags.forEach(async (tag) => {
     let queriedTag = await models.Tag.findOne({ where: { name: tag } });
@@ -115,7 +109,7 @@ controller.edit = async (req, res) => {
 };
 
 controller.published = async (req, res) => {
-  res.locals.context = "published";
+  res.locals.context = 'published';
 
   const user = req.user;
   const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
@@ -123,34 +117,38 @@ controller.published = async (req, res) => {
 
   const posts = await models.Post.findAll({
     attributes: [
-      "id",
-      "title",
-      "avatar_link",
-      "content",
-      "is_premium",
-      "published_time",
-      "main_category_id",
-      "category_id",
-      "writer_id",
+      'id',
+      'title',
+      'avatar_link',
+      'content',
+      'is_premium',
+      'published_time',
+      'main_category_id',
+      'category_id',
+      'writer_id',
+      'feedback',
     ],
     include: [
       {
         model: models.Category,
-        as: "main_category",
+        as: 'main_category',
       },
     ],
     where: {
       writer_id: user.Writer.id,
-      status: "Publish",
+      status: 'Publish',
+      published_time: {
+        [Op.lte]: new Date(),
+      },
     },
   });
   res.locals.posts = posts;
 
-  res.render("writer-list");
+  res.render('writer-list');
 };
 
 controller.approved = async (req, res) => {
-  res.locals.context = "approved";
+  res.locals.context = 'approved';
 
   const user = req.user;
   const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
@@ -158,34 +156,38 @@ controller.approved = async (req, res) => {
 
   const posts = await models.Post.findAll({
     attributes: [
-      "id",
-      "title",
-      "avatar_link",
-      "content",
-      "is_premium",
-      "published_time",
-      "main_category_id",
-      "category_id",
-      "writer_id",
+      'id',
+      'title',
+      'avatar_link',
+      'content',
+      'is_premium',
+      'published_time',
+      'main_category_id',
+      'category_id',
+      'writer_id',
+      'feedback',
     ],
     include: [
       {
         model: models.Category,
-        as: "main_category",
+        as: 'main_category',
       },
     ],
     where: {
       writer_id: user.Writer.id,
-      status: "Approve",
+      status: 'Publish',
+      published_time: {
+        [Op.gt]: new Date(),
+      },
     },
   });
   res.locals.posts = posts;
 
-  res.render("writer-list");
+  res.render('writer-list');
 };
 
 controller.waiting = async (req, res) => {
-  res.locals.context = "waiting";
+  res.locals.context = 'waiting';
 
   const user = req.user;
   const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
@@ -193,34 +195,35 @@ controller.waiting = async (req, res) => {
 
   const posts = await models.Post.findAll({
     attributes: [
-      "id",
-      "title",
-      "avatar_link",
-      "content",
-      "is_premium",
-      "published_time",
-      "main_category_id",
-      "category_id",
-      "writer_id",
+      'id',
+      'title',
+      'avatar_link',
+      'content',
+      'is_premium',
+      'published_time',
+      'main_category_id',
+      'category_id',
+      'writer_id',
+      'feedback',
     ],
     include: [
       {
         model: models.Category,
-        as: "main_category",
+        as: 'main_category',
       },
     ],
     where: {
       writer_id: user.Writer.id,
-      status: "Waiting",
+      status: 'Draft',
     },
   });
   res.locals.posts = posts;
 
-  res.render("writer-list");
+  res.render('writer-list');
 };
 
 controller.rejected = async (req, res) => {
-  res.locals.context = "rejected";
+  res.locals.context = 'rejected';
 
   const user = req.user;
   const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
@@ -228,30 +231,31 @@ controller.rejected = async (req, res) => {
 
   const posts = await models.Post.findAll({
     attributes: [
-      "id",
-      "title",
-      "avatar_link",
-      "content",
-      "is_premium",
-      "published_time",
-      "main_category_id",
-      "category_id",
-      "writer_id",
+      'id',
+      'title',
+      'avatar_link',
+      'content',
+      'is_premium',
+      'published_time',
+      'main_category_id',
+      'category_id',
+      'writer_id',
+      'feedback',
     ],
     include: [
       {
         model: models.Category,
-        as: "main_category",
+        as: 'main_category',
       },
     ],
     where: {
       writer_id: user.Writer.id,
-      status: "Reject",
+      status: 'Reject',
     },
   });
   res.locals.posts = posts;
 
-  res.render("writer-list");
+  res.render('writer-list');
 };
 
 controller.delete = async (req, res) => {
@@ -259,33 +263,14 @@ controller.delete = async (req, res) => {
   if (queryId > 0) {
     await models.Post.update(
       {
-        status: "Delete",
+        status: 'Delete',
       },
       {
-        where: { id: req.params.id },
-      }
+        where: { id: req.params.id, writer_id: req.user.Writer.id },
+      },
     );
   }
-  res.redirect("users/my-account");
+  res.redirect('users/my-account');
 };
 
 module.exports = controller;
-
-// User {
-//   dataValues: {
-//     id: 5,
-//     username: 'writer1',
-//     email: 'anhkhoavo0712@gmail.com',
-//     name: 'Writer1',
-//     avatar_link: 'https://i.pravatar.cc/200?img=5',
-//     role_id: 3,
-//     premiumTime: 2023-07-06T15:12:20.838Z,
-//     Writer: Writer {
-//       dataValues: [Object],
-//       _previousDataValues: [Object],
-//       uniqno: 1,
-//       _changed: Set(0) {},
-//       _options: [Object],
-//       isNewRecord: false
-//     }
-//   },

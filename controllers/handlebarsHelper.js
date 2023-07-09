@@ -1,13 +1,11 @@
-"use strict";
+'use strict';
 
 const helper = {};
 
 helper.createFooterForNewsItem = (context, data) => {
   const dateIcon = `<div class="news-footer-icon-container" id="date">
       <i class="fa-solid fa-clock news-footer-icon"></i>
-      <div class="tooltip news-footer-icon-tooltip">${helper.formatDateTime(
-        data.published_time
-      )}</div>
+      <div class="tooltip news-footer-icon-tooltip">${helper.formatDateTime(data.published_time)}</div>
   </div>`;
 
   const previewIcon = `<a
@@ -49,27 +47,11 @@ helper.createFooterForNewsItem = (context, data) => {
 </div>`;
 
   return `<div class="news-footer">
-          ${context === "homepage" ? dateIcon : ``}
-          ${
-            context === "published" || context === "approved"
-              ? `${previewIcon} ${feedbackIcon}`
-              : ""
-          }
-          ${
-            context === "waiting"
-              ? `${previewIcon} ${editIcon} ${deleteIcon}`
-              : ""
-          }
-          ${
-            context === "rejected"
-              ? `${previewIcon} ${editIcon} ${deleteIcon} ${feedbackIcon}`
-              : ""
-          }
-          ${
-            context === "editor"
-              ? `${previewIcon} ${approveIcon} ${rejectIcon}`
-              : ""
-          }
+          ${context === 'homepage' ? dateIcon : ``}
+          ${context === 'published' || context === 'approved' ? `${previewIcon}` : ''}
+          ${context === 'waiting' ? `${previewIcon} ${editIcon} ${deleteIcon}` : ''}
+          ${context === 'rejected' ? `${previewIcon} ${editIcon} ${deleteIcon} ${feedbackIcon}` : ''}
+          ${context === 'editor' ? `${previewIcon} ${approveIcon} ${rejectIcon}` : ''}
       </div>`;
 };
 
@@ -87,7 +69,11 @@ helper.equalString = (s1, s2) => {
 
 helper.equalInt = (s1, s2) => {
   s1 = parseInt(s1, 10);
+  console.log('break');
+  console.log(s2);
   s2 = parseInt(s2, 10);
+  console.log(s1);
+  console.log(s2);
   return s1 === s2;
 };
 
@@ -101,20 +87,20 @@ helper.isDate = (input) => {
 
 helper.formatDateTime = (dateTime) => {
   if (dateTime) {
-    const vietnameseLocale = "vi-VN";
+    const vietnameseLocale = 'vi-VN';
     const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
     };
 
     return dateTime.toLocaleString(vietnameseLocale, options);
   }
-  return "";
+  return '';
 };
 
 module.exports = helper;

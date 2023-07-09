@@ -730,7 +730,7 @@ module.exports = {
         is_premium: false,
 
         status: 'Reject',
-        feedback: '',
+        feedback: 'Cần liên hệ quản lý',
         pdf_link: '',
         base_rate: 11,
         main_category_id: 4,
@@ -918,7 +918,7 @@ module.exports = {
         is_premium: false,
 
         status: 'Reject',
-        feedback: '',
+        feedback: 'Chưa đưa bài sở duyệt',
         pdf_link: '',
         base_rate: 26,
         main_category_id: 5,
@@ -1086,7 +1086,7 @@ module.exports = {
         is_premium: false,
 
         status: 'Reject',
-        feedback: '',
+        feedback: 'Dùng từ ngữ chưa hợp lý',
         pdf_link: '',
         base_rate: 50,
         main_category_id: 1,
@@ -1359,7 +1359,7 @@ module.exports = {
         is_premium: false,
 
         status: 'Reject',
-        feedback: '',
+        feedback: 'Dùng từ ngữ phân biệt',
         pdf_link: '',
         base_rate: 0,
         main_category_id: 3,
@@ -1548,7 +1548,7 @@ module.exports = {
         is_premium: false,
 
         status: 'Reject',
-        feedback: '',
+        feedback: 'Chưa gửi bên quản lý B Ray',
         pdf_link: '',
         base_rate: 77,
         main_category_id: 9,
@@ -1715,7 +1715,7 @@ module.exports = {
         is_premium: false,
 
         status: 'Reject',
-        feedback: '',
+        feedback: 'Kiểm tra lại số liệu',
         pdf_link: '',
         base_rate: 42,
         main_category_id: 1,
@@ -1798,7 +1798,7 @@ module.exports = {
         is_premium: false,
 
         status: 'Reject',
-        feedback: '',
+        feedback: 'Xác thực thông tin',
         pdf_link: '',
         base_rate: 1,
         main_category_id: 9,
@@ -1854,7 +1854,7 @@ module.exports = {
         const pastDate = new Date();
         const nextDate = new Date();
         pastDate.setDate(currentDate.getDate() - 21);
-        nextDate.setDate(currentDate.getDate());
+        nextDate.setDate(currentDate.getDate() + 3);
 
         const randomTimestamp = new Date(
           pastDate.getTime() + Math.random() * (nextDate.getTime() - pastDate.getTime()),

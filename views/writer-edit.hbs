@@ -29,11 +29,13 @@
                 <label for="categoryDropdown">Chuyên mục</label>
                 <div class="dropdown">
                   <select id="categoryDropdown" name="category" class="form-select" aria-label="Dropdown menu" required>
-                    {{#each categories}}
-                    <option value="{{dataValues.id}}" {{#if (equalInt dataValues.id post.id)}}selected{{/if}}>
+                    {{#each new_categories}}
+                    <option value="{{dataValues.id}}" {{#if (equalInt dataValues.id
+                      dataValues.targetCategory)}}selected{{/if}}>
                       {{dataValues.name}}</option>
                     {{#each child_categories}}
-                    <option value="{{id}}" {{#if (equalInt id post.id)}}selected{{/if}}> + {{name}}</option>
+                    <option value="{{id}}" {{#if (equalInt id targetCategory)}}selected{{/if}}> + {{name}}
+                    </option>
                     {{/each}}
                     {{/each}}
                   </select>
