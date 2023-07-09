@@ -340,8 +340,9 @@ controller.showDetails = async (req, res) => {
   const randomRelatedPosts = shuffledPosts.slice(0, 5);
 
   res.locals.relatedPosts = randomRelatedPosts;
+  res.locals.cur_user = req.user;
 
-  res.render('news-detail-page');
+  res.render('news-detail-page', { reqUrl: req.originalUrl });
 };
 
 controller.showPreview = async (req, res) => {

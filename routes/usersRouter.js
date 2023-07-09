@@ -41,4 +41,6 @@ router.get('/extend-premium', (req, res, next) => {
 
 router.post('/extend-premium', controller.extendPremium);
 
+router.post('/comment/:id', controller.comment);
+
 module.exports = router;

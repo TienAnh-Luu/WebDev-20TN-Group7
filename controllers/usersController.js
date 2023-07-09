@@ -77,4 +77,12 @@ controller.extendPremium = async (req, res) => {
   });
 };
 
+controller.comment = async (req, res) => {
+  const userid = req.user.id;
+  const postid = req.params.id;
+  const content = req.body.comment;
+  await models.Comment.create({ author_id: userid, post_id: postid, content });
+  res.redirect(`/posts/${postid}`);
+};
+
 module.exports = controller;

@@ -28,13 +28,25 @@
         <div class="unlinked-headline">
           <div class="unlinked-headline-text">Bình luận</div>
         </div>
-        <div class="comments-input-form">
+        {{#if cur_user}}
+        <form action="/users/comment/{{post.id}}" method="post" class="comments-input-form">
           <div class="comments-input-top-section">
-            <input type="text" class="comments-input-name" id="comments-input-name" placeholder="Họ tên" />
-            {{>roundButton type='button' className='strawberry-backgroundcolor' id='comments-btn' text='Đăng'}}
+            <img src="{{cur_user.avatar_link}}" alt="avatar" class="comments-item-img" />
+            <div class="comments-item-right-section">
+              <div class="comments-item-name-container">
+                <div class="comments-item-name">{{cur_user.name}}</div>
+              </div>
+            </div>
+            {{>roundButton type='submit' className='strawberry-backgroundcolor' id='comments-btn' text='Đăng'}}
           </div>
-          <textarea id="comments-input" class="comments-input" placeholder="Bình luận..."></textarea>
+          <textarea id="comments-input" class="comments-input" name="comment" id="comment"
+            placeholder="Bình luận..."></textarea>
+        </form>
+        {{else}}
+        <div class="alert-container">
+          <a href="/users/login?reqUrl={{reqUrl}}" class="alert alert-warning">Đăng nhập để bình luận</a>
         </div>
+        {{/if}}
         <div class="comments-list">
           {{!-- ${dataToCommentAreaItemList(sampleData).join('\n')} --}}
           {{#each post.comments}}
@@ -45,7 +57,7 @@
                 <div class="comments-item-name">{{User.name}}</div>
                 {{!-- ${data.isSubscriber ? `<i class="fa-solid fa-gem comments-item-premium-icon"></i>` : ''} --}}
               </div>
-              <p class="comments-item-timestamp">{{createdAt}}</p>
+              <p class="comments-item-timestamp">{{formatDateTime createdAt}}</p>
               <p class="comments-item-text">{{content}}</p>
             </div>
           </div>
