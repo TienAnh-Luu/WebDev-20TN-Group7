@@ -23,4 +23,11 @@ router.get('/tag', controller.tag);
 router.post('/editTag/:id', controller.editTag);
 router.get('/deleteTag/:id', controller.deleteTag);
 
+router.get('/category', controller.category);
+router.post('/editCategory/:id', controller.editCategory);
+router.get('/deleteCategory/:id', controller.deleteCategory);
+router.get('/upCategory/:id', controller.upCategory);
+router.get('/downCategory/:id', controller.showDownCategory);
+router.post('/downCategory/:id', controller.downCategory);
+
 module.exports = router;

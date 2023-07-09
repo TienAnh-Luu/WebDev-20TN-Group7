@@ -114,6 +114,12 @@ helper.NAV_ITEMS = [
   ],
   [
     {
+      icon: 'fa-solid fa-user',
+      text: 'Thông tin',
+      value: 'admin-user',
+      link: '/users/my-account',
+    },
+    {
       icon: 'fa-solid fa-table-cells-large',
       text: 'Quản lý chuyên mục',
       value: 'admin-category',
@@ -132,7 +138,7 @@ helper.NAV_ITEMS = [
       link: '/admin/post',
     },
     {
-      icon: 'fa-solid fa-user',
+      icon: 'fa-solid fa-users',
       text: 'Quản lý người dùng',
       value: 'admin-user',
       link: '/admin/user',

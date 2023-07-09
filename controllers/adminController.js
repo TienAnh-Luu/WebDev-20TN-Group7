@@ -222,4 +222,245 @@ controller.deleteTag = async (req, res) => {
   res.redirect(`/admin/tag`);
 };
 
+controller.category = async (req, res) => {
+  const user = req.user;
+  const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
+  res.locals.navItems = navItems;
+
+  let cur_categories = await models.Category.findAll({
+    order: [['updatedAt', 'DESC']],
+  });
+
+  await Promise.all(
+    cur_categories.map(async (category) => {
+      if (category.parent_category_id) {
+        const parent_category = await models.Category.findOne({
+          where: { id: category.parent_category_id },
+        });
+        category.parent_category_name = parent_category.name;
+      }
+    }),
+  );
+  res.locals.cur_categories = cur_categories;
+
+  res.render('admin-category-list');
+};
+
+controller.editCategory = async (req, res) => {
+  const categoryId = req.params.id;
+  const new_category = req.body.new_category;
+
+  await models.Category.update(
+    {
+      name: new_category,
+    },
+    { where: { id: categoryId } },
+  );
+
+  const parent_categories = await models.Category.findAll({
+    attributes: ['id', 'name', 'parent_category_id'],
+    where: {
+      parent_category_id: null,
+    },
+  });
+  const child_categories = await models.Category.findAll({
+    attributes: ['id', 'name', 'parent_category_id'],
+    where: {
+      parent_category_id: {
+        [Op.not]: null,
+      },
+    },
+  });
+  const categories = parent_categories.map((cate) => {
+    let child = child_categories.filter((c) => c.parent_category_id == cate.id);
+
+    const queryCate = req.query.category;
+
+    if (!isNaN(queryCate)) {
+      if (cate.dataValues.id == queryCate) {
+        cate.isChosen = true;
+      } else {
+        for (let i = 0; i < child.length; i++) {
+          if (child[i].dataValues.id == queryCate) {
+            cate.isChosen = true;
+            break;
+          }
+        }
+      }
+    }
+
+    return { ...cate, child_categories: child };
+  });
+  res.locals.categories = categories;
+
+  res.redirect(`/admin/category`);
+};
+
+controller.deleteCategory = async (req, res) => {
+  const categoryId = req.params.id;
+  const queriedCategory = await models.Category.findOne({ where: { id: categoryId } });
+  if (!queriedCategory.parent_category_id) return res.redirect(`/admin/category`);
+
+  await models.Post.update({ category_id: queriedCategory.parent_category_id }, { where: { category_id: categoryId } });
+  await models.Category.destroy({ where: { id: categoryId } });
+
+  const parent_categories = await models.Category.findAll({
+    attributes: ['id', 'name', 'parent_category_id'],
+    where: {
+      parent_category_id: null,
+    },
+  });
+  const child_categories = await models.Category.findAll({
+    attributes: ['id', 'name', 'parent_category_id'],
+    where: {
+      parent_category_id: {
+        [Op.not]: null,
+      },
+    },
+  });
+  const categories = parent_categories.map((cate) => {
+    let child = child_categories.filter((c) => c.parent_category_id == cate.id);
+
+    const queryCate = req.query.category;
+
+    if (!isNaN(queryCate)) {
+      if (cate.dataValues.id == queryCate) {
+        cate.isChosen = true;
+      } else {
+        for (let i = 0; i < child.length; i++) {
+          if (child[i].dataValues.id == queryCate) {
+            cate.isChosen = true;
+            break;
+          }
+        }
+      }
+    }
+
+    return { ...cate, child_categories: child };
+  });
+  res.locals.categories = categories;
+
+  res.redirect(`/admin/category`);
+};
+
+controller.upCategory = async (req, res) => {
+  const categoryId = req.params.id;
+  await models.Category.update({ parent_category_id: null }, { where: { id: categoryId } });
+  await models.Post.update({ main_category_id: categoryId }, { where: { category_id: categoryId } });
+
+  const parent_categories = await models.Category.findAll({
+    attributes: ['id', 'name', 'parent_category_id'],
+    where: {
+      parent_category_id: null,
+    },
+  });
+  const child_categories = await models.Category.findAll({
+    attributes: ['id', 'name', 'parent_category_id'],
+    where: {
+      parent_category_id: {
+        [Op.not]: null,
+      },
+    },
+  });
+  const categories = parent_categories.map((cate) => {
+    let child = child_categories.filter((c) => c.parent_category_id == cate.id);
+
+    const queryCate = req.query.category;
+
+    if (!isNaN(queryCate)) {
+      if (cate.dataValues.id == queryCate) {
+        cate.isChosen = true;
+      } else {
+        for (let i = 0; i < child.length; i++) {
+          if (child[i].dataValues.id == queryCate) {
+            cate.isChosen = true;
+            break;
+          }
+        }
+      }
+    }
+
+    return { ...cate, child_categories: child };
+  });
+  res.locals.categories = categories;
+
+  res.redirect(`/admin/category`);
+};
+
+controller.showDownCategory = async (req, res) => {
+  const user = req.user;
+  const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
+  res.locals.navItems = navItems;
+
+  const categoryId = req.params.id;
+  const children = await models.Category.findAll({
+    where: { parent_category_id: categoryId },
+  });
+  console.log(children);
+  if (children.length > 0) {
+    console.log('Has child');
+    return res.redirect(`/admin/category`);
+  }
+
+  res.locals.downCategoryId = categoryId;
+
+  const main_categories = await models.Category.findAll({
+    where: {
+      parent_category_id: null,
+      id: {
+        [Op.ne]: categoryId,
+      },
+    },
+  });
+  res.locals.main_categories = main_categories;
+
+  res.render(`admin-down-category`);
+};
+
+controller.downCategory = async (req, res) => {
+  const categoryId = req.params.id;
+  const parentCategoryId = req.body['new-parent-category'];
+
+  await models.Post.update({ main_category_id: parentCategoryId }, { where: { category_id: categoryId } });
+  await models.Category.update({ parent_category_id: parentCategoryId }, { where: { id: categoryId } });
+
+  const parent_categories = await models.Category.findAll({
+    attributes: ['id', 'name', 'parent_category_id'],
+    where: {
+      parent_category_id: null,
+    },
+  });
+  const child_categories = await models.Category.findAll({
+    attributes: ['id', 'name', 'parent_category_id'],
+    where: {
+      parent_category_id: {
+        [Op.not]: null,
+      },
+    },
+  });
+  const categories = parent_categories.map((cate) => {
+    let child = child_categories.filter((c) => c.parent_category_id == cate.id);
+
+    const queryCate = req.query.category;
+
+    if (!isNaN(queryCate)) {
+      if (cate.dataValues.id == queryCate) {
+        cate.isChosen = true;
+      } else {
+        for (let i = 0; i < child.length; i++) {
+          if (child[i].dataValues.id == queryCate) {
+            cate.isChosen = true;
+            break;
+          }
+        }
+      }
+    }
+
+    return { ...cate, child_categories: child };
+  });
+  res.locals.categories = categories;
+
+  res.redirect(`/admin/category`);
+};
+
 module.exports = controller;

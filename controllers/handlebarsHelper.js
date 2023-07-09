@@ -119,6 +119,33 @@ helper.createFooterForNewsItemAdminTag = (data) => {
 </div>`;
 };
 
+helper.createFooterForNewsItemAdminCategory = (data) => {
+  const upIcon = `<a href="/admin/upCategory/${data.id}" class="news-footer-icon-container news-up-icon" id="up">
+<i class="fa-solid fa-arrow-up news-footer-icon"></i>
+<div class="tooltip news-footer-icon-tooltip">Up Level</div>
+</a>`;
+
+  const downIcon = `<a href="/admin/downCategory/${data.id}" class="news-footer-icon-container news-down-icon" id="down">
+<i class="fa-solid fa-arrow-down news-footer-icon"></i>
+<div class="tooltip news-footer-icon-tooltip">Down Level</div>
+</a>`;
+
+  const editIcon = `<div class="news-footer-icon-container news-edit-icon" id="edit" data-value="${data.id}">
+<i class="fa-solid fa-pen-to-square news-footer-icon"></i>
+<div class="tooltip news-footer-icon-tooltip">Edit</div>
+</div>`;
+
+  const deleteIcon = `<div class="news-footer-icon-container news-delete-icon" id="delete" data-value="${data.id}">
+    <i class="fa-solid fa-trash-can news-footer-icon"></i>
+    <div class="tooltip news-footer-icon-tooltip">Delete</div>
+</div>`;
+
+  return `<div class="news-footer">
+  ${!data.parent_category_id ? `${downIcon} ${editIcon} ${deleteIcon}` : ''}
+  ${data.parent_category_id ? `${upIcon} ${editIcon} ${deleteIcon}` : ''}
+</div>`;
+};
+
 helper.geHandlebars = (index, threshold) => {
   return index >= threshold;
 };
