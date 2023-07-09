@@ -21,5 +21,6 @@ router.get('/premiumPost/:id', controller.premiumPost);
 
 router.get('/tag', controller.tag);
 router.post('/editTag/:id', controller.editTag);
+router.get('/deleteTag/:id', controller.deleteTag);
 
 module.exports = router;

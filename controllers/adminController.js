@@ -214,4 +214,12 @@ controller.editTag = async (req, res) => {
   res.redirect(`/admin/tag`);
 };
 
+controller.deleteTag = async (req, res) => {
+  const tagid = req.params.id;
+
+  await models.Tag.destroy({ where: { id: tagid } });
+
+  res.redirect(`/admin/tag`);
+};
+
 module.exports = controller;

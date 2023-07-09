@@ -7,7 +7,7 @@
   {{/with}}
   {{#if subs}}
   {{#each subs}}
-  <a href="/posts?category={{id}}" class="news-list-headline-text-sub">{{name}}</a>
+  <a href="/posts?category={{id}}" class="news-list-headline-text-sub {{#if isChosen}}border-bottom-red{{/if}}">{{name}}</a>
   {{/each}}
   {{/if}}
   {{/with}}
