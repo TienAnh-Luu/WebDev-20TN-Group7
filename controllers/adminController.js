@@ -3,6 +3,7 @@
 const controller = {};
 const models = require('../models');
 const sequelize = require('sequelize');
+const passport = require('./passport');
 const Op = sequelize.Op;
 const { NAV_ITEMS } = require('../controllers/constrants');
 
@@ -299,7 +300,8 @@ controller.editCategory = async (req, res) => {
 controller.deleteCategory = async (req, res) => {
   const categoryId = req.params.id;
   const queriedCategory = await models.Category.findOne({ where: { id: categoryId } });
-  if (!queriedCategory.parent_category_id) return res.redirect(`/admin/category`);
+  const childCategory = await models.Category.findAll({ where: { parent_category_id: categoryId } });
+  if (childCategory.length > 0) return res.redirect(`/admin/category`);
 
   await models.Post.update({ category_id: queriedCategory.parent_category_id }, { where: { category_id: categoryId } });
   await models.Category.destroy({ where: { id: categoryId } });
@@ -347,6 +349,69 @@ controller.upCategory = async (req, res) => {
   const categoryId = req.params.id;
   await models.Category.update({ parent_category_id: null }, { where: { id: categoryId } });
   await models.Post.update({ main_category_id: categoryId }, { where: { category_id: categoryId } });
+
+  const parent_categories = await models.Category.findAll({
+    attributes: ['id', 'name', 'parent_category_id'],
+    where: {
+      parent_category_id: null,
+    },
+  });
+  const child_categories = await models.Category.findAll({
+    attributes: ['id', 'name', 'parent_category_id'],
+    where: {
+      parent_category_id: {
+        [Op.not]: null,
+      },
+    },
+  });
+  const categories = parent_categories.map((cate) => {
+    let child = child_categories.filter((c) => c.parent_category_id == cate.id);
+
+    const queryCate = req.query.category;
+
+    if (!isNaN(queryCate)) {
+      if (cate.dataValues.id == queryCate) {
+        cate.isChosen = true;
+      } else {
+        for (let i = 0; i < child.length; i++) {
+          if (child[i].dataValues.id == queryCate) {
+            cate.isChosen = true;
+            break;
+          }
+        }
+      }
+    }
+
+    return { ...cate, child_categories: child };
+  });
+  res.locals.categories = categories;
+
+  res.redirect(`/admin/category`);
+};
+
+controller.showCreateCategory = async (req, res) => {
+  const user = req.user;
+  const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
+  res.locals.navItems = navItems;
+
+  const parent_categories = await models.Category.findAll({
+    attributes: ['id', 'name', 'parent_category_id'],
+    where: {
+      parent_category_id: null,
+    },
+  });
+
+  res.locals.parent_categories = parent_categories;
+
+  res.render('admin-create-category');
+};
+
+controller.createCategory = async (req, res) => {
+  const category_name = req.body['category_name'];
+  let parent_category_id = req.body['new-parent-category'];
+
+  if (parseInt(parent_category_id, 10) === 0) parent_category_id = null;
+  await models.Category.create({ name: category_name, parent_category_id });
 
   const parent_categories = await models.Category.findAll({
     attributes: ['id', 'name', 'parent_category_id'],
@@ -602,6 +667,110 @@ controller.changeEditorCategory = async (req, res) => {
   await models.Editor.update({ manage_category_id: req.body.category }, { where: { user_id: userId } });
 
   res.redirect(`/admin/user`);
+};
+
+controller.showCreateUser = async (req, res) => {
+  const user = req.user;
+  const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
+  res.locals.navItems = navItems;
+
+  const roles = await models.Role.findAll({
+    attributes: ['id', 'name'],
+    where: {
+      id: { [Op.ne]: 2 },
+    },
+  });
+
+  res.locals.roles = roles;
+
+  res.render('admin-create-user');
+};
+
+controller.createUser = (req, res, next) => {
+  console.log('Register');
+  passport.authenticate('local-register', (err, user) => {
+    if (err) return next(err);
+    if (!user) return res.redirect(`/admin/editUser?username=${req.body.username}&role_id=${req.body.role}`);
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+    });
+  })(req, res, next);
+  console.log('Register');
+};
+
+controller.editUser = async (req, res) => {
+  const username = req.query.username;
+  const role_id = req.query.role_id;
+  const user = await models.User.findOne({ where: { username } });
+  console.log(user);
+  if (role_id == 3) res.redirect(`/admin/createWriter/${user.id}`);
+  if (role_id == 4) res.redirect(`/admin/createEditor/${user.id}`);
+  if (role_id == 5) res.redirect(`/admin/createAdmin/${user.id}`);
+};
+
+controller.showCreateWriter = async (req, res) => {
+  const user = req.user;
+  const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
+
+  res.locals.writerId = req.params.id;
+  res.locals.navItems = navItems;
+
+  res.render('admin-create-writer');
+};
+
+controller.createWriter = async (req, res, next) => {
+  const user_id = req.params.id;
+  const nickname = req.body.nickname;
+  const telephone = req.body.telephone;
+  const work_email = req.body.email;
+
+  await models.Writer.create({ nickname, telephone, work_email, user_id });
+  await models.User.update({ role_id: 3 }, { where: { id: user_id } });
+
+  res.redirect('/admin/user');
+};
+
+controller.showCreateEditor = async (req, res) => {
+  const user = req.user;
+  const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
+
+  res.locals.editorId = req.params.id;
+  res.locals.navItems = navItems;
+
+  res.render('admin-create-editor');
+};
+
+controller.createEditor = async (req, res, next) => {
+  const user_id = req.params.id;
+  const manage_category_id = req.body.category;
+  const telephone = req.body.telephone;
+  const work_email = req.body.email;
+
+  await models.Editor.create({ manage_category_id, telephone, work_email, user_id });
+  await models.User.update({ role_id: 4 }, { where: { id: user_id } });
+
+  res.redirect('/admin/user');
+};
+
+controller.showCreateAdmin = async (req, res) => {
+  const user = req.user;
+  const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
+
+  res.locals.adminId = req.params.id;
+  res.locals.navItems = navItems;
+
+  res.render('admin-create-admin');
+};
+
+controller.createAdmin = async (req, res, next) => {
+  const user_id = req.params.id;
+  const telephone = req.body.telephone;
+  const work_email = req.body.email;
+
+  await models.Admin.create({ telephone, work_email, user_id });
+  await models.User.update({ role_id: 5 }, { where: { id: user_id } });
+
+  res.redirect('/admin/user');
 };
 
 module.exports = controller;

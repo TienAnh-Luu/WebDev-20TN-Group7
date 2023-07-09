@@ -74,14 +74,24 @@ passport.use(
       if (username) username = username.toLowerCase();
       let email;
       if (req.body.email) email = req.body.email.toLowerCase();
-      if (req.user) return done(null, req.user);
+      if (req.user && req.user.role_id != 5) return done(null, req.user);
 
       try {
         let user = await models.User.findOne({ where: { username } });
-        if (user) return done(null, false, req.flash('registerMessage', 'Tên đăng nhập đã được dùng'));
+        if (user)
+          return done(
+            null,
+            false,
+            req.flash('registeredMessage', 'Tạo tài khoản không thành công.\nTên đăng nhập đã được dùng'),
+          );
 
         user = await models.User.findOne({ where: { email: email } });
-        if (user) return done(null, false, req.flash('registerMessage', 'Email đã được dùng'));
+        if (user)
+          return done(
+            null,
+            false,
+            req.flash('registeredMessage', 'Tạo tài khoản không thành công.\nEmail đã được dùng'),
+          );
 
         // Create new user
         user = await models.User.create({
@@ -90,6 +100,7 @@ passport.use(
           password: bcrypt.hashSync(password, bcrypt.genSaltSync(8)),
           name: req.body.name,
           role_id: 1,
+          status: 'Active',
           avatar_link: 'https://i.pravatar.cc/200',
         });
 
