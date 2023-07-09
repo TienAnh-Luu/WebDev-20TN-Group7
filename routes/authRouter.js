@@ -45,7 +45,6 @@ router.post(
       else message += 'Thực hiện sai Captcha';
     }
     if (message) return res.render('register-page', { registerMessage: message });
-
     next();
   },
   controller.register,

@@ -15,6 +15,12 @@
     </div>
     {{/if}}
 
+    {{#if registeredMessage}}
+    <div class="alert alert-danger">
+      {{{registeredMessage}}}
+    </div>
+    {{/if}}
+
     <form action="/users/login" method="post" class="login-form">
       {{>form-input label='Tên đăng nhập' placeholder='Username' id='username' warningMessage='Nhập tên đăng nhập'
       type='text'}}

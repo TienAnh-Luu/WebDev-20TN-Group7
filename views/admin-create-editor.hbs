@@ -1,0 +1,46 @@
+<div id="root">
+  <div class="dashboard-page">
+    {{>header}}
+    <main class="main" id="dashboard-main">
+      <ul class="dashboard-page-navbar" id="dashboard-navbar">
+        {{#each navItems}}
+        {{>nav-item data=this}}
+        {{/each}}
+      </ul>
+
+      <div class="main-content admin-dashboard-page" id="main-content">
+        <form action="/admin/createEditor/{{editorId}}" method="post">
+          <div class="text-input-admin">
+            <label for="telephone">Số điện thoại</label>
+            <input type="text" name="telephone" id="telephone">
+          </div>
+
+          <div class="text-input-admin">
+            <label for="email">Email công việc</label>
+            <input type="text" name="email" id="email">
+          </div>
+
+          <div class="categoryInput">
+            <div class="form-group">
+              <label for="categoryDropdown">Chuyên mục quản lý</label>
+              <div class="dropdown">
+                <select id="categoryDropdown" name="category" class="form-select" aria-label="Dropdown menu" required>
+                  <option value="" selected disabled>Lựa chọn chuyên mục</option>
+                  {{#each categories}}
+                  <option value="{{dataValues.id}}">{{dataValues.name}}</option>
+                  {{#each child_categories}}
+                  <option value="{{id}}"> + {{name}}</option>
+                  {{/each}}
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {{>roundButton type='submit' className='strawberry-backgroundcolor submitButton'
+          id='submit-btn' text='Tạo biên tập viên'}}
+        </form>
+      </div>
+    </main>
+  </div>
+</div>

@@ -10,6 +10,7 @@ controller.showLogin = (req, res) => {
   res.render('login-page', {
     loginMessage: req.flash('loginMessage'),
     finishRegisterMessage: req.flash('finishRegisterMessage'),
+    registeredMessage: req.flash('registeredMessage'),
     reqUrl: req.query.reqUrl,
   });
 };
@@ -51,7 +52,7 @@ controller.register = (req, res, next) => {
 
   passport.authenticate('local-register', (err, user) => {
     if (err) return next(err);
-    if (!user) return res.redirect(`/users/register?reqUrl=${reqUrl}`);
+    if (!user) return res.redirect(`/users/login?reqUrl=${reqUrl}`);
     req.logIn(user, (err) => {
       if (err) return next(err);
       res.redirect(reqUrl);

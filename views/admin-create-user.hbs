@@ -1,0 +1,53 @@
+<div id="root">
+  <div class="dashboard-page">
+    {{>header}}
+    <main class="main" id="dashboard-main">
+      <ul class="dashboard-page-navbar" id="dashboard-navbar">
+        {{#each navItems}}
+        {{>nav-item data=this}}
+        {{/each}}
+      </ul>
+
+      <div class="main-content admin-dashboard-page" id="main-content">
+        {{#if registerMessage}}
+        <div class="alert alert-danger">
+          {{{registerMessage}}}
+        </div>
+        {{/if}}
+
+        <form action="/admin/createUser" method="post" class="register-form">
+          <div class="register-content">
+            <div class="register-column">
+              {{> form-input label='Tên đăng nhập *' placeholder='Username' id='username' warningMessage='Enter user
+              name'
+              type='text'}}
+              {{> form-input label='Email *' placeholder='Email' id='email' warningMessage='Enter correct email'
+              type='email'}}
+              {{> form-input label='Biệt danh *' placeholder='Nickname' id='name' warningMessage='Enter nick name'
+              type='text'}}
+            </div>
+            <div class="register-column">
+              {{> form-input label='Mật khẩu *' placeholder='Password' id='password' warningMessage='Enter password'
+              type='password'}}
+              {{> form-input label='Xác nhận mật khẩu *' placeholder='Password' id='retypePassword'
+              warningMessage='Enter
+              password' type='password'}}
+              <div class="form-group">
+                <label for="roleDropdown">Vai trò</label>
+                <div class="dropdown">
+                  <select id="roleDropdown" name="role" class="form-select" aria-label="Dropdown menu" required>
+                    <option value="" selected disabled>Vai trò</option>
+                    {{#each roles}}
+                    <option value="{{dataValues.id}}">{{dataValues.name}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{> roundButton type='submit' className='strawberry-backgroundcolor' id='login-btn' text='Tạo tài khoản'}}
+        </form>
+      </div>
+    </main>
+  </div>
+</div>
