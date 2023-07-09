@@ -1,0 +1,22 @@
+.admin-dashboard-page .main__highlight {
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  margin-left: 20px;
+}
+
+.admin-infomation-div {
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
+  border-left: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.admin-infomation-div p {
+  font-size: 18px;
+  font-weight: 100;
+  padding-left: 30px;
+}
+
+.admin-infomation-div .info-container {
+  height: 40px;
+  padding: 0;
+  margin: 0;
+}

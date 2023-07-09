@@ -270,7 +270,7 @@ controller.delete = async (req, res) => {
         status: 'Delete',
       },
       {
-        where: { id: req.params.id, writer_id: req.user.Writer.id },
+        where: { id: queryId, writer_id: req.user.Writer.id },
       },
     );
   }

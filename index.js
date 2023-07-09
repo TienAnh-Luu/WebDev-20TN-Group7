@@ -15,6 +15,8 @@ const {
   formatDateTime,
   isDate,
   equalInt,
+  formatStatus,
+  createFooterForNewsItemAdminPost,
 } = require('./controllers/handlebarsHelper');
 
 const session = require('express-session');
@@ -47,6 +49,8 @@ app.engine(
       formatDateTime,
       isDate,
       equalInt,
+      formatStatus,
+      createFooterForNewsItemAdminPost,
     },
   }),
 );
@@ -95,6 +99,7 @@ app.use('/users', require('./routes/authRouter'));
 app.use('/users', require('./routes/usersRouter'));
 app.use('/writers', require('./routes/writersRouter'));
 app.use('/editors', require('./routes/editorsRouter'));
+app.use('/admin', require('./routes/adminRouter'));
 
 app.use(async (req, res, next) => {
   res.status(404).render('error', {
