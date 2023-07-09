@@ -1,14 +1,14 @@
-import RoundButton from '../../../source/components/RoundButton/RoundButton.js';
-import FormInput from '../../../source/components/FormInput/FormInput.js';
-import Logo from '../../../source/components/Logo/Logo.js';
-import handleShowPassword from '../../../source/utils/handleShowPassword.js';
+import RoundButton from '../../components/RoundButton/RoundButton.js';
+import FormInput from '../../components/FormInput/FormInput.js';
+import Logo from '../../components/Logo/Logo.js';
+import handleShowPassword from '../../utils/handleShowPassword.js';
 
 // TODO: Add onclick to the second 'show-password' button
 
 const root = document.getElementById('root');
 
 root.innerHTML = `
-<div class="registry-page">
+<div class="register-page">
     ${Logo('logo-login', 'dark-red-color', 'black-color')}
 
     <form action="#" class="login-form">

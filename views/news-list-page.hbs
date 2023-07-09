@@ -1,0 +1,18 @@
+<div class="news-list">
+  {{>header}}
+  <div class="main news-list">
+    {{#if newsListMessage}}
+    <div class="alert alert-danger">
+      {{{newsListMessage}}}
+    </div>
+    {{else}}
+    <div class="news-list-main" id="news-list-main">
+      {{>highlight highlightData=posts path-headline=true}}
+      {{>pagination-main}}
+    </div>
+    {{/if}}
+  </div>
+  {{>footer}}
+</div>
+
+{{>pagination-script}}

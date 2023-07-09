@@ -1,0 +1,88 @@
+<div id="root">
+  <div class="dashboard-page">
+    {{>header}}
+    <main class="main" id="dashboard-main">
+      <ul class="dashboard-page-navbar" id="dashboard-navbar">
+        {{#each navItems}}
+        {{>nav-item data=this}}
+        {{/each}}
+      </ul>
+      <div class="main-content admin-dashboard-page" id="main-content">
+        <div class="main__highlight grid-container">
+          {{#each cur_categories}}
+          {{>admin-category-item data=this}}
+          <div class="admin-infomation-div">
+            {{#if parent_category_id}}
+            {{>info-item label="Chuyên mục cha" data=parent_category_name}}
+            {{else}}
+            {{>info-item label="Là chuyên mục cha"}}
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  const deleteIcons = document.getElementsByClassName('news-delete-icon');
+  for (let i = 0; i < deleteIcons.length; i++) {
+    deleteIcons[i].addEventListener('click', (e) => {
+      const idToDelete = e.target.parentElement.dataset.value
+      const popUpConfirmDelete = ` 
+                <div class="modal" id="confirm-premium-modal"> 
+                    <div class="modal-content"> 
+                        <div class="modal-form-container"> 
+                            <a class="modal-close-btn" id="popup-confirm-close">&times;</a> 
+                            <div class="modal-form"> 
+                                <h2 class="modal-title">Bạn muốn xóa chuyên mục?</h2> 
+                                <div class="modal-options">
+                                    <a id="yes" href="/admin/deleteCategory/${idToDelete}">Có</a>
+                                    <div id="no">Không</div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div> 
+                </div>`;
+      const popUpConfirmDeleteElement = document.createElement('div');
+      popUpConfirmDeleteElement.innerHTML = popUpConfirmDelete.trim();
+      document.getElementById('main-content').appendChild(popUpConfirmDeleteElement);
+      document.getElementById('confirm-premium-modal').style.display = 'block';
+      document.getElementById('popup-confirm-close').addEventListener('click', () => {
+        document.getElementById('main-content').removeChild(popUpConfirmDeleteElement)
+      });
+      document.getElementById('no').addEventListener('click', () => {
+        document.getElementById('main-content').removeChild(popUpConfirmDeleteElement)
+      })
+    })
+  }
+
+  const editIcons = document.getElementsByClassName('news-edit-icon');
+  for (let i = 0; i < editIcons.length; i++) {
+    editIcons[i].addEventListener('click', (e) => {
+      const id = e.target.parentElement.dataset.value;
+      const popUpEdit = ` 
+    <div class="modal" id="account-modal"> 
+      <div class="modal-content"> 
+        <div class="modal-form-container"> 
+          <a class="modal-close-btn" id="popup-account-close">&times;</a> 
+          <form class="modal-form" action="/admin/editCategory/${id}" method="post"> 
+            <h2 class="modal-title">Chỉnh sửa chuyên mục thành:</h2> 
+            <textarea rows="1" class="modal-form-input" name="new_category" id="new_category" style="width: 100%" required/></textarea>
+            <button class="modal-form-submit-btn" type="submit">Chỉnh sửa</button> 
+          </form> 
+        </div>
+      </div> 
+    </div>`;
+
+      const popUpEditElement = document.createElement('div');
+      popUpEditElement.innerHTML = popUpEdit.trim();
+      document.getElementById('main-content').appendChild(popUpEditElement);
+      document.getElementById('account-modal').style.display = 'block';
+      document.getElementById('popup-account-close').addEventListener('click', () => {
+        document.getElementById('main-content').removeChild(popUpEditElement)
+      });
+    });
+  }
+</script>

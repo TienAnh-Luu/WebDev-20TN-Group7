@@ -1,0 +1,59 @@
+<div id="root">
+  <div class="login-page">
+    {{>logo subclass='logo-login' firstLetterColor='dark-red-color' secondLetterColor='black-color'}}
+    {{>goBackButton link='/'}}
+
+    {{#if loginMessage}}
+    <div class="alert alert-danger">
+      {{{loginMessage}}}
+    </div>
+    {{/if}}
+
+    {{#if finishRegisterMessage}}
+    <div class="alert alert-success">
+      {{{finishRegisterMessage}}}
+    </div>
+    {{/if}}
+
+    <form action="/users/login" method="post" class="login-form">
+      {{>form-input label='Tên đăng nhập' placeholder='Username' id='username' warningMessage='Nhập tên đăng nhập'
+      type='text'}}
+      {{>form-input label='Mật khẩu' placeholder='Password' id='password' warningMessage='Nhập mật khẩu'
+      type='password'}}
+      <div class="form-checkbox">
+        <input type="checkbox" class="form-checkbox-input" id="keep-signed-in" name="keepSignedIn" />
+        <label class="form-label" for="keep-signed-in">Giữ trạng thái đăng nhập</label>
+      </div>
+      <input type="hidden" name="reqUrl" value="{{reqUrl}}">
+      {{>roundButton type='submit' className='strawberry-backgroundcolor' id='login-btn' text='Đăng nhập'}}
+    </form>
+
+    <a href="/users/forgot" class="forget-password-btn">Quên mật khẩu</a>
+
+    <div class="other-login-btns">
+      <button class="loginBtn loginBtn--facebook">Đăng nhập bằng Facebook</button>
+      <button class="loginBtn loginBtn--google">Đăng nhập bằng Google</button>
+    </div>
+
+    <a href="/users/register">
+      {{>roundButton type="button" className="dark-red-backgroundcolor" id="register-btn" text="Tạo tài khoản mới"}}
+    </a>
+  </div>
+</div>
+
+<script>
+  const showPassBtn = document.querySelector("#show-password");
+  const inputField = showPassBtn.previousElementSibling;
+  showPassBtn.onclick = function () {
+    if
+      (showPassBtn.classList.contains('fa-eye')) {
+      inputField.setAttribute('type',
+        'text'); showPassBtn.classList.remove('fa-eye');
+      showPassBtn.classList.add('fa-eye-slash');
+    } else {
+      inputField.setAttribute('type', 'password');
+      showPassBtn.classList.add('fa-eye');
+      showPassBtn.classList.remove('fa-eye-slash');
+    }
+  };
+</script>

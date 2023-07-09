@@ -1,0 +1,50 @@
+{{#if path-headline}}
+<div class="news-list-headline">
+  {{#if categoryHeadline}}
+  {{#with categoryHeadline}}
+  {{#with main}}
+  <a href="/posts?category={{id}}" class="news-list-headline-text-main">{{name}}</a>
+  {{/with}}
+  {{#if subs}}
+  {{#each subs}}
+  <a href="/posts?category={{id}}" class="news-list-headline-text-sub {{#if isChosen}}border-bottom-red{{/if}}">{{name}}</a>
+  {{/each}}
+  {{/if}}
+  {{/with}}
+  {{else}}
+  {{#if tagHeadline}}
+  <div class="news-list-headline-text-main">Nhãn</div>
+  <a href="/posts?tag={{tagHeadline.id}}" class="news-list-headline-text-sub">{{tagHeadline.name}}</a>
+  {{else}}
+  {{#if searchHeadline}}
+  <div class="news-list-headline-text-main">Tìm kiếm</div>
+  <a href="/posts?search={{searchHeadline}}" class="news-list-headline-text-sub">{{searchHeadline}}</a>
+  <select class="search-filter-box" name="search-filter" id="search-filter">
+    <option class="search-filter-option" value="title">Tìm kiếm theo...</option>
+    <option class="search-filter-option" value="title">Tiêu đề</option>
+    <option class="search-filter-option" value="summary">Tóm tắt</option>
+    <option class="search-filter-option" value="content">Nội dung</option>
+  </select>
+  {{!-- <div class="dropdown-filter">
+    <button class="dropbtn-filter">Tìm kiếm theo...
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content-filter">
+      <a href="/posts?filter=title&search={{searchHeadline}}">Tiêu đề</a>
+      <a href="/posts?filter=summary&search={{searchHeadline}}">Tóm tắt</a>
+      <a href="/posts?filter=content&search={{searchHeadline}}">Nội dung</a>
+    </div>
+  </div> --}}
+  {{else}}
+  <a href="{{originalUrl}}" class="news-list-headline-text-main">{{headline}}</a>
+  {{/if}}
+  {{/if}}
+  {{/if}}
+</div>
+{{else}}
+<div class="main__highlight-headline">
+  <a href="{{originalUrl}}" class="headline-text">{{headline}}</a>
+</div>
+{{/if}}
+
+{{>headline-script}}

@@ -1,5 +1,5 @@
-import FormInput from '../../../../source/components/FormInput/FormInput.js';
-import RoundButton from '../../../../source/components/RoundButton/RoundButton.js';
+import FormInput from '../../../components/FormInput/FormInput.js';
+import RoundButton from '../../../components/RoundButton/RoundButton.js';
 
 const PasswordForm = `
 <form action="#" class="login-form">

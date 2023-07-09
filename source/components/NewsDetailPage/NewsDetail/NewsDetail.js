@@ -1,6 +1,6 @@
-import CommentArea from '../../../../source/components/NewsDetailPage/CommentArea/CommentArea.js';
-import Suggestion from '../../../../source/components/NewsDetailPage/Suggestion/Suggestion.js';
-import { dataToDescriptionList, dataToTagList } from '../../../../source/utils/createHtmlElements.js';
+import CommentArea from '../../../components/NewsDetailPage/CommentArea/CommentArea.js';
+import Suggestion from '../../../components/NewsDetailPage/Suggestion/Suggestion.js';
+import { dataToDescriptionList, dataToTagList } from '../../../utils/createHtmlElements.js';
 
 const NewsDetail = (data) => `
     <div class="news-detail-container">
@@ -8,7 +8,7 @@ const NewsDetail = (data) => `
             <img class="detail-thumbnail" src=${data.thumbnail} alt="Detail thumbnail" />
         </div>
         <div class="detail-cate-and-date">
-            <a href="../../../../source/pages/NewslistPage.html" id="detail-cate" class="detail-cate">${data.cate}</a>
+            <a href="../../../pages/NewslistPage.html" id="detail-cate" class="detail-cate">${data.cate}</a>
             <div class="detail-date">${data.date}</div>
         </div>
         <h1 class="detail-title">${data.title}</h1>

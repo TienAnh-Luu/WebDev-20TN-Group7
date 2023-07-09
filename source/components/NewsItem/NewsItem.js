@@ -1,9 +1,7 @@
-import NewsItemFooter from '../../../source/components/NewsItem/NewsItemFooter/NewsItemFooter.js';
+import NewsItemFooter from '../../components/NewsItem/NewsItemFooter/NewsItemFooter.js';
 
 const NewsItem = (data, context) => `
-<a ${
-  context === 'editor' ? '' : "href='../../../source/pages/NewsDetailPage.html'"
-}" class="news-item-container ignore-click">
+<a ${context === 'editor' ? '' : "href='../../pages/NewsDetailPage.html'"}" class="news-item-container ignore-click">
     <div class="news-thumbnail-container zoom-hover">
         <img class="news-thumbnail" src=${data.imgPath} alt="Thumbnail" />
     </div>

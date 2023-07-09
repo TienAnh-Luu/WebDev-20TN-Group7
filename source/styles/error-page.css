@@ -1,0 +1,13 @@
+.error-page {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-page .container {
+  width: 60%;
+  text-align: center;
+}

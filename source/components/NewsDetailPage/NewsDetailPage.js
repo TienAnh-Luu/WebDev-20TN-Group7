@@ -1,12 +1,12 @@
-import Header from '../../../source/components/Header/Header.js';
-import Footer from '../../../source/components/Footer/Footer.js';
-import NewsDetail from '../../../source/components/NewsDetailPage/NewsDetail/NewsDetail.js';
-import { handleSticky } from '../../../source/utils/handleSticky.js';
+import Header from '../../components/Header/Header.js';
+import Footer from '../../components/Footer/Footer.js';
+import NewsDetail from '../../components/NewsDetailPage/NewsDetail/NewsDetail.js';
+import { handleSticky } from '../../utils/handleSticky.js';
 import { handleNavigateToNewslistPage } from '../../utils/addOnclick.js';
 
 const sampleData = {
   id: '',
-  thumbnail: '../../../../source/public/images/messi.png',
+  thumbnail: '../../../public/images/messi.png',
   cate: 'Thể thao', // should be id
   date: '13/04/2023',
   title: 'World Cup 2026 sẽ đá 104 trận',
@@ -31,7 +31,7 @@ const sampleData = {
     {
       type: 'image',
       value: {
-        source: '../../../../source/public/images/messi.png',
+        source: '../../../public/images/messi.png',
         caption:
           'Messi (áo choàng đen) và các tuyển thủ Argentina nâng cup trong lễ đăng quang World Cup 2022 - kỳ giải cuối cùng với 32 đội. Ảnh: Reuters',
       },

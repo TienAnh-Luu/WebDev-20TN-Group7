@@ -1,0 +1,8 @@
+<div class="main__highlight grid-container">
+  {{>headline}}
+  
+  {{#each highlightData}}
+  {{>news-item data=this context=../context }}
+  {{/each}}
+  {{!-- <a href="/posts?type={{type}}" class="see-more-btn">Xem thêm</a> --}}
+</div>

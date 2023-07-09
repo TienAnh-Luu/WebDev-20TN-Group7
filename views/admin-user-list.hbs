@@ -1,0 +1,98 @@
+<div id="root">
+  <div class="dashboard-page">
+    {{>header}}
+    <main class="main" id="dashboard-main">
+      <ul class="dashboard-page-navbar" id="dashboard-navbar">
+        {{#each navItems}}
+        {{>nav-item data=this}}
+        {{/each}}
+      </ul>
+      <div class="main-content admin-dashboard-page" id="main-content">
+        <div class="main__highlight grid-container">
+          {{#each users}}
+          {{>admin-user-item data=this}}
+          <div class="admin-infomation-div">
+            {{>info-item label="Vai trò" data=Role.name}}
+            {{>info-item label="Email" data=email}}
+            {{#if (isPremium premiumTime)}}
+            {{>info-item label="Premium" data=premiumTime}}
+            {{/if}}
+            {{#if (equalInt dataValues.role_id 3)}}
+            {{>info-item label="Bút danh" data=Writer.nickname}}
+            {{/if}}
+            {{#if (equalInt dataValues.role_id 4)}}
+            {{>info-item label="Chuyên mục quản lý" data=Editor.Category.name}}
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  const deleteIcons = document.getElementsByClassName('news-delete-icon');
+  for (let i = 0; i < deleteIcons.length; i++) {
+    deleteIcons[i].addEventListener('click', (e) => {
+      const idToDelete = e.target.parentElement.dataset.value
+      const popUpConfirmDelete = ` 
+                <div class="modal" id="confirm-premium-modal"> 
+                    <div class="modal-content"> 
+                        <div class="modal-form-container"> 
+                            <a class="modal-close-btn" id="popup-confirm-close">&times;</a> 
+                            <div class="modal-form"> 
+                                <h2 class="modal-title">Bạn muốn xóa người dùng ?</h2> 
+                                <div class="modal-options">
+                                    <a id="yes" href="/admin/deleteUser/${idToDelete}">Có</a>
+                                    <div id="no">Không</div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div> 
+                </div>`;
+      const popUpConfirmDeleteElement = document.createElement('div');
+      popUpConfirmDeleteElement.innerHTML = popUpConfirmDelete.trim();
+      document.getElementById('main-content').appendChild(popUpConfirmDeleteElement);
+      document.getElementById('confirm-premium-modal').style.display = 'block';
+      document.getElementById('popup-confirm-close').addEventListener('click', () => {
+        document.getElementById('main-content').removeChild(popUpConfirmDeleteElement)
+      });
+      document.getElementById('no').addEventListener('click', () => {
+        document.getElementById('main-content').removeChild(popUpConfirmDeleteElement)
+      })
+    })
+  }
+
+  const premiumIcons = document.getElementsByClassName('news-premium-footer-icon');
+  for (let i = 0; i < premiumIcons.length; i++) {
+    premiumIcons[i].addEventListener('click', (e) => {
+      const id = e.target.parentElement.dataset.value
+      const popUpPremium = ` 
+                <div class="modal" id="confirm-premium-modal"> 
+                    <div class="modal-content"> 
+                        <div class="modal-form-container"> 
+                            <a class="modal-close-btn" id="popup-confirm-close">&times;</a> 
+                            <div class="modal-form"> 
+                                <h2 class="modal-title">Gia hạn Premium thêm 7 ngày ?</h2> 
+                                <div class="modal-options">
+                                    <a id="yes" href="/admin/premiumUser/${id}">Có</a>
+                                    <div id="no">Không</div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div> 
+                </div>`;
+      const popUpPremiumElement = document.createElement('div');
+      popUpPremiumElement.innerHTML = popUpPremium.trim();
+      document.getElementById('main-content').appendChild(popUpPremiumElement);
+      document.getElementById('confirm-premium-modal').style.display = 'block';
+      document.getElementById('popup-confirm-close').addEventListener('click', () => {
+        document.getElementById('main-content').removeChild(popUpPremiumElement)
+      });
+      document.getElementById('no').addEventListener('click', () => {
+        document.getElementById('main-content').removeChild(popUpPremiumElement)
+      })
+    })
+  }
+</script>

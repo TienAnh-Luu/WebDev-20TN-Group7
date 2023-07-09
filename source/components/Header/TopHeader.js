@@ -26,13 +26,13 @@ const TopHeader = `
         </div>
         <div class="header__top-middle">
           <nav class="header__top-navbar">
-              <a href="../../../source/pages/NewslistPage.html" class="header__top-navItem header-item" data-value="0">${
+              <a href="../../pages/NewslistPage.html" class="header__top-navItem header-item" data-value="0">${
                 headerTopItems[0].title
               }</a>
-              <a href="../../../source/pages/NewslistPage.html" class="header__top-navItem header-item" data-value="1">${
+              <a href="../../pages/NewslistPage.html" class="header__top-navItem header-item" data-value="1">${
                 headerTopItems[1].title
               }</a>
-              <a href="../../../source/pages/NewslistPage.html" class="header__top-navItem header-item" data-value="-1">${
+              <a href="../../pages/NewslistPage.html" class="header__top-navItem header-item" data-value="-1">${
                 headerTopItems[2].title
               }</a>
           </nav>
@@ -44,7 +44,7 @@ const TopHeader = `
           </div>
           <div class="header__top-userIconContainer">
               <a class="header__top-userIcon" href=${
-                isGuest ? '../../../source/pages/LoginPage.html' : '../../source/pages/DashboardPage.html'
+                isGuest ? '../../pages/LoginPage.html' : '../pages/DashboardPage.html'
               }><i class="fa-solid fa-user"></i></a>
               <div class="tooltip userIcon-tooltip">User</div>
           </div>

@@ -1,4 +1,4 @@
-import PopupForm from '../../source/components/PopupForm/PopupForm.js';
+import PopupForm from '../components/PopupForm/PopupForm.js';
 import { createElementFromHTML } from './createHtmlElements.js';
 
 export const openPopup = (containerId, modalId, data = []) => {

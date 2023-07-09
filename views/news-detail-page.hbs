@@ -1,0 +1,113 @@
+<div class="news-detail-page">
+  {{>header}}
+  <div class="main news-detail-main">
+    <div class="news-detail-container">
+      <div class="detail-thumbnail-container">
+        <img class="detail-thumbnail" src="{{post.avatar_link}}" alt="Detail thumbnail" />
+      </div>
+      <div class="detail-cate-and-date">
+        {{>headline path-headline=true}}
+        <div class="detail-date">{{formatDateTime post.published_time}}</div>
+      </div>
+      <h1 class="detail-title">{{post.title}}</h1>
+      <div class="detail-descriptions">
+        {{!-- ${dataToDescriptionList(data.descriptions).join('\n')} --}}
+        {{{post.content}}}
+      </div>
+      <div class="detail-writer">{{post.Writer.nickname}}</div>
+      <div class="detail-tags-container">
+        <i class="fa-solid fa-tags detail-tags-icon"></i>
+        <div class="detail-tags">
+          {{!-- ${dataToTagList(data.tags, data.cate).join('\n')} --}}
+          {{#each post.tags}}
+          <a href="/posts?tag={{id}}">{{name}}</a> {{#unless @last}}/{{/unless}}
+          {{/each}}
+        </div>
+      </div>
+      <div class="comments-container">
+        <div class="unlinked-headline">
+          <div class="unlinked-headline-text">Bình luận</div>
+        </div>
+        {{#if cur_user}}
+        <form action="/users/comment/{{post.id}}" method="post" class="comments-input-form">
+          <div class="comments-input-top-section">
+            <img src="{{cur_user.avatar_link}}" alt="avatar" class="comments-item-img" />
+            <div class="comments-item-right-section">
+              <div class="comments-item-name-container">
+                <div class="comments-item-name">{{cur_user.name}}</div>
+              </div>
+            </div>
+            {{>roundButton type='submit' className='strawberry-backgroundcolor' id='comments-btn' text='Đăng'}}
+          </div>
+          <textarea id="comments-input" class="comments-input" name="comment" id="comment"
+            placeholder="Bình luận..."></textarea>
+        </form>
+        {{else}}
+        <div class="alert-container">
+          <a href="/users/login?reqUrl={{reqUrl}}" class="alert alert-warning">Đăng nhập để bình luận</a>
+        </div>
+        {{/if}}
+        <div class="comments-list">
+          {{!-- ${dataToCommentAreaItemList(sampleData).join('\n')} --}}
+          {{#each post.comments}}
+          <div class="comments-item" {{#if (geHandlebars @index 4)}}style="display:none" {{/if}}>
+            <img src="{{User.avatar_link}}" alt="avatar" class="comments-item-img" />
+            <div class="comments-item-right-section">
+              <div class="comments-item-name-container">
+                <div class="comments-item-name">{{User.name}}</div>
+                {{!-- ${data.isSubscriber ? `<i class="fa-solid fa-gem comments-item-premium-icon"></i>` : ''} --}}
+              </div>
+              <p class="comments-item-timestamp">{{formatDateTime createdAt}}</p>
+              <p class="comments-item-text">{{content}}</p>
+            </div>
+          </div>
+          {{/each}}
+          <div class="comments-load-more-btn">Xem thêm</div>
+        </div>
+      </div>
+      <div class="suggestions-container">
+        <div class="unlinked-headline">
+          <div class="unlinked-headline-text">Cùng chủ đề</div>
+        </div>
+        <div class="suggestions-list">
+          <div class="suggestions-items">
+            {{!-- ${dataToSuggestionItemList(sampleData).join('\n')} --}}
+            {{#each relatedPosts}}
+            <div class="suggestions-item-container">
+              <a href="/posts/{{id}}">
+                <img class="suggestions-item-thumbnail" src={{avatar_link}} alt="Thumbnail" />
+                {{#if is_premium}}
+                <i class='fa-solid fa-gem news-premium-icon'></i>
+                {{/if}}
+                <p class="suggestions-item-title">{{title}}</p>
+              </a>
+              <div class="suggestions-item-footer">
+                <a href="/posts?category={{main_category.id}}" class="suggestions-item-cate">{{main_category.name}}</a>
+                <div class="suggestions-item-date">{{formatDateTime published_time}}</div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{>footer}}
+</div>
+
+<script>
+  const loadMoreCommentBtn = document.querySelector(".comments-load-more-btn");
+  let currentComments = 4;
+
+  loadMoreCommentBtn.onclick = () => {
+    const comments = [...document.querySelectorAll(".comments-item")];
+    const nextComments = Math.min(comments.length, currentComments + 4);
+    for (var i = currentComments; i < nextComments; i++) {
+      comments[i].style.display = "flex";
+    }
+    currentComments = nextComments;
+    if (currentComments == comments.length) {
+      loadMoreCommentBtn.style.display = "none";
+    }
+  }
+</script>

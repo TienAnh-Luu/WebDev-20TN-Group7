@@ -1,0 +1,21 @@
+<div id="root">
+  <div class="premium-user-page">
+    {{>header}}
+    <div class="main premium-user-page">
+      <div class="alert alert-warning">
+        {{{premiumMessage}}}
+      </div>
+      {{#if isLoggedIn}}
+      <a href="/users/extend-premium">
+        {{>roundButton type='button' className='strawberry-backgroundcolor' id='pass-extend-premium-btn' text='Gia hạn
+        Premium'}}
+      </a>
+      {{else}}
+      <a href="/users/login?reqUrl=/posts?type=premium">
+        {{>roundButton type='button' className='strawberry-backgroundcolor' id='pass-login-btn' text='Đăng nhập'}}
+      </a>
+      {{/if}}
+    </div>
+    {{>footer}}
+  </div>
+</div>

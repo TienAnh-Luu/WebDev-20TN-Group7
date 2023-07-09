@@ -1,0 +1,50 @@
+<div id="root">
+  {{>header }}
+  <div class="main main__features grid-container" id="features">
+    <div class="main__features-carousel">
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          {{#each carouselPosts}}
+          <div class="carousel-item {{#if @first}}active{{/if}}" id="carousel-post-{{id}}">
+            <div class="custom-carousel-item">
+              <a href="/posts/{{id}}">
+                <div class="carousel-thumbnail-container">
+                  <img class="carousel-thumbnail" src={{avatar_link}} alt="Carousel thumbnail" />
+                </div>
+              </a>
+              <div class="carousel-info">
+                <a href="/posts/{{id}}">
+                  <div class="carousel-title">{{title}}</div>
+                </a>
+                <p class="carousel-summary">
+                  {{summary}}
+                </p>
+              </div>
+              <div class="news-tag">{{main_category.name}}</div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+
+    {{!-- ${dataToNewsItemList(news_data.slice(3), CONTEXT.HOMEPAGE).join('\n')} --}}
+    {{#each anotherFeaturePosts}}
+    {{> news-item data=this context='homepage'}}
+    {{/each}}
+  </div>
+  {{>highlight headline='MỚI NHẤT' highlightData=latestPosts type='latest' context='homepage'}}
+  {{>highlight headline='XEM NHIỀU' highlightData=mostViewPosts type='feature' context='homepage'}}
+  {{>highlight headline='TOP 10 CHUYÊN MỤC' highlightData=top10Posts type='top10' context='homepage'}}
+  {{>footer}}
+</div>

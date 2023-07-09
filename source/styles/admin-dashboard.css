@@ -1,0 +1,27 @@
+.admin-dashboard-page .main__highlight {
+  width: 100%;
+  grid-template-columns: 48% 48%;
+  gap: 20px;
+  padding-left: 25px;
+}
+
+.admin-dashboard-page .news-item-container {
+  min-height: 50px;
+}
+
+.admin-infomation-div {
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
+  border-left: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.admin-infomation-div p {
+  font-size: 18px;
+  font-weight: 100;
+  padding-left: 30px;
+}
+
+.admin-infomation-div .info-container {
+  height: 40px;
+  padding: 0;
+  margin: 0;
+}

@@ -1,0 +1,22 @@
+.news-list {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+}
+
+.news-list-main {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.news-list .alert {
+  font-size: 20px;
+  padding: 15px 40px;
+  margin-top: 20px;
+}

@@ -1,0 +1,16 @@
+<div class="news-item-container">
+  <div class="news-thumbnail-container">
+    <img class="news-thumbnail" src="{{data.avatar_link}}" alt="Thumbnail" />
+    <div class="news-tag">{{data.main_category.name}}</div>
+    {{#if data.is_premium}}
+    <i class="fa-solid fa-gem news-premium-icon"></i>
+    {{/if}}
+  </div>
+  <div class="news-info">
+    <h3 class="news-title">{{data.title}}</h3>
+    <p class="news-summary">
+      {{data.summary}}
+    </p>
+  </div>
+  {{{createFooterForNewsItem context data}}}
+</div>

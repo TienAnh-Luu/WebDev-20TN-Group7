@@ -1,0 +1,47 @@
+<header id="header" class="sticky-header">
+  <div class="header__top">
+    <div class="header__top-left header-item">
+      {{>logo subclass='dark-red-backgroundcolor' firstLetterColor='white-color' secondLetterColor='black-color'}}
+      <div class="tooltip logo-tooltip">Home Page</div>
+    </div>
+    <div class="header__top-middle">
+      <nav class="header__top-navbar">
+        {{#each types}}
+        <a href="/posts?type={{link}}" class="header__top-navItem header-item {{#if isChosen}}bold{{/if}}">{{title}}</a>
+        {{/each}}
+      </nav>
+    </div>
+    <div class="header__top-right">
+      <div class="header__top-searchContainer">
+        <input type="text" name="search" class="search-input" id="search-input" placeholder="Tìm kiếm..." />
+        <a class="header__top-searchIcon" href="#" id="search"><i class="fa-solid fa-magnifying-glass"
+            id="search-icon"></i></a>
+      </div>
+      <div class="header__top-userIconContainer">
+        <a class="header__top-userIcon" href={{#if isLoggedIn}}"/users/my-account"{{else}}"/users/login"{{/if}}><i
+            class="fa-solid fa-user"></i></a>
+        <div class="tooltip userIcon-tooltip">User</div>
+      </div>
+    </div>
+  </div>
+  <div class="header__middle" id="sticky-header">
+    <a href="/" class="header__home-container header-item" data-value="home">
+      <i class="fa-solid fa-house header__category"></i>
+      <div class="header__category-tooltip tooltip">Home Page</div>
+    </a>
+    {{#each categories}}
+    <div class="dropdown-cate">
+      <a href="/posts?category={{dataValues.id}}" class="dropbtn-cate {{#if isChosen}}bold{{/if}}">{{dataValues.name}}
+        <i class="fa fa-caret-down"></i>
+      </a>
+      <div class="dropdown-content">
+        {{#each child_categories}}
+        <a href="/posts?category={{dataValues.id}}">{{dataValues.name}}</a>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</header>
+
+{{>header-script}}

@@ -1,15 +1,15 @@
-import Header from '../../../source/components/Header/Header.js';
-import Navbar from '../../../source/components/DashboardPage/Navbar/Navbar.js';
-import AccountInfo from '../../../source/components/DashboardPage/Info/AccountInfo.js';
-import WriterInfo from '../../../source/components/DashboardPage/Info/WriterInfo.js';
-import WriterEditor from '../../../source/components/WriterEditor/WriterEditor.js';
-import PaperDashboard from '../../../source/components/DashboardPage/PaperDashboard/PaperDashboard.js';
-import { CONTEXT, NAV_ITEM, POPUP_INPUT_DETAIL } from '../../../source/utils/constants.js';
-import { handleSticky } from '../../../source/utils/handleSticky.js';
-import { addOnclickToClassname } from '../../../source/utils/addOnclick.js';
-import { openPopup } from '../../../source/utils/handlePopup.js';
-import EditorInfo from '../../../source/components/DashboardPage/Info/EditorInfo.js';
-import Premium from '../../../source/components/DashboardPage/Premium/Premium.js';
+import Header from '../../components/Header/Header.js';
+import Navbar from '../../components/DashboardPage/Navbar/Navbar.js';
+import AccountInfo from '../../components/DashboardPage/Info/AccountInfo.js';
+import WriterInfo from '../../components/DashboardPage/Info/WriterInfo.js';
+import WriterEditor from '../../components/WriterEditor/WriterEditor.js';
+import PaperDashboard from '../../components/DashboardPage/PaperDashboard/PaperDashboard.js';
+import { CONTEXT, NAV_ITEM, POPUP_INPUT_DETAIL } from '../../utils/constants.js';
+import { handleSticky } from '../../utils/handleSticky.js';
+import { addOnclickToClassname } from '../../utils/addOnclick.js';
+import { openPopup } from '../../utils/handlePopup.js';
+import EditorInfo from '../../components/DashboardPage/Info/EditorInfo.js';
+import Premium from '../../components/DashboardPage/Premium/Premium.js';
 import EditorApprovalDashboard from './EditorApprovalDashboard/EditorApprovalDashboard.js';
 import { loadEditorPaperData } from '../../utils/loadData.js';
 import CategoryDashboard from './AdministatorDashboard/CategoryDashboard.js';
@@ -181,7 +181,7 @@ const handleOnClick = (e) => {
     case 'log-out': {
       target.style.backgroundColor = 'rgba(255,255,255,0.2)';
       sessionStorage.setItem('user_type', ''); // become guest
-      window.location.assign('../../../source/pages/LoginPage.html');
+      window.location.assign('../../pages/LoginPage.html');
       break;
     }
     case 'premium': {

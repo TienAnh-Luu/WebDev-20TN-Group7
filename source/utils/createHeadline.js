@@ -1,4 +1,4 @@
-import { CONTEXT } from '../../source/utils/constants.js';
+import { CONTEXT } from '../utils/constants.js';
 
 export const headlineOfType = (type) => {
   if (type === CONTEXT.MOST_VIEWED) {

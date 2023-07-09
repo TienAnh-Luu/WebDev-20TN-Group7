@@ -1,8 +1,14 @@
-.newslist-page {
+.news-list {
   width: 100%;
+  min-height: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
 }
 
-.newslist-main {
+.news-list-main {
+  display: flex;
   width: 100%;
   margin-top: 20px;
 }

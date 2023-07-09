@@ -1,16 +1,16 @@
-import RoundButton from '../../../source/components/RoundButton/RoundButton.js';
-import FormInput from '../../../source/components/FormInput/FormInput.js';
-import Logo from '../../../source/components/Logo/Logo.js';
-import handleShowPassword from '../../../source/utils/handleShowPassword.js';
+import RoundButton from '../../components/RoundButton/RoundButton.js';
+import FormInput from '../../components/FormInput/FormInput.js';
+import Logo from '../../components/Logo/Logo.js';
+import handleShowPassword from '../../utils/handleShowPassword.js';
 import { isAdmin, isEditor, isNormalUser, isSubscriber, isWriter } from '../../utils/validate.js';
-import GoBackButton from '../../../source/components/GoBackButton/GoBackButton.js';
+import GoBackButton from '../../components/GoBackButton/GoBackButton.js';
 
 const root = document.getElementById('root');
 
 root.innerHTML = `
 <div class="login-page">
     ${Logo('logo-login', 'dark-red-color', 'black-color')}
-    ${GoBackButton('../../../source/index.html')}
+    ${GoBackButton('../../index.html')}
     
     <div class="login-form">
         ${FormInput('Tên đăng nhập', 'Username', 'user-name', 'Enter user name', 'text')}
@@ -18,14 +18,14 @@ root.innerHTML = `
         ${RoundButton('submit', 'strawberry-backgroundcolor', 'login-btn', 'Đăng nhập')}
     </div>
 
-    <a href="../../../source/pages/ForgotPasswordPage.html" class="forget-password-btn">Quên mật khẩu</a>
+    <a href="../../pages/ForgotPasswordPage.html" class="forget-password-btn">Quên mật khẩu</a>
 
     <div class="other-login-btns">
         <button class="loginBtn loginBtn--facebook">Login with Facebook</button>
         <button class="loginBtn loginBtn--google">Login with Google</button>
     </div>
 
-    ${RoundButton('button', 'dark-red-backgroundcolor', 'registry-btn', 'Tạo tài khoản mới')}
+    ${RoundButton('button', 'dark-red-backgroundcolor', 'register-btn', 'Tạo tài khoản mới')}
 </div>
 `;
 
@@ -54,5 +54,5 @@ loginBtn.onclick = () => {
     sessionStorage.setItem('user_type', '');
   }
 
-  window.location.assign('../../../source/index.html');
+  window.location.assign('../../index.html');
 };

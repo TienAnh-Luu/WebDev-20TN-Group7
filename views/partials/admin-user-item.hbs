@@ -1,0 +1,13 @@
+<div class="news-item-container">
+  <div class="news-thumbnail-container">
+    <img class="news-thumbnail" src="{{data.dataValues.avatar_link}}" alt="Thumbnail" />
+    {{#if (isPremium data.premiumTime)}}
+    <i class="fa-solid fa-gem news-premium-icon"></i>
+    {{/if}}
+  </div>
+  <div class="admin-infomation-div">
+    {{>info-item label="Tên đăng nhập" data=data.dataValues.username}}
+    {{>info-item label="Biệt danh" data=data.dataValues.name}}
+  </div>
+  {{{createFooterForNewsItemAdminUser data}}}
+</div>

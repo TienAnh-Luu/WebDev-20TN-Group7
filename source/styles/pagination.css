@@ -1,0 +1,23 @@
+.pagination-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pagination {
+  margin: 0;
+}
+
+.pagination .page-item .page-link {
+  color: #b83730;
+  background: #ffffff;
+  border-color: #b83730;
+  border-radius: 0;
+}
+
+.pagination .page-item:hover .page-link,
+.pagination .page-item.active .page-link {
+  color: #ffffff;
+  background: #b83730;
+}

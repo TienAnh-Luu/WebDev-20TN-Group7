@@ -1,0 +1,23 @@
+<div id="root">
+  <div class="dashboard-page">
+    {{>header}}
+    <main class="main" id="dashboard-main">
+      <ul class="dashboard-page-navbar" id="dashboard-navbar">
+        {{#each navItems}}
+        {{>nav-item data=this}}
+        {{/each}}
+      </ul>
+      <div class="main-content" id="main-content">
+        <div class='dashboard-account-info'>
+          <h3 class='info-header'>THÔNG TIN NGƯỜI VIẾT</h3>
+          <div class='info-wrapper'>
+            {{>info-item label="Họ tên" data=data.Writer.nickname}}
+            {{>info-item label="Email công việc" data=data.Writer.work_email}}
+            {{>info-item label="Số điện thoại" data=data.Writer.telephone}}
+          </div>
+        </div>
+      </div>
+    </main>
+    {{!-- {{>footer}} --}}
+  </div>
+</div>

@@ -1,8 +1,8 @@
-import NewsItem from '../../source/components/NewsItem/NewsItem.js';
-import NavItem from '../../source/components/DashboardPage/Navbar/NavItem.js';
-import PaperItem from '../../source/components/DashboardPage/PaperDashboard/PaperItem.js';
-import CommentAreaItem from '../../source/components/NewsDetailPage/CommentArea/CommentAreaItem/CommentAreaItem.js';
-import SuggestionItem from '../../source/components/NewsDetailPage/Suggestion/SuggestionItem/SuggestionItem.js';
+import NewsItem from '../components/NewsItem/NewsItem.js';
+import NavItem from '../components/DashboardPage/Navbar/NavItem.js';
+import PaperItem from '../components/DashboardPage/PaperDashboard/PaperItem.js';
+import CommentAreaItem from '../components/NewsDetailPage/CommentArea/CommentAreaItem/CommentAreaItem.js';
+import SuggestionItem from '../components/NewsDetailPage/Suggestion/SuggestionItem/SuggestionItem.js';
 
 export const dataToNewsItemList = (data, context) => data.map((d) => NewsItem(d, context));
 
