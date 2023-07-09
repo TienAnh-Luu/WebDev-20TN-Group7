@@ -10,7 +10,7 @@
       <div class="main-content admin-dashboard-page" id="main-content">
         <div class="main__highlight grid-container">
           {{#each posts}}
-          {{>admin-news-item context=../context data=this}}
+          {{>admin-news-item data=this}}
           <div class="admin-infomation-div">
             {{>info-item label="Trạng thái" data=status statusformat=this}}
             {{#if published_time}}

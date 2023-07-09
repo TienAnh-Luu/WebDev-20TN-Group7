@@ -27,8 +27,6 @@ controller.isAdmin = async (req, res, next) => {
 };
 
 controller.post = async (req, res) => {
-  res.locals.context = 'admin-post';
-
   const user = req.user;
   const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
   res.locals.navItems = navItems;
@@ -187,6 +185,41 @@ controller.premiumPost = async (req, res) => {
     );
   }
   res.redirect('/admin/post');
+};
+
+controller.tag = async (req, res) => {
+  const user = req.user;
+  const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
+  res.locals.navItems = navItems;
+
+  const tags = await models.Tag.findAll({
+    order: [['updatedAt', 'DESC']],
+  });
+  res.locals.tags = tags;
+
+  res.render('admin-tag-list');
+};
+
+controller.editTag = async (req, res) => {
+  const tagid = req.params.id;
+  const new_tag = req.body.new_tag;
+
+  await models.Tag.update(
+    {
+      name: new_tag,
+    },
+    { where: { id: tagid } },
+  );
+
+  res.redirect(`/admin/tag`);
+};
+
+controller.deleteTag = async (req, res) => {
+  const tagid = req.params.id;
+
+  await models.Tag.destroy({ where: { id: tagid } });
+
+  res.redirect(`/admin/tag`);
 };
 
 module.exports = controller;

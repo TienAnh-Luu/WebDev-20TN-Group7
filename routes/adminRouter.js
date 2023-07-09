@@ -19,4 +19,8 @@ router.post('/reject/:id', controller.reject);
 router.get('/deletePost/:id', controller.deletePost);
 router.get('/premiumPost/:id', controller.premiumPost);
 
+router.get('/tag', controller.tag);
+router.post('/editTag/:id', controller.editTag);
+router.get('/deleteTag/:id', controller.deleteTag);
+
 module.exports = router;

@@ -31,6 +31,33 @@ controller.getHeaderData = async (req, res, next) => {
   });
   res.locals.types = types;
 
+  const queryType = req.query.type;
+  const types = [
+    {
+      title: "MỚI NHẤT",
+      link: "latest",
+      isChosen: false,
+    },
+    {
+      title: "XEM NHIỀU",
+      link: "feature",
+      isChosen: false,
+    },
+    {
+      title: "PREMIUM",
+      link: "premium",
+      isChosen: false,
+    },
+  ];
+  types.forEach((type) => {
+    if (["feature", "latest", "premium"].includes(queryType) == true) {
+      if (type.link == queryType) {
+        type.isChosen = true;
+      }
+    }
+  });
+  res.locals.types = types;
+
   const parent_categories = await models.Category.findAll({
     attributes: ["id", "name", "parent_category_id"],
     where: {
