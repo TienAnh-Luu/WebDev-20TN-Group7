@@ -141,6 +141,7 @@ controller.published = async (req, res) => {
         [Op.lte]: new Date(),
       },
     },
+    order: [['updatedAt', 'DESC']],
   });
   res.locals.posts = posts;
 
@@ -180,6 +181,7 @@ controller.approved = async (req, res) => {
         [Op.gt]: new Date(),
       },
     },
+    order: [['updatedAt', 'DESC']],
   });
   res.locals.posts = posts;
 
@@ -216,6 +218,7 @@ controller.waiting = async (req, res) => {
       writer_id: user.Writer.id,
       status: 'Draft',
     },
+    order: [['updatedAt', 'DESC']],
   });
   res.locals.posts = posts;
 
@@ -252,6 +255,7 @@ controller.rejected = async (req, res) => {
       writer_id: user.Writer.id,
       status: 'Reject',
     },
+    order: [['updatedAt', 'DESC']],
   });
   res.locals.posts = posts;
 

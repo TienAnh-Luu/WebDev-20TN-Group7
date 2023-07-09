@@ -103,7 +103,7 @@ helper.NAV_ITEMS = [
       icon: 'fa-solid fa-times',
       text: 'Bài viết đã từ chối',
       value: 'editor-waiting',
-      link: '/editors/waiting',
+      link: '/editors/rejected',
     },
     {
       icon: 'fa-solid fa-right-from-bracket',

@@ -22,4 +22,8 @@ router.get('/check/:id', controller.showCheck);
 router.post('/approve/:id', controller.approve);
 router.post('/reject/:id', controller.reject);
 
+router.get('/waiting', controller.waiting);
+router.get('/approved', controller.approved);
+router.get('/rejected', controller.rejected);
+
 module.exports = router;

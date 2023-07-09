@@ -125,8 +125,119 @@ controller.reject = async (req, res) => {
     { where: { id: postid } },
   );
 
-  res.render('test', { data: feedback });
-  // res.redirect(`/posts/${postid}/preview`);
+  res.redirect(`/posts/${postid}/preview`);
+};
+
+controller.waiting = async (req, res) => {
+  res.locals.context = 'editor-waiting';
+
+  const user = req.user;
+  const targetCategory = req.user.Editor.manage_category_id;
+  const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
+  res.locals.navItems = navItems;
+
+  const posts = await models.Post.findAll({
+    attributes: [
+      'id',
+      'title',
+      'avatar_link',
+      'content',
+      'is_premium',
+      'published_time',
+      'main_category_id',
+      'category_id',
+      'writer_id',
+      'feedback',
+    ],
+    include: [
+      {
+        model: models.Category,
+        as: 'main_category',
+      },
+    ],
+    where: {
+      status: 'Draft',
+      [Op.or]: [{ category_id: targetCategory }, { main_category_id: targetCategory }],
+    },
+    order: [['updatedAt', 'DESC']],
+  });
+  res.locals.posts = posts;
+
+  res.render('editor-list');
+};
+
+controller.approved = async (req, res) => {
+  const user = req.user;
+  const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
+  res.locals.navItems = navItems;
+
+  const posts = await models.Post.findAll({
+    attributes: [
+      'id',
+      'title',
+      'avatar_link',
+      'content',
+      'is_premium',
+      'published_time',
+      'main_category_id',
+      'category_id',
+      'writer_id',
+      'post_approver_id',
+      'feedback',
+    ],
+    include: [
+      {
+        model: models.Category,
+        as: 'main_category',
+      },
+    ],
+    where: {
+      status: 'Publish',
+      post_approver_id: user.id,
+    },
+    order: [['updatedAt', 'DESC']],
+  });
+  res.locals.posts = posts;
+
+  res.render('editor-list');
+};
+
+controller.rejected = async (req, res) => {
+  res.locals.context = 'editor-reject';
+
+  const user = req.user;
+  const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
+  res.locals.navItems = navItems;
+
+  const posts = await models.Post.findAll({
+    attributes: [
+      'id',
+      'title',
+      'avatar_link',
+      'content',
+      'is_premium',
+      'published_time',
+      'main_category_id',
+      'category_id',
+      'writer_id',
+      'post_approver_id',
+      'feedback',
+    ],
+    include: [
+      {
+        model: models.Category,
+        as: 'main_category',
+      },
+    ],
+    where: {
+      status: 'Reject',
+      post_approver_id: user.id,
+    },
+    order: [['updatedAt', 'DESC']],
+  });
+  res.locals.posts = posts;
+
+  res.render('editor-list');
 };
 
 module.exports = controller;

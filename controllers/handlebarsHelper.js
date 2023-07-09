@@ -17,6 +17,15 @@ helper.createFooterForNewsItem = (context, data) => {
   <div class="tooltip news-footer-icon-tooltip">Preview</div>
 </a>`;
 
+  const checkIcon = `<a
+  href="/editors/check/${data.id}"
+  class="news-footer-icon-container news-preview-icon"
+  id="preview"
+>
+  <i class="fa-solid fa-magnifying-glass-arrow-right news-footer-icon"></i>
+  <div class="tooltip news-footer-icon-tooltip">Preview</div>
+</a>`;
+
   const feedbackIcon = `<div
   class="news-footer-icon-container news-feedback-icon"
   id="see-feedback"
@@ -51,7 +60,8 @@ helper.createFooterForNewsItem = (context, data) => {
           ${context === 'published' || context === 'approved' ? `${previewIcon}` : ''}
           ${context === 'waiting' ? `${previewIcon} ${editIcon} ${deleteIcon}` : ''}
           ${context === 'rejected' ? `${previewIcon} ${editIcon} ${deleteIcon} ${feedbackIcon}` : ''}
-          ${context === 'editor' ? `${previewIcon} ${approveIcon} ${rejectIcon}` : ''}
+          ${context === 'editor-waiting' ? `${checkIcon}` : ''}
+          ${context === 'editor-reject' ? `${feedbackIcon}` : ''}
       </div>`;
 };
 
