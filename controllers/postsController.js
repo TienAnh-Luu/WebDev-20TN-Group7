@@ -1,6 +1,6 @@
 let controller = {};
-const models = require('../models');
-const sequelize = require('sequelize');
+const models = require("../models");
+const sequelize = require("sequelize");
 const Op = sequelize.Op;
 
 controller.show = async (req, res) => {
@@ -18,19 +18,21 @@ controller.show = async (req, res) => {
     queryTag = parseInt(req.query.tag);
   }
 
-  let querySearch = '';
-  if (req.query.search && req.query.search !== '') {
+  let querySearch = "";
+  if (req.query.search && req.query.search !== "") {
     countFilter += 1;
     querySearch = req.query.search;
   }
 
-  let queryType = 'default';
-  if (['latest', 'feature', 'premium'].includes(req.query.type)) {
+  let queryType = "default";
+  if (["latest", "feature", "premium"].includes(req.query.type)) {
     countFilter += 1;
     queryType = req.query.type;
   }
 
-  const queryPage = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
+  const queryPage = isNaN(req.query.page)
+    ? 1
+    : Math.max(1, parseInt(req.query.page));
 
   const tags = await models.Tag.findAll();
   res.locals.tags = tags;
@@ -46,7 +48,7 @@ controller.show = async (req, res) => {
     const queriedCategory = await models.Category.findByPk(queryCategory);
 
     if (queriedCategory === null) {
-      res.locals.newsListMessage = 'Không tìm thấy chuyên mục';
+      res.locals.newsListMessage = "Không tìm thấy chuyên mục";
     } else {
       categoryHeadline.main =
         queriedCategory.parent_category_id !== null
@@ -54,6 +56,11 @@ controller.show = async (req, res) => {
           : queriedCategory;
       categoryHeadline.subs = await models.Category.findAll({
         where: { parent_category_id: categoryHeadline.main.id },
+      });
+      categoryHeadline.subs?.forEach((sub) => {
+        if (sub.id == queryCategory) {
+          sub.isChosen = true;
+        }
       });
       res.locals.categoryHeadline = categoryHeadline;
     }
@@ -63,7 +70,7 @@ controller.show = async (req, res) => {
   if (queryTag > 0) {
     const tagHeadline = await models.Tag.findByPk(queryTag);
     if (tagHeadline === null) {
-      res.locals.newsListMessage = 'Không tìm thấy nhãn';
+      res.locals.newsListMessage = "Không tìm thấy nhãn";
     } else {
       res.locals.tagHeadline = tagHeadline;
     }
@@ -76,37 +83,49 @@ controller.show = async (req, res) => {
 
   if (countFilter > 1) {
     res.locals.newsListMessage =
-      'Đang sử dụng nhiều bộ lọc.<br>Vui lòng chỉ chọn một trong các bộ lọc:<ul><li>Chuyên mục</li><li>Nhãn</li><li>Từ khoá</li><li>Mới nhất</li><li>Xem nhiều</li><li>Premium</li></ul>';
+      "Đang sử dụng nhiều bộ lọc.<br>Vui lòng chỉ chọn một trong các bộ lọc:<ul><li>Chuyên mục</li><li>Nhãn</li><li>Từ khoá</li><li>Mới nhất</li><li>Xem nhiều</li><li>Premium</li></ul>";
   }
 
   if (res.locals.newsListMessage) {
-    res.render('news-list-page');
+    res.render("news-list-page");
     return;
   }
 
   // Filter option with query data
   const options = {
-    attributes: ['id', 'title', 'avatar_link', 'summary', 'content', 'published_time', 'is_premium', 'status'],
+    attributes: [
+      "id",
+      "title",
+      "avatar_link",
+      "summary",
+      "content",
+      "published_time",
+      "is_premium",
+      "status",
+    ],
     include: [
       {
         model: models.Category,
-        as: 'main_category',
+        as: "main_category",
       },
     ],
     where: [
       {
-        status: 'Publish',
+        status: "Publish",
         published_time: {
           [Op.lte]: new Date(),
         },
       },
     ],
-    order: [['is_premium', 'DESC']],
+    order: [["is_premium", "DESC"]],
   };
 
   // Query category
   if (queryCategory > 0) {
-    options.where[0][Op.or] = [{ category_id: queryCategory }, { main_category_id: queryCategory }];
+    options.where[0][Op.or] = [
+      { category_id: queryCategory },
+      { main_category_id: queryCategory },
+    ];
   }
 
   // Query tag
@@ -114,7 +133,7 @@ controller.show = async (req, res) => {
     const postIds = [];
     await models.PostTag.findAll({
       where: { tag_id: queryTag },
-      attributes: ['post_id'],
+      attributes: ["post_id"],
     }).then((posts) => {
       posts.forEach((post) => postIds.push(post.post_id));
     });
@@ -122,17 +141,23 @@ controller.show = async (req, res) => {
     options.where[0].id = { [Op.in]: postIds };
   }
 
-  if (querySearch !== '') {
+  if (querySearch !== "") {
     res.locals.searchHeadline = querySearch;
 
     const searchFilter = req.query.filter;
 
-    if (['title', 'content', 'summary'].includes(searchFilter)) {
+    if (["title", "content", "summary"].includes(searchFilter)) {
       options.where.push(
-        sequelize.literal(`to_tsvector('english', ${searchFilter}) @@ phraseto_tsquery('english', :query)`),
+        sequelize.literal(
+          `to_tsvector('english', ${searchFilter}) @@ phraseto_tsquery('english', :query)`
+        )
       );
     } else {
-      options.where.push(sequelize.literal(`to_tsvector('english', title) @@ phraseto_tsquery('english', :query)`));
+      options.where.push(
+        sequelize.literal(
+          `to_tsvector('english', title) @@ phraseto_tsquery('english', :query)`
+        )
+      );
     }
 
     options.replacements = {
@@ -144,56 +169,49 @@ controller.show = async (req, res) => {
   const now = new Date();
   let premiumOptions;
   if (!user || (user.role_id == 1 && user.premiumTime < now)) {
-    premiumOptions = ['false'];
+    premiumOptions = ["false"];
   } else {
-    premiumOptions = ['false', 'true'];
+    premiumOptions = ["false", "true"];
   }
 
-  if (queryType === 'premium') {
+  if (queryType === "premium") {
     let premiumMessage;
     if (!user) {
-      premiumMessage = 'Vui lòng đăng nhập để theo dõi những bài viết Premium';
-      res.render('premium-user-page', { premiumMessage: premiumMessage });
+      premiumMessage = "Vui lòng đăng nhập để theo dõi những bài viết Premium";
+      res.render("premium-user-page", { premiumMessage: premiumMessage });
       return;
     } else if (user.role_id == 1 && user.premiumTime < now) {
-      premiumMessage = 'Hãy gia hạn để theo dõi những bài viết Premium';
-      res.render('premium-user-page', { premiumMessage: premiumMessage });
+      premiumMessage = "Hãy gia hạn để theo dõi những bài viết Premium";
+      res.render("premium-user-page", { premiumMessage: premiumMessage });
       return;
     }
   }
 
   options.where[0].is_premium = { [Op.in]: premiumOptions };
 
-  // Query search
-  // if (search.trim() != "") {
-  //   options.where.name = {
-  //     [Op.iLike]: `%${search}%`,
-  //   };
-  // }
-
-  let headline = '';
+  let headline = "";
   switch (queryType) {
-    case 'premium':
-      headline = 'Premium';
+    case "premium":
+      headline = "Premium";
       options.where[0].is_premium = { [Op.in]: [true] };
       break;
-    case 'feature':
-      headline = 'Xem nhiều';
-      options.order = [['view_count', 'DESC']];
+    case "feature":
+      headline = "Xem nhiều";
+      options.order = [["view_count", "DESC"]];
       break;
-    case 'latest':
-      headline = 'Mới nhất';
-      options.order = [['published_time', 'DESC']];
+    case "latest":
+      headline = "Mới nhất";
+      options.order = [["published_time", "DESC"]];
       break;
-    case 'default':
-      options.order.push(['published_time', 'DESC']);
+    case "default":
+      options.order.push(["published_time", "DESC"]);
   }
   res.locals.headline = headline;
 
   // Get originalUrl for headline link
-  res.locals.originalUrl = removeParam('page', req.originalUrl);
+  res.locals.originalUrl = removeParam("page", req.originalUrl);
   if (Object.keys(req.query).length == 0) {
-    res.locals.originalUrl = res.locals.originalUrl + '?';
+    res.locals.originalUrl = res.locals.originalUrl + "?";
   }
 
   // Pagination
@@ -212,28 +230,28 @@ controller.show = async (req, res) => {
 
   res.locals.posts = rows;
 
-  res.render('news-list-page');
+  res.render("news-list-page");
 };
 
 controller.showDetails = async (req, res) => {
   const queryId = isNaN(req.params.id) ? 0 : parseInt(req.params.id);
   const post = await models.Post.findOne({
     attributes: [
-      'id',
-      'title',
-      'avatar_link',
-      'background_image_link',
-      'content',
-      'is_premium',
-      'published_time',
-      'main_category_id',
-      'category_id',
+      "id",
+      "title",
+      "avatar_link",
+      "background_image_link",
+      "content",
+      "is_premium",
+      "published_time",
+      "main_category_id",
+      "category_id",
     ],
     where: { id: queryId },
     include: [
       {
         model: models.Writer,
-        attributes: ['nickname'],
+        attributes: ["nickname"],
       },
     ],
   });
@@ -247,15 +265,15 @@ controller.showDetails = async (req, res) => {
 
   // Comment
   post.comments = await models.Comment.findAll({
-    attributes: ['id', 'content', 'createdAt'],
+    attributes: ["id", "content", "createdAt"],
     include: [
       {
         model: models.User,
-        attributes: ['name', 'avatar_link'],
+        attributes: ["name", "avatar_link"],
         include: [
           {
             model: models.Role,
-            attributes: ['name'],
+            attributes: ["name"],
           },
         ],
       },
@@ -263,14 +281,14 @@ controller.showDetails = async (req, res) => {
     where: {
       post_id: queryId,
     },
-    order: [['createdAt', 'DESC']],
+    order: [["createdAt", "DESC"]],
   });
 
   // Tag
   const tagIds = [];
   await models.PostTag.findAll({
     where: { post_id: queryId },
-    attributes: ['tag_id'],
+    attributes: ["tag_id"],
   }).then((tags) => {
     tags.forEach((tag) => tagIds.push(tag.tag_id));
   });
@@ -287,24 +305,31 @@ controller.showDetails = async (req, res) => {
   const now = new Date();
   let premiumOptions;
   if (!user || (user.role_id == 1 && user.premiumTime < now)) {
-    premiumOptions = ['false'];
+    premiumOptions = ["false"];
   } else {
-    premiumOptions = ['false', 'true'];
+    premiumOptions = ["false", "true"];
   }
 
   // Related Posts
   const relatedPosts = await models.Post.findAll({
-    attributes: ['id', 'title', 'avatar_link', 'summary', 'is_premium', 'published_time'],
+    attributes: [
+      "id",
+      "title",
+      "avatar_link",
+      "summary",
+      "is_premium",
+      "published_time",
+    ],
     include: [
       {
         model: models.Category,
-        as: 'main_category',
-        attributes: ['id', 'name'],
+        as: "main_category",
+        attributes: ["id", "name"],
       },
     ],
     where: {
       main_category_id: categoryHeadline.main.id,
-      status: 'Publish',
+      status: "Publish",
       published_time: {
         [Op.lte]: new Date(),
       },
@@ -325,29 +350,29 @@ controller.showDetails = async (req, res) => {
 
   res.locals.relatedPosts = randomRelatedPosts;
 
-  res.render('news-detail-page');
+  res.render("news-detail-page");
 };
 
 controller.showPreview = async (req, res) => {
   const queryId = isNaN(req.params.id) ? 0 : parseInt(req.params.id);
   const post = await models.Post.findOne({
     attributes: [
-      'id',
-      'title',
-      'avatar_link',
-      'background_image_link',
-      'content',
-      'is_premium',
-      'published_time',
-      'main_category_id',
-      'category_id',
-      'updatedAt',
+      "id",
+      "title",
+      "avatar_link",
+      "background_image_link",
+      "content",
+      "is_premium",
+      "published_time",
+      "main_category_id",
+      "category_id",
+      "updatedAt",
     ],
     where: { id: queryId },
     include: [
       {
         model: models.Writer,
-        attributes: ['nickname'],
+        attributes: ["nickname"],
       },
     ],
   });
@@ -363,7 +388,7 @@ controller.showPreview = async (req, res) => {
   const tagIds = [];
   await models.PostTag.findAll({
     where: { post_id: queryId },
-    attributes: ['tag_id'],
+    attributes: ["tag_id"],
   }).then((tags) => {
     tags.forEach((tag) => tagIds.push(tag.tag_id));
   });
@@ -376,23 +401,23 @@ controller.showPreview = async (req, res) => {
 
   res.locals.post = post;
 
-  res.render('news-preview-page');
+  res.render("news-preview-page");
 };
 
 function removeParam(key, sourceURL) {
-  var rtn = sourceURL.split('?')[0],
+  var rtn = sourceURL.split("?")[0],
     param,
     params_arr = [],
-    queryString = sourceURL.indexOf('?') !== -1 ? sourceURL.split('?')[1] : '';
-  if (queryString !== '') {
-    params_arr = queryString.split('&');
+    queryString = sourceURL.indexOf("?") !== -1 ? sourceURL.split("?")[1] : "";
+  if (queryString !== "") {
+    params_arr = queryString.split("&");
     for (var i = params_arr.length - 1; i >= 0; i -= 1) {
-      param = params_arr[i].split('=')[0];
+      param = params_arr[i].split("=")[0];
       if (param === key) {
         params_arr.splice(i, 1);
       }
     }
-    if (params_arr.length) rtn = rtn + '?' + params_arr.join('&');
+    if (params_arr.length) rtn = rtn + "?" + params_arr.join("&");
   }
   return rtn;
 }

@@ -6,9 +6,9 @@
     </div>
     <div class="header__top-middle">
       <nav class="header__top-navbar">
-        <a href="/posts?type=latest" class="header__top-navItem header-item" data-value="0">MỚI NHẤT</a>
-        <a href="/posts?type=feature" class="header__top-navItem header-item" data-value="1">XEM NHIỀU</a>
-        <a href="/posts?type=premium" class="header__top-navItem header-item" data-value="-1">PREMIUM</a>
+        {{#each types}}
+        <a href="/posts?type={{link}}" class="header__top-navItem header-item {{#if isChosen}}bold{{/if}}">{{title}}</a>
+        {{/each}}
       </nav>
     </div>
     <div class="header__top-right">
@@ -31,7 +31,7 @@
     </a>
     {{#each categories}}
     <div class="dropdown-cate">
-      <a href="/posts?category={{dataValues.id}}" class="dropbtn-cate">{{dataValues.name}}
+      <a href="/posts?category={{dataValues.id}}" class="dropbtn-cate {{#if isChosen}}bold{{/if}}">{{dataValues.name}}
         <i class="fa fa-caret-down"></i>
       </a>
       <div class="dropdown-content">
