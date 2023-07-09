@@ -54,14 +54,18 @@ controller.getHeaderData = async (req, res, next) => {
       if (cate.dataValues.id == queryCate) {
         cate.isChosen = true;
       } else {
-        child.forEach((c) => {
-          cate.isChosen = c.dataValues.id == queryCate;
-        });
+        for (let i = 0; i < child.length; i++) {
+          if (child[i].dataValues.id == queryCate) {
+            cate.isChosen = true;
+            break;
+          }
+        }
       }
     }
 
     return { ...cate, child_categories: child };
   });
+  // console.log(categories);
   res.locals.categories = categories;
 
   if (next) next();

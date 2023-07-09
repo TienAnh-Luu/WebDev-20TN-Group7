@@ -246,6 +246,8 @@ controller.showDetails = async (req, res) => {
       "published_time",
       "main_category_id",
       "category_id",
+      "status",
+      "view_count",
     ],
     where: { id: queryId },
     include: [
@@ -255,6 +257,23 @@ controller.showDetails = async (req, res) => {
       },
     ],
   });
+
+  const now = new Date();
+  if (post.status != "Publish" || post.published_time > now) {
+    return res.status(404).render("error", {
+      message: "Không tìm thấy trang",
+    });
+  }
+
+  // Increase 1 view
+  await Post.update(
+    {
+      view_count: post.view_count + 1,
+    },
+    {
+      where: { id: queryId },
+    }
+  );
 
   // Headline
   const categoryHeadline = {};
@@ -302,7 +321,6 @@ controller.showDetails = async (req, res) => {
   res.locals.post = post;
 
   const user = req.user;
-  const now = new Date();
   let premiumOptions;
   if (!user || (user.role_id == 1 && user.premiumTime < now)) {
     premiumOptions = ["false"];
