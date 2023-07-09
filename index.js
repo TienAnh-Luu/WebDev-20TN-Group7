@@ -19,6 +19,7 @@ const {
   createFooterForNewsItemAdminPost,
   createFooterForNewsItemAdminTag,
   createFooterForNewsItemAdminCategory,
+  createFooterForNewsItemAdminUser,
 } = require('./controllers/handlebarsHelper');
 
 const session = require('express-session');
@@ -55,6 +56,7 @@ app.engine(
       createFooterForNewsItemAdminPost,
       createFooterForNewsItemAdminTag,
       createFooterForNewsItemAdminCategory,
+      createFooterForNewsItemAdminUser,
     },
   }),
 );

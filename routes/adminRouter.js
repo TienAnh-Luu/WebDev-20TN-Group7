@@ -30,4 +30,10 @@ router.get('/upCategory/:id', controller.upCategory);
 router.get('/downCategory/:id', controller.showDownCategory);
 router.post('/downCategory/:id', controller.downCategory);
 
+router.get('/user', controller.user);
+router.get('/deleteUser/:id', controller.deleteUser);
+router.get('/premiumUser/:id', controller.premiumUser);
+router.get('/editorCategory/:id', controller.editorCategory);
+router.post('/editorCategory/:id', controller.changeEditorCategory);
+
 module.exports = router;

@@ -146,6 +146,29 @@ helper.createFooterForNewsItemAdminCategory = (data) => {
 </div>`;
 };
 
+helper.createFooterForNewsItemAdminUser = (data) => {
+  const changeIcon = `<a href="/admin/editorCategory/${data.id}" class="news-footer-icon-container news-edit-icon" id="edit">
+<i class="fa-solid fa-exchange news-footer-icon"></i>
+<div class="tooltip news-footer-icon-tooltip">Edit</div>
+</a>`;
+
+  const premiumIcon = `<div class="news-footer-icon-container news-premium-footer-icon" id="premium" data-value="${data.id}">
+  <i class="fa-solid fa-gem news-footer-icon"></i>
+  <div class="tooltip news-footer-icon-tooltip">Premium</div>
+</div>`;
+
+  const deleteIcon = `<div class="news-footer-icon-container news-delete-icon" id="delete" data-value="${data.id}">
+    <i class="fa-solid fa-trash-can news-footer-icon"></i>
+    <div class="tooltip news-footer-icon-tooltip">Delete</div>
+</div>`;
+
+  return `<div class="news-footer">
+  ${data.role_id === 1 ? `${premiumIcon} ${deleteIcon}` : ''}
+  ${data.role_id === 3 ? `${deleteIcon}` : ''}
+  ${data.role_id === 4 ? `${changeIcon} ${deleteIcon}` : ''}
+</div>`;
+};
+
 helper.geHandlebars = (index, threshold) => {
   return index >= threshold;
 };
@@ -160,11 +183,7 @@ helper.equalString = (s1, s2) => {
 
 helper.equalInt = (s1, s2) => {
   s1 = parseInt(s1, 10);
-  console.log('break');
-  console.log(s2);
   s2 = parseInt(s2, 10);
-  console.log(s1);
-  console.log(s2);
   return s1 === s2;
 };
 

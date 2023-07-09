@@ -463,4 +463,142 @@ controller.downCategory = async (req, res) => {
   res.redirect(`/admin/category`);
 };
 
+controller.user = async (req, res) => {
+  const user = req.user;
+  const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
+  res.locals.navItems = navItems;
+
+  let users = [];
+
+  users.push(
+    ...(await models.User.findAll({
+      attributes: ['id', 'username', 'email', 'name', 'avatar_link', 'role_id', 'premiumTime'],
+      include: [
+        {
+          model: models.Role,
+        },
+      ],
+      where: { role_id: 1 },
+    })),
+  );
+
+  users.push(
+    ...(await models.User.findAll({
+      attributes: ['id', 'username', 'email', 'name', 'avatar_link', 'role_id', 'premiumTime'],
+      include: [
+        {
+          model: models.Writer,
+        },
+        {
+          model: models.Role,
+        },
+      ],
+      where: { role_id: 3 },
+    })),
+  );
+
+  users.push(
+    ...(await models.User.findAll({
+      attributes: ['id', 'username', 'email', 'name', 'avatar_link', 'role_id', 'premiumTime'],
+      include: [
+        {
+          model: models.Editor,
+          include: [
+            {
+              model: models.Category,
+            },
+          ],
+        },
+        {
+          model: models.Role,
+        },
+      ],
+      where: { role_id: 4 },
+    })),
+  );
+
+  users.push(
+    ...(await models.User.findAll({
+      attributes: ['id', 'username', 'email', 'name', 'avatar_link', 'role_id', 'premiumTime'],
+      include: [
+        {
+          model: models.Admin,
+        },
+        {
+          model: models.Role,
+        },
+      ],
+      where: { role_id: 5 },
+    })),
+  );
+
+  users.sort((user1, user2) => {
+    if (user1.role_id === user2.role_id) {
+      return user1.id - user2.id;
+    } else {
+      return user1.role_id - user2.role_id;
+    }
+  });
+
+  res.locals.users = users;
+
+  res.render('admin-user-list');
+};
+
+controller.deleteUser = async (req, res) => {
+  const userid = req.params.id;
+  await models.User.destroy({
+    where: { id: userid },
+  });
+
+  res.redirect(`/admin/user`);
+};
+
+controller.premiumUser = async (req, res) => {
+  const userid = req.params.id;
+
+  const user = await models.User.findOne({ where: { id: userid } });
+
+  const now = new Date();
+  let currentPremiumTime = new Date();
+  let newPremiumTime = new Date();
+
+  console.log(user.premiumTime instanceof Date);
+
+  if (user.premiumTime < now) {
+    currentPremiumTime = now;
+  } else {
+    currentPremiumTime = user.premiumTime;
+  }
+  newPremiumTime.setDate(currentPremiumTime.getDate() + 7);
+
+  await models.User.update(
+    {
+      premiumTime: newPremiumTime,
+    },
+    {
+      where: { id: userid },
+    },
+  );
+
+  res.redirect(`/admin/user`);
+};
+
+controller.editorCategory = async (req, res) => {
+  const user = req.user;
+  const navItems = NAV_ITEMS[parseInt(user.role_id, 10) - 1];
+  res.locals.navItems = navItems;
+
+  res.locals.editorUserId = req.params.id;
+
+  res.render('admin-editor-category');
+};
+
+controller.changeEditorCategory = async (req, res) => {
+  const userId = req.params.id;
+  await models.Editor.update({ manage_category_id: req.body.category }, { where: { user_id: userId } });
+
+  res.redirect(`/admin/user`);
+};
+
 module.exports = controller;
