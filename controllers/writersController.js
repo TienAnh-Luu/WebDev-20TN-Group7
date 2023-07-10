@@ -49,11 +49,11 @@ controller.new = async (req, res) => {
   data.writer_id = req.user.Writer.id;
   data.is_premium = false;
   data.status = 'Draft';
+  data.view_count = 0;
   data.avatar_link = req.body.avatar_link;
   data.background_image_link = req.body.avatar_link;
 
   const post = await models.Post.create(data);
-  console.log(post.id);
 
   let tags = req.body.tags.split('/');
   tags = tags.map((tag) => tag.trim());
