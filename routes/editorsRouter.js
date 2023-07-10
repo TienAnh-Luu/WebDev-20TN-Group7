@@ -19,6 +19,7 @@ router.get('/info', (req, res) => {
 
 router.get('/check/:id', controller.showCheck);
 
+router.get('/approve/:id', controller.showApprove);
 router.post('/approve/:id', controller.approve);
 router.post('/reject/:id', controller.reject);
 

@@ -27,7 +27,9 @@
       {{#if (equalString post.status 'Publish')}}
       <div class="alert alert-success">Bài viết đã được duyệt</div>
       {{else}}
-      {{>roundButton type='button' className='strawberry-backgroundcolor' id='approve-btn' text='Duyệt'}}
+      <a href="/admin/approve/{{post.id}}" class="approve-btn">
+        {{>roundButton type='button' className='strawberry-backgroundcolor' id='approve-btn' text='Duyệt'}}
+      </a>
       {{>roundButton type='button' className='strawberry-backgroundcolor' id='reject-btn' text='Từ chối'}}
       {{/if}}
     </div>
@@ -35,32 +37,6 @@
 </div>
 
 <script>
-  document.querySelector('#approve-btn').addEventListener('click', () => {
-    const popUpApproveForm = ` 
-    <div class="modal" id="account-modal"> 
-      <div class="modal-content"> 
-        <div class="modal-form-container"> 
-          <a class="modal-close-btn" id="popup-account-close">&times;</a> 
-          <form class="modal-form" action="/admin/approve/{{post.id}}" method="post"> 
-            <h2 class="modal-title">Duyệt bài viết</h2> 
-            <input class="modal-form-input" type="date" name="published_time" id="published_time" required/> 
-            <button class="modal-form-submit-btn" type="submit">Duyệt</button> 
-          </form> 
-        </div>
-      </div> 
-    </div>`;
-
-    const popUpApproveFormElement = document.createElement('div');
-    popUpApproveFormElement.innerHTML = popUpApproveForm.trim();
-    document.getElementById('dashboard-main').appendChild(popUpApproveFormElement);
-    document.getElementById('account-modal').style.display = 'block';
-    document.getElementById('popup-account-close').addEventListener('click', () => {
-      document.getElementById('dashboard-main').removeChild(popUpApproveFormElement)
-    });
-  });
-
-  console.log(document.querySelector('#reject-btn'));
-
   document.querySelector('#reject-btn').addEventListener('click', () => {
     const popUpRejectForm = ` 
     <div class="modal" id="account-modal"> 

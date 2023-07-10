@@ -1,0 +1,62 @@
+<div class="news-detail-page">
+  {{>header}}
+  <div id="dashboard-main" class="main news-detail-main">
+    <form action="/editors/approve/{{post.id}}" method="post">
+      <div class="edit-category-tag-box">
+        <div class="categoryInput">
+          <div class="form-group">
+            <label for="categoryDropdown">Chuyên mục</label>
+            <div class="dropdown">
+              <select id="categoryDropdown" name="category" class="form-select" aria-label="Dropdown menu" required>
+                {{#each new_categories}}
+                <option value="{{dataValues.id}}" {{#if (equalInt dataValues.id
+                  dataValues.targetCategory)}}selected{{/if}}>
+                  {{dataValues.name}}</option>
+                {{#each child_categories}}
+                <option value="{{id}}" {{#if (equalInt id targetCategory)}}selected{{/if}}> + {{name}}
+                </option>
+                {{/each}}
+                {{/each}}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="tagsInput">
+          <label for="tags">Nhãn <p>( phân cách bằng / )</p></label>
+          <input type="text" id="tags" name="tags" value="{{cur_tags}}" required />
+        </div>
+
+        <div class="timeInput">
+          <label for="published_time">Thời điểm xuất bản</p></label>
+          <input type="date" id="published_time" name="published_time" required />
+        </div>
+
+        {{>roundButton type='submit' className='strawberry-backgroundcolor' id='approve-btn' text='Duyệt'}}
+      </div>
+
+      <div class="news-detail-container">
+        <div class="detail-thumbnail-container">
+          <img class="detail-thumbnail" src="{{ post.avatar_link }}" alt="Detail thumbnail" />
+        </div>
+        <div class="detail-cate-and-date">
+          {{>headline path-headline=true}}
+          <div class="detail-date">{{formatDateTime post.updatedAt}}</div>
+        </div>
+        <h1 class="detail-title">{{ post.title }}</h1>
+        <div class="detail-descriptions">
+          {{{post.content}}}
+        </div>
+        <div class="detail-writer">{{ post.Writer.nickname }}</div>
+        <div class="detail-tags-container">
+          <i class="fa-solid fa-tags detail-tags-icon"></i>
+          <div class="detail-tags">
+            {{#each post.tags}}
+            <a href="/posts?tag={{ id }}">{{ name }}</a> {{#unless @last}}/{{/unless}}
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -15,6 +15,7 @@ router.get('/post', controller.post);
 
 router.get('/check/:id', controller.showCheck);
 
+router.get('/approve/:id', controller.showApprove);
 router.post('/approve/:id', controller.approve);
 router.post('/reject/:id', controller.reject);
 router.get('/deletePost/:id', controller.deletePost);
