@@ -26,6 +26,14 @@ controller.isWriter = async (req, res, next) => {
   });
 };
 
+controller.editNickname = async (req, res) => {
+  const user_id = req.user.id;
+  const nickname = req.body['change-nickname'];
+  console.log(nickname);
+  await models.Writer.update({ nickname }, { where: { user_id } });
+  return res.redirect('/writers/info');
+};
+
 controller.new = async (req, res) => {
   const data = {};
   data.title = req.body.title;

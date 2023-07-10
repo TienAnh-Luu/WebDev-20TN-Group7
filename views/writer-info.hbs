@@ -11,9 +11,14 @@
         <div class='dashboard-account-info'>
           <h3 class='info-header'>THÔNG TIN NGƯỜI VIẾT</h3>
           <div class='info-wrapper'>
-            {{>info-item label="Họ tên" data=data.Writer.nickname}}
+            {{>info-item label="Bút danh" data=data.Writer.nickname}}
             {{>info-item label="Email công việc" data=data.Writer.work_email}}
             {{>info-item label="Số điện thoại" data=data.Writer.telephone}}
+            <div class='info-button-container'>
+              {{>roundButton type="button" className="strawberry-backgroundcolor long-button" id='edit-btn' text='Chỉnh
+              sửa bút
+              danh'}}
+            </div>
           </div>
         </div>
       </div>
@@ -21,3 +26,30 @@
     {{!-- {{>footer}} --}}
   </div>
 </div>
+
+<script>
+
+  /*****************************************/ /* handle click event on edit account button */
+  document.getElementById('edit-btn').addEventListener('click', () => {
+    const popUpAccountForm = ` 
+    <div class="modal" id="account-modal"> 
+      <div class="modal-content"> 
+        <div class="modal-form-container"> 
+          <a class="modal-close-btn" id="popup-account-close">&times;</a> 
+          <form class="modal-form" action="/writers/editNickname" method="post"> 
+            <h2 class="modal-title">Chỉnh sửa thông tin</h2> 
+            <input class="modal-form-input" type="text" name="change-nickname" id="change-nickname" placeholder="Bút danh" required/> 
+            <button class="modal-form-submit-btn" type="submit">Chỉnh sửa</button> 
+          </form> 
+        </div>
+      </div> 
+    </div>`;
+    const popUpAccountFormElement = document.createElement('div');
+    popUpAccountFormElement.innerHTML = popUpAccountForm.trim();
+    document.getElementById('dashboard-main').appendChild(popUpAccountFormElement);
+    document.getElementById('account-modal').style.display = 'block';
+    document.getElementById('popup-account-close').addEventListener('click', () => {
+      document.getElementById('dashboard-main').removeChild(popUpAccountFormElement)
+    });
+  });
+</script>

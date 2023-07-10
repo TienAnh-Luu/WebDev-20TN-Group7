@@ -17,6 +17,8 @@ router.get('/info', (req, res) => {
   });
 });
 
+router.post('/editNickname', controller.editNickname);
+
 router.get('/write', (req, res) => {
   res.render('writer-write', {
     data: req.user,

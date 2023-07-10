@@ -16,3 +16,7 @@
   flex-direction: column;
   align-items: center;
 }
+
+.long-button {
+  width: 400px;
+}
