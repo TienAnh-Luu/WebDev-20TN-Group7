@@ -162,6 +162,12 @@ module.exports = {
       item.createdAt = Sequelize.literal('NOW()');
       item.updatedAt = Sequelize.literal('NOW()');
       item.status = 'Active';
+
+      const startDate = new Date('1990-01-01');
+      const endDate = new Date('2000-12-31');
+
+      const randomDate = new Date(startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime()));
+      item.dob = randomDate.toISOString().split('T')[0];
     });
     await queryInterface.bulkInsert('Users', items, {});
   },

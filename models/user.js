@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       premiumTime: DataTypes.DATE,
       status: DataTypes.STRING,
+      dob: DataTypes.DATEONLY,
     },
     {
       sequelize,

@@ -7,9 +7,9 @@ const { NAV_ITEMS } = require('../controllers/constrants');
 
 controller.edit = async (req, res) => {
   const userid = req.user.id;
-  let editMessage;
+  let editMessage = '';
 
-  if (req.body['change-nickname']) {
+  if (req.body['change-nickname'].trim().length > 0) {
     await models.User.update(
       {
         name: req.body['change-nickname'],
@@ -18,8 +18,25 @@ controller.edit = async (req, res) => {
         where: { id: req.user.id },
       },
     );
-    editMessage = 'Bạn đã đổi biệt danh thành công';
-  } else if (req.body['current-password']) {
+    editMessage = 'Bạn đã đổi biệt danh thành công\n';
+  }
+
+  if (req.body['change-dob']) {
+    const [year, month, day] = req.body['change-dob'].split('-');
+    const formattedDate = `${year}-${month}-${day}`;
+    console.log(formattedDate);
+    await models.User.update(
+      {
+        dob: formattedDate,
+      },
+      {
+        where: { id: req.user.id },
+      },
+    );
+    editMessage += 'Bạn đã đổi ngày sinh thành công';
+  }
+
+  if (req.body['current-password']) {
     const user = await models.User.findOne({ where: { id: userid } });
 
     if (!bcrypt.compareSync(req.body['current-password'], user.password)) {
@@ -39,6 +56,7 @@ controller.edit = async (req, res) => {
 
   req.user = await models.User.findOne({ where: { id: userid } });
 
+  if (editMessage === '') editMessage = null;
   res.render('my-account', {
     editMessage: editMessage,
     data: req.user,

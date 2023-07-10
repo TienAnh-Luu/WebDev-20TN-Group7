@@ -12,7 +12,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (userid, done) => {
   try {
     const user = await models.User.findOne({
-      attributes: ['id', 'username', 'email', 'name', 'avatar_link', 'role_id', 'premiumTime'],
+      attributes: ['id', 'username', 'email', 'name', 'avatar_link', 'role_id', 'premiumTime', 'dob'],
       where: { id: userid },
     });
     done(null, user);
