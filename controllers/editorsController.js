@@ -108,7 +108,7 @@ controller.approve = async (req, res) => {
     { where: { id: postid } },
   );
 
-  res.redirect(`/posts/${postid}/preview`);
+  res.redirect(`/editor/approved`);
 };
 
 controller.reject = async (req, res) => {
@@ -125,7 +125,7 @@ controller.reject = async (req, res) => {
     { where: { id: postid } },
   );
 
-  res.redirect(`/posts/${postid}/preview`);
+  res.redirect(`/editor/rejected`);
 };
 
 controller.waiting = async (req, res) => {

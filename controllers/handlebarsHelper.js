@@ -80,6 +80,11 @@ helper.createFooterForNewsItemAdminPost = (data) => {
   <div class="tooltip news-footer-icon-tooltip">Premium</div>
 </div>`;
 
+  const editIcon = `<a href="/admin/editPost/${data.id}" class="news-footer-icon-container news-edit-icon" id="edit">
+    <i class="fa-solid fa-pen-to-square news-footer-icon"></i>
+    <div class="tooltip news-footer-icon-tooltip">Edit</div>
+</a>`;
+
   const feedbackIcon = `<div
   class="news-footer-icon-container news-feedback-icon"
   id="see-feedback"
@@ -95,11 +100,15 @@ helper.createFooterForNewsItemAdminPost = (data) => {
 </div>`;
 
   return `<div class="news-footer">
-  ${data.status === 'Publish' && data.is_premium === false ? `${checkIcon} ${premiumIcon} ${deleteIcon}` : ''}
-  ${data.status === 'Publish' && data.is_premium === true ? `${checkIcon} ${deleteIcon}` : ''}
-  ${data.status === 'Draft' ? `${checkIcon} ${deleteIcon}` : ''}
-  ${data.status === 'Reject' ? `${checkIcon} ${feedbackIcon} ${deleteIcon}` : ''}
-  ${data.status === 'Delete' ? `${checkIcon}` : ''}
+  ${
+    data.status === 'Publish' && data.is_premium === false
+      ? `${checkIcon} ${editIcon} ${premiumIcon} ${deleteIcon}`
+      : ''
+  }
+  ${data.status === 'Publish' && data.is_premium === true ? `${checkIcon} ${editIcon} ${deleteIcon}` : ''}
+  ${data.status === 'Draft' ? `${checkIcon} ${editIcon} ${deleteIcon}` : ''}
+  ${data.status === 'Reject' ? `${checkIcon} ${editIcon} ${feedbackIcon} ${deleteIcon}` : ''}
+  ${data.status === 'Delete' ? `${checkIcon} ${editIcon}` : ''}
 </div>`;
 };
 

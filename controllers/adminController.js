@@ -138,7 +138,7 @@ controller.approve = async (req, res) => {
     { where: { id: postid } },
   );
 
-  res.redirect(`/posts/${postid}/preview`);
+  res.redirect(`/admin/post`);
 };
 
 controller.reject = async (req, res) => {
@@ -155,7 +155,7 @@ controller.reject = async (req, res) => {
     { where: { id: postid } },
   );
 
-  res.redirect(`/posts/${postid}/preview`);
+  res.redirect(`/admin/post`);
 };
 
 controller.deletePost = async (req, res) => {
@@ -186,6 +186,87 @@ controller.premiumPost = async (req, res) => {
     );
   }
   res.redirect('/admin/post');
+};
+
+controller.showEditPost = async (req, res) => {
+  const queryId = isNaN(req.params.id) ? 0 : parseInt(req.params.id);
+
+  const post = await models.Post.findOne({ where: { id: queryId } });
+  let tags = await models.PostTag.findAll({ where: { post_id: queryId } });
+  let stringTags = '';
+  await Promise.all(
+    tags.map(async (tag) => {
+      const queriedTag = await models.Tag.findOne({
+        where: { id: tag.tag_id },
+      });
+      stringTags += queriedTag.name + '/';
+    }),
+  );
+  stringTags = stringTags.slice(0, -1);
+
+  const new_categories = res.locals.categories;
+  new_categories.forEach((mainCategory) => {
+    mainCategory.targetCategory = post.category_id;
+    mainCategory.child_categories.forEach((childCategory) => {
+      childCategory.targetCategory = post.category_id;
+    });
+  });
+
+  res.render('admin-edit-post', {
+    post,
+    data: req.user,
+    navItems: NAV_ITEMS[parseInt(req.user.role_id, 10) - 1],
+    TINYMCE_KEY: process.env.TINYMCE_KEY,
+    tags: stringTags,
+    new_categories,
+  });
+};
+
+controller.editPost = async (req, res) => {
+  const queryId = isNaN(req.params.id) ? 0 : parseInt(req.params.id);
+  const data = {};
+  data.title = req.body.title;
+  data.category_id = parseInt(req.body.category, 10);
+  data.main_category_id = await models.Category.findOne({
+    where: { id: data.category_id },
+  });
+  data.main_category_id = data.main_category_id.parent_category_id
+    ? data.main_category_id.parent_category_id
+    : data.main_category_id.id;
+  data.summary = req.body.summary;
+  data.content = req.body.mainEditor;
+  data.avatar_link = req.body.avatar_link;
+  data.background_image_link = req.body.avatar_link;
+
+  const post = await models.Post.update(
+    {
+      title: data.title,
+      category_id: data.category_id,
+      main_category_id: data.main_category_id,
+      summary: data.summary,
+      status: 'Draft',
+      content: data.content,
+      avatar_link: data.avatar_link,
+      background_image_link: data.background_image_link,
+    },
+    {
+      where: { id: queryId },
+    },
+  );
+
+  await models.PostTag.destroy({ where: { post_id: queryId } });
+
+  let tags = req.body.tags.split('/');
+  tags = tags.map((tag) => tag.trim());
+  tags.forEach(async (tag) => {
+    let queriedTag = await models.Tag.findOne({ where: { name: tag } });
+    if (!queriedTag) {
+      queriedTag = await models.Tag.create({ name: tag });
+    }
+    await models.PostTag.create({ post_id: queryId, tag_id: queriedTag.id });
+  });
+
+  res.redirect(`/admin/post`);
 };
 
 controller.tag = async (req, res) => {

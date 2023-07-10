@@ -65,7 +65,7 @@ controller.new = async (req, res) => {
     await models.PostTag.create({ post_id: post.id, tag_id: queriedTag.id });
   });
 
-  res.redirect(`/posts/${post.id}/preview`);
+  res.redirect(`/writers/waiting`);
 };
 
 controller.edit = async (req, res) => {
@@ -81,7 +81,6 @@ controller.edit = async (req, res) => {
     : data.main_category_id.id;
   data.summary = req.body.summary;
   data.content = req.body.mainEditor;
-  data.status = 'Draft';
   data.avatar_link = req.body.avatar_link;
   data.background_image_link = req.body.avatar_link;
 
@@ -91,8 +90,8 @@ controller.edit = async (req, res) => {
       category_id: data.category_id,
       main_category_id: data.main_category_id,
       summary: data.summary,
+      status: 'Draft',
       content: data.content,
-      status: data.status,
       avatar_link: data.avatar_link,
       background_image_link: data.background_image_link,
     },
@@ -113,7 +112,7 @@ controller.edit = async (req, res) => {
     await models.PostTag.create({ post_id: queryId, tag_id: queriedTag.id });
   });
 
-  res.redirect(`/posts/${queryId}/preview`);
+  res.redirect(`/writers/waiting`);
 };
 
 controller.published = async (req, res) => {

@@ -147,6 +147,7 @@ helper.NAV_ITEMS = [
       icon: 'fa-solid fa-right-from-bracket',
       text: 'Đăng xuất',
       value: 'log-out',
+      link: '/users/logout',
     },
   ],
 ];
